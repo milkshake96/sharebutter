@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- view background color -->
+
+    <gradient
+        android:type="linear"
+        android:angle="90"
+        android:startColor="#cc1c7ac9"
+        android:endColor="#cc6eafe6"/>
+
+
+
+    <!-- If you want to add some padding -->
+    <padding
+        android:bottom="@dimen/MarginQuarter"
+        android:left="@dimen/MarginQuarter"
+        android:right="@dimen/MarginQuarter"
+        android:top="@dimen/MarginQuarter">
+    </padding>
+
+</shape>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid
+        android:color="@color/white"/>
+
+    <!-- If you want to add some padding -->
+    <padding
+        android:left="@dimen/MarginDummy"
+        android:top="@dimen/MarginDummy"
+        android:right="@dimen/MarginDummy"
+        android:bottom="@dimen/MarginDummy">
+    </padding>
+
+    <stroke
+        android:color="@color/theme"
+        android:width="@dimen/Divider.Thick"/>
+
+    <!--<corners android:bottomRightRadius="2dp"-->
+             <!--android:bottomLeftRadius="2dp"-->
+             <!--android:topLeftRadius="2dp"-->
+             <!--android:topRightRadius="2dp"/>-->
+</shape>

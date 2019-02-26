@@ -1,0 +1,101 @@
+<resources>
+    <!-- ============================== -->
+    <dimen name="Divider.Thin">0.5dp</dimen>
+    <dimen name="Divider">1dp</dimen>
+    <dimen name="Divider.Thick">2dp</dimen>
+    <dimen name="Divider.Timeline">4dp</dimen>
+    <dimen name="divider">1dp</dimen>
+    <dimen name="thick_divider">3dp</dimen>
+    <!-- ============Widget============ -->
+    <dimen name="widget_width">250dp</dimen>
+    <dimen name="widget_height">55dp</dimen>
+    <dimen name="widget_circle_height">50dp</dimen>
+    <dimen name="widget_progress_bar_height">30dp</dimen>
+    <dimen name="widget_circle_storke_width">2.2sp</dimen>
+    <item name="widget_innerRadiusRatio" format="float" type="dimen">2.2</item>
+    <dimen name="widget_normal_text">14sp</dimen>
+    <dimen name="widget_medium_text">12sp</dimen>
+    <dimen name="widget_small_text">10sp</dimen>
+    <dimen name="widget_red_dot">6dp</dimen>
+
+    <dimen name="xSmallColumn">24dp</dimen>
+    <dimen name="SmallColumn">32dp</dimen>
+    <dimen name="MediumColumn">40dp</dimen>
+    <dimen name="NormalColumn">48dp</dimen>
+    <dimen name="LargeColumn">56dp</dimen>
+    <dimen name="xLargeColumn">64dp</dimen>
+    <dimen name="xxLargeColumn">72dp</dimen>
+    <dimen name="xxxLargeColumn">80dp</dimen>
+    <dimen name="xxxxLargeColumn">88dp</dimen>
+
+    <dimen name="elevation">4dp</dimen>
+    <!--Margin-->
+    <dimen name="MarginDummy">1dp</dimen>
+    <dimen name="MarginOneEight">2dp</dimen>
+    <dimen name="MarginQuarter">4dp</dimen>
+    <dimen name="MarginHalf">8dp</dimen>
+    <dimen name="Margin">16dp</dimen>
+    <dimen name="MarginTwoThree">24dp</dimen>
+    <dimen name="MarginDouble">32dp</dimen>
+    <dimen name="MarginTriple">48dp</dimen>
+    <dimen name="MarginQuad">64dp</dimen>
+    <dimen name="MarginFifth">80dp</dimen>
+    <dimen name="MarginSixth">96dp</dimen>
+
+    <dimen name="NegMarginDummy">-1dp</dimen>
+    <dimen name="NegMarginOneEight">-2dp</dimen>
+    <dimen name="NegMarginQuarter">-4dp</dimen>
+    <dimen name="NegMarginTreeTwo">-6dp</dimen>
+    <dimen name="NegMarginHalf">-8dp</dimen>
+    <dimen name="NegMargin">-16dp</dimen>
+    <dimen name="NegMarginOnePointFive">-24dp</dimen>
+    <dimen name="NegMarginDouble">-32dp</dimen>
+    <dimen name="NegMarginTriple">-48dp</dimen>
+    <dimen name="NegMarginQuad">-64dp</dimen>
+    <dimen name="NegMarginFifth">-80dp</dimen>
+    <dimen name="NegMarginSixth">-96dp</dimen>
+
+    <!--Text Size-->
+    <dimen name="xxSmallText">8sp</dimen>
+    <dimen name="xSmallText">10sp</dimen>
+    <dimen name="SmallText">12sp</dimen>
+    <dimen name="MediumText">14sp</dimen>
+    <dimen name="NormalText">16sp</dimen>
+    <dimen name="LargeText">18sp</dimen>
+    <dimen name="xLargeText">20sp</dimen>
+    <dimen name="xxLargeText">24sp</dimen>
+    <dimen name="xxxLargeText">28sp</dimen>
+    <dimen name="xxxxLargeText">34sp</dimen>
+    <dimen name="xxxxxLargeText">40sp</dimen>
+
+    <dimen name="SmallTitle">12sp</dimen>
+    <dimen name="MediumTitle">16sp</dimen>
+    <dimen name="NormalSmallTitle">18sp</dimen>
+    <dimen name="NormalTitle">20sp</dimen>
+    <dimen name="NormalLargeTitle">24sp</dimen>
+    <dimen name="LargeTitle">28sp</dimen>
+    <dimen name="xLargeTitle">32sp</dimen>
+
+    <dimen name="AccountBalanceText">56sp</dimen>
+    <dimen name="EditPINSize">48dp</dimen>
+    <dimen name="CardCornerRadius">5dp</dimen>
+    <dimen name="CardMediumCorner">10dp</dimen>
+    <dimen name="CardRoundedCorner">20dp</dimen>
+    <dimen name="PlanProgressHeight">60dp</dimen>
+    <dimen name="AccountDataSizeV2">50sp</dimen>
+    <dimen name="AccountUnitSizeV2">25sp</dimen>
+    <dimen name="xlargeBtnHeight">45dp</dimen>
+    <dimen name="largeBtnHeight">40dp</dimen>
+    <dimen name="BtnHeight">35dp</dimen>
+    <dimen name="SmallBtnHeight">30dp</dimen>
+    <dimen name="xSmallBtnHeight">25dp</dimen>
+    <dimen name="BtnWeight">75dp</dimen>
+    <dimen name="largeBtnWeight">145dp</dimen>
+    <dimen name="xlargeBtnWeight">150dp</dimen>
+    <dimen name="xxlargeBtnWeight">155dp</dimen>
+    <dimen name="xlargeOptionHeight">90dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+</resources>

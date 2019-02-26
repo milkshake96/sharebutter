@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FC4659</color>
+    <color name="colorPrimaryDark">#B9143B</color>
+    <color name="colorAccent">#D53359</color>
+
+    <color name="theme">#FC466A</color>
+    <color name="hightlight">#33e31f0e</color>
+    <color name="subtheme">#B9143B</color>
+    <color name="purple">#DD177E</color>
+    <color name="light_purple">#D63B83</color>
+    <color name="black">#ff000000</color>
+    <color name="blue">#ff000080</color>
+    <color name="white">#ffffffff</color>
+    <color name="light_white">#80ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#80000000</color>
+    <color name="black_semi_transparent">#b2000000</color>
+    <color name="selected">#30000000</color>
+    <color name="grey">#ff808080</color>
+    <color name="light_grey">#80808080</color>
+    <color name="silver">#ffc0c0c0</color>
+    <color name="shadowblack">#11000000</color>
+    <color name="text_black">#e2000000</color>
+    <color name="progress_bar">#ff00dc50</color>
+    <color name="gold_brown">#fff5a73d</color>
+    <color name="super_light_grey">#ccc</color>
+    <color name="light_green">#32A51B</color>
+
+    <color name="ProgressGreen">#2ecc71</color>
+    <color name="ProgressYellow">#f1c40f</color>
+    <color name="ProgressRed">#ffe31f0e</color>
+    <color name="ValidityButtonGreen">#32a51b</color>
+
+    <!-- ================================== -->
+    <color name="ripple">#ff80ab</color>
+    <color name="pale_red">#ff0000</color>
+    <color name="semi_pale_light_grey">#ededed</color>
+    <color name="green">#00b75b</color>
+    <color name="yellow">#fec007</color>
+    <color name="BGTopUpDisabled">#eaeaea</color>
+    <color name="pale_gold">#FEA909</color>
+    <color name="DarkGrey">#606060</color>
+    <color name="PaleBlue">#1DAFEC</color>
+    <color name="DimBlue">#3B89CE</color>
+    <color name="SkyBlue">#2699FB</color>
+    <color name="Orange">#FF9300</color>
+    <color name="LightGray">#ededed</color>
+
+    <!-- ======= Text Color ======== -->
+    <color name="TextPrimaryDark">#444</color>
+    <color name="TextSecondaryDark">#777</color>
+    <color name="TextThirdDark">#AEB6BA</color>
+    <color name="TextDisableDark">#33000000</color>
+    <color name="TextHint">#4D000000</color>
+
+    <color name="TextPrimaryLight">#DFFF</color>
+    <color name="TextSecondaryLight">#A5A5A5</color>
+    <color name="TextDisableLight">#3FFF</color>
+
+    <color name="TextPrimaryTheme">#B9143B</color>
+
+    <color name="Background">#fff</color>
+    <color name="Background.Pale">#EBEBF1</color>
+
+    <color name="StatusBar.Light">#cecfd2</color>
+    <color name="Divider.Dark">#20707070</color>
+
+    <color name="Divider.Darker">#4D000000</color>
+    <color name="Toolbar.Darker">#FF281A</color>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="oval">
+            <padding
+                android:bottom="@dimen/MarginDummy"
+                android:left="@dimen/MarginDummy"
+                android:right="@dimen/MarginDummy"
+                android:top="@dimen/MarginDummy"/>
+
+            <solid android:color="#e2a100"/>
+        </shape>
+    </item>
+</layer-list>
