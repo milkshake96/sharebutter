@@ -192,6 +192,11 @@
     <item name="android:textColor">@color/TextPrimaryDark</item>
 </style>
 
+<style name="SmallTextView.Theme" parent="GothamRegular">
+    <item name="android:textSize">@dimen/SmallText</item>
+    <item name="android:textColor">@color/TextPrimaryTheme</item>
+</style>
+
 <style name="xSmallTextView" parent="GothamRegular">
     <item name="android:textSize">@dimen/xSmallText</item>
     <item name="android:textColor">@color/TextPrimaryDark</item>

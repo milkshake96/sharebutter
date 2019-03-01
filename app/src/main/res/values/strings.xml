@@ -27,4 +27,7 @@
     <string name="login_SignIn">SIGN IN</string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
+    <string name="login_forgot_password">Forgot Password ?</string>
+    <string name="login_breakline">OR</string>
+    <string name="login_signup_msg">Don\'t have an account ?</string>
 </resources>

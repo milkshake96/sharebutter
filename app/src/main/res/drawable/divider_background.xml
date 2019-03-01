@@ -5,20 +5,20 @@
 
     <!-- view background color -->
     <solid
-        android:color="@color/theme">
+        android:color="#c6c6c6">
     </solid>
 
     <!-- If you want to add some padding -->
-    <padding
-        android:bottom="@dimen/MarginQuarter"
-        android:left="@dimen/MarginQuarter"
-        android:right="@dimen/MarginQuarter"
-        android:top="@dimen/MarginQuarter">
-    </padding>
+    <!--<padding-->
+        <!--android:bottom="@dimen/MarginHalf"-->
+        <!--android:left="@dimen/MarginHalf"-->
+        <!--android:right="@dimen/MarginHalf"-->
+        <!--android:top="@dimen/MarginHalf">-->
+    <!--</padding>-->
 
     <!-- Here is the corner radius -->
     <corners
-        android:radius="30dp">
+        android:radius="20dp">
     </corners>
 
 </shape>
