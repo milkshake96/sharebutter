@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FC4659</color>
-    <color name="colorPrimaryDark">#B9143B</color>
-    <color name="colorAccent">#D53359</color>
+    <color name="colorPrimary">#D54747</color>
+    <color name="colorPrimaryDark">#8F2424</color>
+    <color name="colorAccent">#D54747</color>
 
-    <color name="theme">#FC466A</color>
-    <color name="hightlight">#33e31f0e</color>
-    <color name="subtheme">#B9143B</color>
+    <color name="theme">#D54747</color>
+    <color name="highlight">#33e31f0e</color>
+    <color name="subtheme">#8F2424</color>
     <color name="purple">#DD177E</color>
     <color name="light_purple">#D63B83</color>
     <color name="black">#ff000000</color>
@@ -58,7 +58,7 @@
     <color name="TextSecondaryLight">#A5A5A5</color>
     <color name="TextDisableLight">#3FFF</color>
 
-    <color name="TextPrimaryTheme">#B9143B</color>
+    <color name="TextPrimaryTheme">#D54747</color>
 
     <color name="Background">#fff</color>
     <color name="Background.Pale">#EBEBF1</color>

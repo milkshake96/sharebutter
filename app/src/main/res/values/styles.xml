@@ -215,6 +215,10 @@
     <item name="android:textColor">@color/TextPrimaryLight</item>
 </style>
 
+<style name="TextViewBold.Theme" parent="TextViewBold">
+    <item name="android:textColor">@color/TextPrimaryLight</item>
+</style>
+
 <style name="LargeTextBold" parent="GothamBold">
     <item name="android:textSize">@dimen/xLargeText</item>
     <item name="android:textColor">@color/TextPrimaryDark</item>
@@ -223,6 +227,11 @@
 <style name="LargeTextBold.Light" parent="GothamBold">
     <item name="android:textSize">@dimen/xLargeText</item>
     <item name="android:textColor">@color/TextPrimaryLight</item>
+</style>
+
+<style name="LargeTextBold.Theme" parent="GothamBold">
+    <item name="android:textSize">@dimen/xLargeText</item>
+    <item name="android:textColor">@color/TextPrimaryTheme</item>
 </style>
 
 <style name="xLargeTextBold" parent="GothamBold">
@@ -252,6 +261,12 @@
 <!-- ======== Title ========= -->
 <style name="Title" parent="GothamBold">
     <item name="android:textColor">@color/TextPrimaryDark</item>
+    <item name="android:textSize">@dimen/LargeTitle</item>
+    <item name="android:layout_marginBottom">@dimen/MarginQuarter</item>
+</style>
+
+<style name="Title.Theme" parent="GothamBold">
+    <item name="android:textColor">@color/TextPrimaryTheme</item>
     <item name="android:textSize">@dimen/LargeTitle</item>
     <item name="android:layout_marginBottom">@dimen/MarginQuarter</item>
 </style>
