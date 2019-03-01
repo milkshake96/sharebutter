@@ -6,4 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Title.Theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/login_SignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llEmail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/LargeColumn"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+
+        <ImageView
+            android:id="@+id/ic_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/MarginDouble"
+            app:srcCompat="@drawable/ic_email" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            style="@style/TextViewCommon.Theme"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/LargeColumn"
+            android:layout_marginStart="@dimen/Margin"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/login_email"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/TextPrimaryTheme" />
+    </LinearLayout>
+
+    <view
+        android:id="@+id/divider1"
+        style="@style/HorizontalDivider"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llEmail" />
+
+    <LinearLayout
+        android:id="@+id/llPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/LargeColumn"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llEmail">
+
+        <ImageView
+            android:id="@+id/ic_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/MarginDouble"
+            app:srcCompat="@drawable/ic_password" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            style="@style/TextViewCommon.Theme"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/LargeColumn"
+            android:layout_marginStart="@dimen/Margin"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/login_password"
+            android:inputType="numberPassword"
+            android:textColorHint="@color/TextPrimaryTheme" />
+    </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>

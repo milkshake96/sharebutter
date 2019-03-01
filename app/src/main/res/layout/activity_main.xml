@@ -4,15 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/layout_background"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
-    <TextView
-        style="@style/TextViewCommon.Theme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="317dp" />
 
 </android.support.constraint.ConstraintLayout>

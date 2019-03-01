@@ -24,4 +24,7 @@
     <string name="re_enter_e_mail">Re-enter E-mail</string>
     <string name="submit">Submit</string>
     <string name="your_nickname">Your Nickname</string>
+    <string name="login_SignIn">SIGN IN</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
 </resources>
