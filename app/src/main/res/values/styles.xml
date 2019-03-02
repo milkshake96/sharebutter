@@ -153,7 +153,7 @@
 <!-- ====== Text Component ======= -->
 <style name="TextViewCommon" parent="GothamRegular">
     <item name="android:textSize">@dimen/NormalText</item>
-    <item name="android:textColor">@color/TextPrimaryDark</item>
+    <item name="android:textColor">@color/grey</item>
 </style>
 
 <style name="TextViewCommon.Light" parent="TextViewCommon">
@@ -241,7 +241,7 @@
 
 <style name="xLargeTextBold" parent="GothamBold">
     <item name="android:textSize">@dimen/xxLargeText</item>
-    <item name="android:textColor">@color/TextPrimaryDark</item>
+    <item name="android:textColor">@color/TextPrimaryTheme</item>
 </style>
 
 <style name="SmallTextBold" parent="GothamBold">

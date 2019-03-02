@@ -199,7 +199,7 @@
         app:layout_constraintTop_toBottomOf="@+id/llSignUpPassword">
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnSignUp"
             style="@style/TextViewCommon"
             android:layout_width="match_parent"
             android:layout_height="@dimen/NormalColumn"
@@ -215,7 +215,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ivLoginArrow"
+        android:id="@+id/ivSignUpArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/llSignUpButton"

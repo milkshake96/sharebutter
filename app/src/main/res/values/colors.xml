@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#D54747</color>
-    <color name="colorPrimaryDark">#8F2424</color>
+    <color name="colorPrimary">#c44e64</color>
+    <color name="colorPrimaryDark">#9e3549</color>
     <color name="colorAccent">#D54747</color>
 
-    <color name="theme">#D54747</color>
+    <color name="theme">#c44e64</color>
     <color name="highlight">#33e31f0e</color>
-    <color name="subtheme">#8F2424</color>
+    <color name="subtheme">#9e3549</color>
     <color name="purple">#DD177E</color>
     <color name="light_purple">#D63B83</color>
     <color name="black">#ff000000</color>
@@ -17,8 +17,8 @@
     <color name="semi_transparent">#80000000</color>
     <color name="black_semi_transparent">#b2000000</color>
     <color name="selected">#30000000</color>
-    <color name="grey">#ff808080</color>
-    <color name="light_grey">#80808080</color>
+    <color name="grey">#80808080</color>
+    <color name="light_grey">#ff808080</color>
     <color name="silver">#ffc0c0c0</color>
     <color name="shadowblack">#11000000</color>
     <color name="text_black">#e2000000</color>
@@ -58,7 +58,7 @@
     <color name="TextSecondaryLight">#A5A5A5</color>
     <color name="TextDisableLight">#3FFF</color>
 
-    <color name="TextPrimaryTheme">#D54747</color>
+    <color name="TextPrimaryTheme">#c44e64</color>
 
     <color name="Background">#fff</color>
     <color name="Background.Pale">#EBEBF1</color>
