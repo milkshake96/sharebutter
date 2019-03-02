@@ -7,20 +7,21 @@
     tools:context=".LoginActivity">
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvSignInTitle"
         style="@style/Title.Theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
         android:text="@string/login_SignIn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/llEmail"
+        android:id="@+id/llSignInEmail"
         android:layout_width="match_parent"
         android:layout_height="@dimen/LargeColumn"
         android:layout_marginStart="8dp"
@@ -30,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+        app:layout_constraintTop_toBottomOf="@+id/tvSignInTitle">
 
         <ImageView
             android:id="@+id/ic_email"
@@ -41,7 +42,7 @@
             app:srcCompat="@drawable/ic_email" />
 
         <EditText
-            android:id="@+id/etEmail"
+            android:id="@+id/etSignInEmail"
             style="@style/TextViewCommon.Theme"
             android:layout_width="match_parent"
             android:layout_height="@dimen/LargeColumn"
@@ -64,10 +65,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/llSignInEmail" />
 
     <LinearLayout
-        android:id="@+id/llPassword"
+        android:id="@+id/llSignInPassword"
         android:layout_width="match_parent"
         android:layout_height="@dimen/LargeColumn"
         android:layout_marginStart="8dp"
@@ -77,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llEmail">
+        app:layout_constraintTop_toBottomOf="@+id/llSignInEmail">
 
         <ImageView
             android:id="@+id/ic_password"
@@ -88,7 +89,7 @@
             app:srcCompat="@drawable/ic_password" />
 
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/etSignInPassword"
             style="@style/TextViewCommon.Theme"
             android:layout_width="match_parent"
             android:layout_height="@dimen/LargeColumn"
@@ -109,7 +110,7 @@
         android:background="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/llSignInPassword" />
 
     <TextView
         android:id="@+id/tvForgotPassword"
@@ -120,7 +121,7 @@
         android:layout_marginEnd="25dp"
         android:text="@string/login_forgot_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/llSignInPassword" />
 
     <LinearLayout
         android:id="@+id/llBreakLine"
@@ -216,6 +217,7 @@
             android:layout_gravity="center"
             android:background="@drawable/btn_round_red"
             android:text="LOGIN"
+            android:elevation="3dp"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

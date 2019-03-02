@@ -171,7 +171,7 @@
 
 <style name="TextViewMedium" parent="GothamMedium">
     <item name="android:textSize">@dimen/NormalText</item>
-    <item name="android:textColor">@color/TextPrimaryDark</item>
+    <item name="android:textColor">@color/grey</item>
 </style>
 
 <style name="TextViewMedium.Light" parent="TextViewMedium">
