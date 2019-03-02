@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/tvSignUpTitle"
-        style="@style/Title.Theme"
+        style="@style/xLargeTextBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -66,12 +66,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/LargeColumn"
             android:background="@color/white"
+            android:hint="@string/signup_hint_name"
+            android:textColorHint="@color/TextPrimaryTheme"
             android:ems="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
-    <view
+    <TextView
         android:id="@+id/divider1"
         style="@style/HorizontalDivider"
         android:layout_width="match_parent"
@@ -114,12 +116,14 @@
             android:layout_height="@dimen/LargeColumn"
             android:background="@color/white"
             android:ems="10"
+            android:hint="@string/signup_hint_email"
+            android:textColorHint="@color/TextPrimaryTheme"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
-    <view
+    <TextView
         android:id="@+id/divider2"
         style="@style/HorizontalDivider"
         android:layout_width="match_parent"
@@ -167,7 +171,7 @@
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
-    <view
+    <TextView
         android:id="@+id/divider3"
         style="@style/HorizontalDivider"
         android:layout_width="match_parent"
@@ -183,7 +187,7 @@
     <LinearLayout
         android:id="@+id/llSignUpButton"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/LargeColumn"
         android:layout_marginStart="25dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="25dp"

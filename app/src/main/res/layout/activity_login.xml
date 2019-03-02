@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tvSignInTitle"
-        style="@style/Title.Theme"
+        style="@style/xLargeTextBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -35,8 +35,8 @@
 
         <ImageView
             android:id="@+id/ic_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/MarginDouble"
             app:srcCompat="@drawable/ic_email" />
@@ -54,10 +54,10 @@
             android:textColorHint="@color/TextPrimaryTheme" />
     </LinearLayout>
 
-    <view
+    <TextView
         android:id="@+id/divider1"
         style="@style/HorizontalDivider"
-        android:background="@color/grey"
+        android:background="@color/silver"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="25dp"
@@ -82,8 +82,8 @@
 
         <ImageView
             android:id="@+id/ic_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/MarginDouble"
             app:srcCompat="@drawable/ic_password" />
@@ -107,7 +107,7 @@
         android:layout_height="1dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:background="@color/grey"
+        android:background="@color/silver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llSignInPassword" />
@@ -143,7 +143,7 @@
             android:layout_height="1dp"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/Margin"
-            android:background="@color/grey"
+            android:background="@color/silver"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
@@ -154,6 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="@color/silver"
             android:text="@string/login_breakline" />
 
         <TextView
@@ -163,7 +164,7 @@
             android:layout_height="1dp"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/Margin"
-            android:background="@color/grey" />
+            android:background="@color/silver" />
     </LinearLayout>
 
     <LinearLayout
@@ -211,7 +212,7 @@
 
         <Button
             android:id="@+id/btnLogin"
-            style="@style/TextViewCommon"
+            style="@style/TextViewCommon.Theme"
             android:layout_width="match_parent"
             android:layout_height="@dimen/NormalColumn"
             android:layout_gravity="center"
@@ -234,6 +235,7 @@
         app:layout_constraintHorizontal_bias="0.972"
         app:layout_constraintStart_toStartOf="@+id/llLoginButton"
         app:layout_constraintTop_toTopOf="@+id/llLoginButton"
+        app:layout_constraintVertical_bias="0.464"
         app:srcCompat="@drawable/ic_login_arrow" />
 
     <LinearLayout

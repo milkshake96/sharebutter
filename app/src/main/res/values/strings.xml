@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pinkgola - Restaurant Finder APP</string>
+    <string name="app_name">ShareButter</string>
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -13,7 +13,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="login_password">Password</string>
     <string name="login_phone_number">Phone Number</string>
     <string name="login_request_login_pin">Request Login Pin</string>
     <string name="login_or">OR</string>
@@ -34,4 +33,8 @@
     <string name="signup_fullname">Full Name</string>
     <string name="signup_email">Email</string>
     <string name="signup_password">Password</string>
+    <string name="signup_hint_name">John Doe</string>
+    <string name="signup_hint_email">johndoe@gmail.com</string>
+    <string name="reset_password_title">RESET PASSWORD</string>
+    <string name="reset_password_warning_msg">Enter the email address you used to create your account and we will email you a link to reset your password.</string>
 </resources>
