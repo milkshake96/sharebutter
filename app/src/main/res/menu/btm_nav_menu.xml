@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ic_home"
+        android:icon="@drawable/ic_home"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_profile"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/ic_add_img"
+        android:icon="@drawable/ic_add_img"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/ic_msg"
+        android:icon="@drawable/ic_msg"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/ic_map"
+        android:icon="@drawable/ic_map"
+        android:title="">
+    </item>
+</menu>
