@@ -8,10 +8,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ForgetPasswordActivity"/>
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".Authentication.ForgetPasswordActivity"/>
+        <activity android:name=".Authentication.SignUpActivity" />
+        <activity android:name=".Authentication.LoginActivity" />
+        <activity android:name=".Home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Profile.ProfileActivity"/>
+        <activity android:name=".AddOffer.AddOfferActivity"/>
+        <activity android:name=".Message.MessageActivity"/>
+        <activity android:name=".Location.LocationActivity"/>
     </application>
 
 </manifest>

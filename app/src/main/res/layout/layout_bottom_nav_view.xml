@@ -14,7 +14,6 @@
             app:itemIconTint="@drawable/selector"
             app:menu="@menu/btm_nav_menu">
 
-
         </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>
 
     </RelativeLayout>
