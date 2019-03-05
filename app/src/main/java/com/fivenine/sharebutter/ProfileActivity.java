@@ -1,31 +1,25 @@
 package com.fivenine.sharebutter;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.fivenine.sharebutter.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-public class HomeActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
-    private static final String TAG = "HomeActivity";
+    private static final String TAG = "ProfileActivity";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        Log.d(TAG, "onCreate: starting.");
+        Log.d(TAG, "onCreate: successfully started");
 
         setupBottomNavigationView();
-
-//        Intent i = new Intent(this, LoginActivity.class);
-//        startActivity(i);
     }
-
-//    BottomNavigationView setup
 
     private void setupBottomNavigationView(){
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");

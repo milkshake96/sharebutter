@@ -3,12 +3,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/LargeColumn"
-        android:background="@color/white"
         android:layout_alignParentTop="true">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tabs"

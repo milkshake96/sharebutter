@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#c44e64</color>
-    <color name="colorPrimaryDark">#9e3549</color>
+    <color name="colorPrimaryDark">#912b3e</color>
     <color name="colorAccent">#D54747</color>
 
     <color name="theme">#c44e64</color>
-    <color name="highlight">#33e31f0e</color>
+    <color name="highlight">#912b3e</color>
     <color name="subtheme">#9e3549</color>
     <color name="purple">#DD177E</color>
     <color name="light_purple">#D63B83</color>
