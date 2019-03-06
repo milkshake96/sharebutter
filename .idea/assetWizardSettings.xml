@@ -45,9 +45,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="D:\Documents\FYP\Project 2\icon\home-icon-silhouette.png" />
+                                      <entry key="imageAsset" value="D:\Documents\FYP\Project 2\icon\ic_lock.png" />
+                                      <entry key="outputName" value="ic_authenticate" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="ffffff" />
+                                      <entry key="themeColor" value="c44e64" />
                                     </map>
                                   </option>
                                 </PersistentState>

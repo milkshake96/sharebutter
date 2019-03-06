@@ -1,6 +1,8 @@
 package com.fivenine.sharebutter.Home;
 
 import android.content.Context;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,8 +32,28 @@ public class HomeActivity extends AppCompatActivity {
 //        startActivity(i);
     }
 
-//    BottomNavigationView setup
 
+//    Aadding the 4 tabs: Categories, Home, Search, and Authentication
+    private void setupViewPager(){
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new CategoriesFragment()); //index 0
+        adapter.addFragment(new HomeFragment()); //index 1
+        adapter.addFragment(new SearchFragment()); //index 2
+        adapter.addFragment(new AuthenticateFragment()); //index 3
+        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_categories);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_search);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_authenticate);
+    }
+
+
+//    BottomNavigationView setup
     private void setupBottomNavigationView(){
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.btmNavViewBar);
