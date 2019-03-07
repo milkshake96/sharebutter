@@ -25,15 +25,16 @@
             android:layout_below="@+id/rlProfileTopBar"
             android:gravity="center_horizontal">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivProfileImage"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                app:civ_border_color="@color/silver"
+                app:civ_border_width="1dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="8dp"
-                app:srcCompat="@drawable/girl" />
+                android:layout_marginTop="8dp" />
 
             <TextView
                 android:id="@+id/tvProfileUserName"
@@ -77,6 +78,25 @@
             android:layout_below="@+id/rlProfileDetails2"
             android:layout_marginTop="@dimen/xxxSmallColumn"
             android:background="@color/silver"/>
+
+        <RelativeLayout
+            android:id="@+id/rlGridView"
+            android:layout_below="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <GridView
+                android:id="@+id/gvProfileOfferUploaded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:horizontalSpacing="1dp"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="1dp">
+            </GridView>
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
