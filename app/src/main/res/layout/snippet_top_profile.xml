@@ -1,6 +1,130 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/LargeColumn">
+
+        <TextView
+            android:id="@+id/tvFollowersText"
+            style="@style/SmallTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="45dp"
+            android:text="@string/profile_followers_text"
+            android:textColor="@color/DarkGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFollowerNum" />
+
+        <TextView
+            android:id="@+id/tvFollowerNum"
+            style="@style/SmallTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginEnd="8dp"
+            android:text="@string/profile_followers_num"
+            android:textColor="@color/DarkGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divider2"
+            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+
+        <TextView
+            android:id="@+id/tvOfferNum"
+            style="@style/SmallTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginEnd="8dp"
+            android:text="@string/profile_offer_num"
+            android:textColor="@color/DarkGrey"
+            app:layout_constraintEnd_toStartOf="@+id/divider1"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+
+        <TextView
+            android:id="@+id/tvOfferText"
+            style="@style/SmallTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_offer_text"
+            android:textColor="@color/DarkGrey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOfferNum" />
+
+        <TextView
+            android:id="@+id/divider1"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/SmallColumn"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginEnd="8dp"
+            android:background="@color/silver"
+            app:layout_constraintEnd_toStartOf="@+id/tvLikesText"
+            app:layout_constraintHorizontal_bias="0.358"
+            app:layout_constraintStart_toEndOf="@+id/tvOfferText"
+            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+
+        <TextView
+            android:id="@+id/tvLikesNum"
+            style="@style/SmallTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginEnd="8dp"
+            android:text="@string/profile_likes_num"
+            android:textColor="@color/DarkGrey"
+            app:layout_constraintEnd_toStartOf="@+id/divider2"
+            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintStart_toEndOf="@+id/divider1"
+            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+
+        <TextView
+            android:id="@+id/tvLikesText"
+            style="@style/SmallTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="56dp"
+            android:text="@string/profile_likes_text"
+            android:textColor="@color/DarkGrey"
+            app:layout_constraintEnd_toStartOf="@+id/divider2"
+            app:layout_constraintTop_toBottomOf="@+id/tvLikesNum" />
+
+        <TextView
+            android:id="@+id/divider2"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/SmallColumn"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginEnd="44dp"
+            android:background="@color/silver"
+            app:layout_constraintEnd_toStartOf="@+id/tvFollowersText"
+            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+
+        <Button
+            android:id="@+id/btnEditProfile"
+            style="@style/SmallTextView.Theme"
+            android:layout_width="145dp"
+            android:layout_height="@dimen/MediumColumn"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/btn_red_border"
+            android:text="@string/profile_edit_profile_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</merge>
