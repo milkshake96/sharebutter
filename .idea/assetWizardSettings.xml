@@ -45,8 +45,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="D:\Documents\FYP\Project 2\icon\ic_lock.png" />
-                                      <entry key="outputName" value="ic_authenticate" />
+                                      <entry key="imageAsset" value="D:\Documents\FYP\Project 2\icon\ic_gift.png" />
+                                      <entry key="outputName" value="ic_gift" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="c44e64" />
                                     </map>
@@ -70,6 +70,12 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="foregroundImage" value="D:\AndroidStudioProjects\sharebutter-android\app\src\main\res\drawable-nodpi\ic_gift.png" />
+                                      <entry key="legacyIconShape" value="CIRCLE" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -117,11 +123,6 @@
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

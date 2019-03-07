@@ -47,4 +47,6 @@
     <string name="profile_followers_text">Followers</string>
     <string name="profile_edit_profile">Edit Profile</string>
     <string name="profile_edit_profile_text">Edit Profile</string>
+    <string name="profile_username">Yin Ling</string>
+    <string name="profile_description">I am Utarian, studying Information System Engineering. I live in Penang, Malaysia. My hobby is swimming.</string>
 </resources>

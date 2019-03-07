@@ -4,8 +4,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/LargeColumn">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvFollowersText"
@@ -25,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginTop="@dimen/xxSmallColumn"
             android:layout_marginEnd="8dp"
             android:text="@string/profile_followers_num"
             android:textColor="@color/DarkGrey"
@@ -39,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginTop="@dimen/xxSmallColumn"
             android:layout_marginEnd="8dp"
             android:text="@string/profile_offer_num"
             android:textColor="@color/DarkGrey"
@@ -66,7 +65,7 @@
             android:layout_height="@dimen/SmallColumn"
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginTop="@dimen/xxSmallColumn"
             android:layout_marginEnd="8dp"
             android:background="@color/silver"
             app:layout_constraintEnd_toStartOf="@+id/tvLikesText"
@@ -80,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginTop="@dimen/xxSmallColumn"
             android:layout_marginEnd="8dp"
             android:text="@string/profile_likes_num"
             android:textColor="@color/DarkGrey"
@@ -106,7 +105,7 @@
             android:layout_width="1dp"
             android:layout_height="@dimen/SmallColumn"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/SmallColumn"
+            android:layout_marginTop="@dimen/xxSmallColumn"
             android:layout_marginEnd="44dp"
             android:background="@color/silver"
             app:layout_constraintEnd_toStartOf="@+id/tvFollowersText"
@@ -118,7 +117,7 @@
             android:layout_width="145dp"
             android:layout_height="@dimen/SmallColumn"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/xxSmallColumn"
             android:layout_marginEnd="8dp"
             android:background="@drawable/btn_red_border"
             android:text="@string/profile_edit_profile_text"

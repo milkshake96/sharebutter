@@ -18,6 +18,8 @@
     <dimen name="widget_small_text">10sp</dimen>
     <dimen name="widget_red_dot">6dp</dimen>
 
+    <dimen name="xxxSmallColumn">8dp</dimen>
+    <dimen name="xxSmallColumn">16dp</dimen>
     <dimen name="xSmallColumn">24dp</dimen>
     <dimen name="SmallColumn">32dp</dimen>
     <dimen name="MediumColumn">40dp</dimen>
