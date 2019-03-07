@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.BottomNavigationViewHelper;
@@ -19,6 +20,9 @@ public class HomeActivity extends AppCompatActivity {
     private Context mContext = HomeActivity.this;
     private static final int ACTIVITY_NUM = 0;
 
+    ViewPager viewPager;
+    TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +30,15 @@ public class HomeActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: starting.");
 
+
+        viewPager = findViewById(R.id.HomeBody);
+        tabLayout = findViewById(R.id.tabs);
+
         setupBottomNavigationView();
+        setupViewPager();
+
+
+
 
 //        Intent i = new Intent(this, LoginActivity.class);
 //        startActivity(i);
@@ -40,16 +52,14 @@ public class HomeActivity extends AppCompatActivity {
         adapter.addFragment(new HomeFragment()); //index 1
         adapter.addFragment(new SearchFragment()); //index 2
         adapter.addFragment(new AuthenticateFragment()); //index 3
-        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_categories);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_search);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_authenticate);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_app_name);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_search);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_authenticate);
     }
 
 
