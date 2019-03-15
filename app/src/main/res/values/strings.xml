@@ -30,7 +30,7 @@
     <string name="login_breakline">OR</string>
     <string name="login_signup_msg">Don\'t have an account ?</string>
     <string name="signup_title">SIGN UP</string>
-    <string name="signup_fullname">Full Name</string>
+    <string name="signup_username">Name</string>
     <string name="signup_email">Email</string>
     <string name="signup_password">Password</string>
     <string name="signup_hint_name">John Doe</string>
@@ -49,4 +49,8 @@
     <string name="profile_edit_profile_text">Edit Profile</string>
     <string name="profile_username">Yin Ling</string>
     <string name="profile_description">I am Utarian, studying Information System Engineering. I live in Penang, Malaysia. My hobby is swimming.</string>
+    <string name="editprofile_done">DONE</string>
+    <string name="editprofile_change_photo">Change Photo</string>
+    <string name="editprofile_hint_name">Name</string>
+    <string name="editprofile_hint_description">Description</string>
 </resources>

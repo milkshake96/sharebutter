@@ -1,5 +1,5 @@
-<merge xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -9,11 +9,12 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/profileToolBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/xxSmallColumn">
 
 
                 <ImageView
@@ -21,15 +22,25 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
                     app:srcCompat="@drawable/ic_back" />
 
                 <TextView
-                    android:id="@+id/profileName"
+                    android:id="@+id/tvEditProfileTitle"
                     style="@style/LargeTextBold.Theme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="@string/profile_about_me" />
+                    android:text="@string/profile_edit_profile" />
+
+                <TextView
+                    android:id="@+id/tvDone"
+                    style="@style/TextViewCommon.Theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/editprofile_done" />
 
             </RelativeLayout>
 

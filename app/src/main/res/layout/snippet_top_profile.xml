@@ -30,7 +30,7 @@
             android:textColor="@color/DarkGrey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/divider2"
-            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
 
         <TextView
             android:id="@+id/tvOfferNum"
@@ -45,7 +45,7 @@
             app:layout_constraintEnd_toStartOf="@+id/divider1"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
 
         <TextView
             android:id="@+id/tvOfferText"
@@ -71,7 +71,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tvLikesText"
             app:layout_constraintHorizontal_bias="0.358"
             app:layout_constraintStart_toEndOf="@+id/tvOfferText"
-            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
 
         <TextView
             android:id="@+id/tvLikesNum"
@@ -86,7 +86,7 @@
             app:layout_constraintEnd_toStartOf="@+id/divider2"
             app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toEndOf="@+id/divider1"
-            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
 
         <TextView
             android:id="@+id/tvLikesText"
@@ -109,10 +109,10 @@
             android:layout_marginEnd="44dp"
             android:background="@color/silver"
             app:layout_constraintEnd_toStartOf="@+id/tvFollowersText"
-            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
 
         <Button
-            android:id="@+id/btnEditProfile"
+            android:id="@+id/tvEditProfile"
             style="@style/SmallTextView.Theme"
             android:layout_width="145dp"
             android:layout_height="@dimen/SmallColumn"

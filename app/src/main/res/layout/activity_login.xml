@@ -102,16 +102,16 @@
                 android:textColorHint="@color/TextPrimaryTheme" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:background="@color/silver"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/llSignInPassword" />
+    <TextView
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@color/silver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llSignInPassword" />
 
         <TextView
             android:id="@+id/tvForgotPassword"

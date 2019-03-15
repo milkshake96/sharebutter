@@ -1,0 +1,168 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="20dp">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivProfileImage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                app:civ_border_color="@color/silver"
+                app:civ_border_width="1dp" />
+
+            <TextView
+                android:id="@+id/changeProfilePhoto"
+                style="@style/TextViewCommon.Theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivProfileImage"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/SmallColumn"
+                android:text="@string/editprofile_change_photo" />
+
+
+            <!-- username section -->
+            <RelativeLayout
+                android:id="@+id/rlLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/LargeColumn"
+                android:layout_below="@+id/changeProfilePhoto"
+                android:layout_marginTop="@dimen/SmallColumn"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_editprofile_name" />
+
+                <EditText
+                    android:id="@+id/etEditProfileUsername"
+                    style="@style/TextViewCommon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="40dp"
+                    android:background="@null"
+                    android:hint="@string/editprofile_hint_name"
+                    android:inputType="textNoSuggestions" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rlLayout1"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:background="@color/silver" />
+
+
+            <!-- description section -->
+            <!--Column 1-->
+            <RelativeLayout
+                android:id="@+id/rlLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/LargeColumn"
+                android:layout_below="@+id/rlLayout1"
+                android:layout_marginTop="@dimen/SmallColumn"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_editprofile_description" />
+
+                <EditText
+                    android:id="@+id/etEditProfileDescription"
+                    style="@style/TextViewCommon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="40dp"
+                    android:background="@null"
+                    android:hint="@string/editprofile_hint_description"
+                    android:inputType="textNoSuggestions" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rlLayout2"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:background="@color/silver" />
+
+
+            <!--Column 2-->
+            <RelativeLayout
+                android:id="@+id/rlLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/MediumColumn"
+                android:layout_below="@+id/divider2"
+                android:background="@color/white">
+
+                <EditText
+                    android:id="@+id/etEditProfileDescription2"
+                    style="@style/TextViewCommon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="40dp"
+                    android:background="@null"
+                    android:inputType="textNoSuggestions" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rlLayout3"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:background="@color/silver" />
+
+
+            <!--Column 3-->
+            <RelativeLayout
+                android:id="@+id/rlLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/MediumColumn"
+                android:layout_below="@+id/divider3"
+                android:background="@color/white">
+
+                <EditText
+                    android:id="@+id/etEditProfileDescription3"
+                    style="@style/TextViewCommon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="40dp"
+                    android:background="@null"
+                    android:inputType="textNoSuggestions" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rlLayout4"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:background="@color/silver" />
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+</merge>
