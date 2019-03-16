@@ -12,7 +12,9 @@ import android.widget.Button;
 
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.BottomNavigationViewHelper;
+import com.fivenine.sharebutter.Utils.UniversalImageLoader;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -34,14 +36,14 @@ public class HomeActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.HomeBody);
         tabLayout = findViewById(R.id.tabs);
 
+        initImageLoader();
         setupBottomNavigationView();
         setupViewPager();
+    }
 
-
-
-
-//        Intent i = new Intent(this, LoginActivity.class);
-//        startActivity(i);
+    private void initImageLoader(){
+        UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
 
 

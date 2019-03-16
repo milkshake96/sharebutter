@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <include layout="@layout/layout_middle_viewpager"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/blurbackground">
 
-        <include layout="@layout/layout_center_profile"/>
-        <include layout="@layout/layout_bottom_nav_view"/>
+        <include layout="@layout/layout_center_profile" />
+
+        <include layout="@layout/layout_bottom_nav_view" />
 
         <ProgressBar
+            android:id="@+id/profileProgressBar"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/profileProgressBar"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="250dp"/>
+            android:layout_marginTop="250dp" />
 
     </RelativeLayout>
 
