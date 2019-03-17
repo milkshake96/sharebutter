@@ -1,6 +1,8 @@
 package com.fivenine.sharebutter.Home;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.fivenine.sharebutter.Authentication.LoginActivity;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.BottomNavigationViewHelper;
 import com.fivenine.sharebutter.Utils.UniversalImageLoader;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -22,8 +28,9 @@ public class HomeActivity extends AppCompatActivity {
     private Context mContext = HomeActivity.this;
     private static final int ACTIVITY_NUM = 0;
 
-    ViewPager viewPager;
-    TabLayout tabLayout;
+    //firebase
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,30 +39,31 @@ public class HomeActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: starting.");
 
-
-        viewPager = findViewById(R.id.HomeBody);
-        tabLayout = findViewById(R.id.tabs);
+        setupFirebaseAuth();
 
         initImageLoader();
         setupBottomNavigationView();
         setupViewPager();
     }
 
-    private void initImageLoader(){
+    private void initImageLoader() {
         UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
         ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
 
 
-//    Aadding the 4 tabs: Categories, Home, Search, and Authentication
-    private void setupViewPager(){
+    //    Aadding the 4 tabs: Categories, Home, Search, and Authentication
+    private void setupViewPager() {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new CategoriesFragment()); //index 0
         adapter.addFragment(new HomeFragment()); //index 1
         adapter.addFragment(new SearchFragment()); //index 2
         adapter.addFragment(new AuthenticateFragment()); //index 3
 
+        ViewPager viewPager = (ViewPager) findViewById(R.id.HomeBody);
         viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_categories);
@@ -65,15 +73,71 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-//    BottomNavigationView setup
-    private void setupBottomNavigationView(){
+    //    BottomNavigationView setup
+    private void setupBottomNavigationView() {
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.btmNavViewBar);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext,bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationViewEx);
 
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
     }
+
+
+//    ------------------------------------ Firebase ---------------------------------------------
+
+
+    //   checks to see if the @param 'user' is logged in
+    //   @param user
+    private void checkCurrentUser(FirebaseUser user) {
+        Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
+
+        if (user == null) {
+            Intent intent = new Intent(mContext, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    //   Setup the firebase auth object
+    private void setupFirebaseAuth() {
+        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                //check if the user is logged in
+                checkCurrentUser(user);
+
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
 }
+

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "433018274298",
+    "firebase_url": "https://sharebutterofficial-a5465.firebaseio.com",
+    "project_id": "sharebutterofficial-a5465",
+    "storage_bucket": "sharebutterofficial-a5465.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433018274298:android:c1c67f666a126edb",
+        "android_client_info": {
+          "package_name": "com.fivenine.sharebutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433018274298-9n5itvcms0stoeg0po6tk4n986kdslel.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fivenine.sharebutter",
+            "certificate_hash": "a9b60b8a8d2ff8ad539863554f3cf6d21a355ca2"
+          }
+        },
+        {
+          "client_id": "433018274298-rm218p5p63r9tl3dlmv1eneln6if8ni9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsRfy_RfD6WugeJ1hk-s9NAOHTiwBJCDk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433018274298-rm218p5p63r9tl3dlmv1eneln6if8ni9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
