@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,33 +12,39 @@
         android:layout_height="match_parent">
 
 
-        <!-- top toolbar -->
+         <!--top toolbar-->
         <RelativeLayout
             android:id="@+id/rlHomeTopBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/layout_top_bars"/>
+            <include layout="@layout/snippet_top_homebar" />
 
         </RelativeLayout>
 
         <!-- Middle section (body) -->
         <RelativeLayout
-            android:id="@+id/rlHomeBody"
+            android:id="@+id/rlmiddle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/llBtmTabs"
             android:layout_below="@+id/rlHomeTopBar">
 
-            <include layout="@layout/layout_middle_viewpager"/>
+            <include layout="@layout/layout_middle_viewpager" />
 
         </RelativeLayout>
 
-        <include layout="@layout/layout_bottom_nav_view"/>
-
         <!-- bottom navigation -->
+        <RelativeLayout
+            android:id="@+id/llBtmTabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
 
+            <include layout="@layout/layout_btm_tabs" />
 
-
+        </RelativeLayout>
     </RelativeLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

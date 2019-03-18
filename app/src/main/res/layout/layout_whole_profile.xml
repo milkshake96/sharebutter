@@ -12,7 +12,7 @@
         <RelativeLayout
             android:id="@+id/rlProfileTopBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="@dimen/LargeColumn">
 
             <include layout="@layout/snippet_top_profilebar" />
         </RelativeLayout>
@@ -81,19 +81,29 @@
         <RelativeLayout
             android:id="@+id/rlGridView"
             android:layout_below="@+id/divider1"
+            android:layout_above="@+id/rlBtmTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <GridView
                 android:id="@+id/gvProfileOfferUploaded"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:horizontalSpacing="1dp"
                 android:numColumns="3"
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="1dp">
             </GridView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlBtmTabs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <include layout="@layout/layout_btm_tabs" />
         </RelativeLayout>
 
     </RelativeLayout>

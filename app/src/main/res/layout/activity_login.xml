@@ -105,7 +105,7 @@
     <TextView
         android:id="@+id/divider2"
         android:layout_width="match_parent"
-        android:layout_height="6dp"
+        android:layout_height="1dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:background="@color/silver"
@@ -281,12 +281,11 @@
         android:id="@+id/loginRequestLoadingProgressbar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="316dp" />
 
     <TextView
+        android:id="@+id/tvLoadingMessage"
         style="@style/TextViewCommon.Theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

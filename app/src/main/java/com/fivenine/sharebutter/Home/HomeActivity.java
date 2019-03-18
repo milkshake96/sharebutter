@@ -12,7 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.fivenine.sharebutter.AddOffer.AddOfferFragment;
 import com.fivenine.sharebutter.Authentication.LoginActivity;
+import com.fivenine.sharebutter.Location.LocationFragment;
+import com.fivenine.sharebutter.Message.MessageFragment;
+import com.fivenine.sharebutter.Profile.ProfileFragment;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.BottomNavigationViewHelper;
 import com.fivenine.sharebutter.Utils.UniversalImageLoader;
@@ -42,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         setupFirebaseAuth();
 
         initImageLoader();
-        setupBottomNavigationView();
+//        setupBottomNavigationView();
         setupViewPager();
     }
 
@@ -55,21 +59,23 @@ public class HomeActivity extends AppCompatActivity {
     //    Aadding the 4 tabs: Categories, Home, Search, and Authentication
     private void setupViewPager() {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new CategoriesFragment()); //index 0
-        adapter.addFragment(new HomeFragment()); //index 1
-        adapter.addFragment(new SearchFragment()); //index 2
-        adapter.addFragment(new AuthenticateFragment()); //index 3
+        adapter.addFragment(new HomeFragment()); //index 0
+        adapter.addFragment(new ProfileFragment()); //index 1
+        adapter.addFragment(new AddOfferFragment()); //index 2
+        adapter.addFragment(new MessageFragment()); //index 3
+        adapter.addFragment(new LocationFragment()); //index 4
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.HomeBody);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_categories);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_app_name);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_search);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_authenticate);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_profile);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_add_img);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_msg);
+        tabLayout.getTabAt(4).setIcon(R.drawable.ic_map);
     }
 
 
@@ -130,6 +136,7 @@ public class HomeActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+        checkCurrentUser(mAuth.getCurrentUser());
     }
 
     @Override

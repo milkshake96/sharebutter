@@ -54,4 +54,12 @@
     <string name="editprofile_hint_name">Name</string>
     <string name="editprofile_hint_description">Description</string>
     <string name="signin_loadingmsg_please_wait">Please Wait...</string>
+
+    <!-- Firebase messages -->
+    <string name="auth_failed">Failed to Authenticate</string>
+    <string name="auth_success">Authentication Success</string>
+    <string name="profile_fragment">Profile Fragment</string>
+    <string name="add_offer_fragment">Add Offer Fragment</string>
+    <string name="message_fragment">Message Fragment</string>
+    <string name="location_fragment">Location Fragment</string>\
 </resources>

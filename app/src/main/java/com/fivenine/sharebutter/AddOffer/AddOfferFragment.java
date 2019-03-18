@@ -1,4 +1,4 @@
-package com.fivenine.sharebutter.Home;
+package com.fivenine.sharebutter.AddOffer;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,15 +9,20 @@ import android.view.ViewGroup;
 
 import com.fivenine.sharebutter.R;
 
-public class HomeFragment extends Fragment {
+public class AddOfferFragment extends Fragment {
 
-    private static final String TAG = "HomeFragment";
+    private static final String TAG = "AddOfferFragment";
+//    private Button btnLogin;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container,false);
+        View view = inflater.inflate(R.layout.fragment_addoffer, container, false);
 
         return view;
+
+//        btnLogin = (Button) findViewById(R.id.llLoginButton);
+//        btnLogin.setOnClickListener();
     }
+
 }

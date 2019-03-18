@@ -5,12 +5,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/blurbackground">
 
-        <include layout="@layout/layout_center_profile" />
+        <RelativeLayout
+            android:id="@+id/rlTopProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
-        <include layout="@layout/layout_bottom_nav_view" />
+            <include layout="@layout/layout_whole_profile" />
+        </RelativeLayout>
 
         <ProgressBar
             android:id="@+id/profileProgressBar"
