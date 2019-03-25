@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.fivenine.sharebutter.AddOffer.AddOfferFragment;
 import com.fivenine.sharebutter.Authentication.LoginActivity;
@@ -20,16 +19,15 @@ import com.fivenine.sharebutter.Profile.ProfileFragment;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.BottomNavigationViewHelper;
 import com.fivenine.sharebutter.Utils.UniversalImageLoader;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-public class HomeActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "HomeActivity";
-    private Context mContext = HomeActivity.this;
+    private static final String TAG = "MainActivity";
+    private Context mContext = MainActivity.this;
     private static final int ACTIVITY_NUM = 0;
 
     //firebase
@@ -39,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.fragment_home);
 
         Log.d(TAG, "onCreate: starting.");
 
@@ -48,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         initImageLoader();
 //        setupBottomNavigationView();
         setupViewPager();
+
     }
 
     private void initImageLoader() {
