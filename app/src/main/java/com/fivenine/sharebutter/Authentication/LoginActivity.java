@@ -22,8 +22,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import static com.google.android.gms.flags.FlagSource.G;
-
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
@@ -47,14 +45,13 @@ public class LoginActivity extends AppCompatActivity {
         mEmail = (EditText) findViewById(R.id.etSignInEmail);
         mPassword = (EditText) findViewById(R.id.etSignInPassword);
         mContext = LoginActivity.this;
-        Log.d(TAG, "onCreate: starting.");
+        Log.d(TAG, "onCreate: started.");
 
         mPleaseWait.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.GONE);
 
         setupFirebaseAuth();
         init();
-
     }
 
     private boolean isStringNull(String string){
@@ -109,6 +106,12 @@ public class LoginActivity extends AppCompatActivity {
                                                 Toast.LENGTH_SHORT).show();
                                         mProgressBar.setVisibility(View.GONE);
                                         mPleaseWait.setVisibility(View.GONE);
+
+                                        if(mAuth.getCurrentUser() != null){
+                                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
                                     }
 
                                     // ...
@@ -129,12 +132,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //If the user is logged in then navigate to HomeActivity and call 'finish()'
-        if(mAuth.getCurrentUser() != null){
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        //If the user is logged in then navigate to HomeActivity and call 'finish()'
+//        if(mAuth.getCurrentUser() != null){
+//            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
     }
 
 

@@ -14,6 +14,8 @@ import com.fivenine.sharebutter.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -48,8 +50,8 @@ public class GridImageAdapter extends ArrayAdapter<String> {
         if(convertView == null){
             convertView = mInflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder();
-            holder.mProgressBar = (ProgressBar) convertView.findViewById(R.id.gridImageProgressbar);
-            holder.image = (SquareImageView) convertView.findViewById(R.id.gridImageView);
+            holder.mProgressBar = convertView.findViewById(R.id.gridImageProgressbar);
+            holder.image = convertView.findViewById(R.id.gridImageView);
 
             convertView.setTag(holder);
         }
@@ -59,37 +61,53 @@ public class GridImageAdapter extends ArrayAdapter<String> {
 
         String imgURL = getItem(position);
 
+        Picasso.get()
+                .load(imgURL)
+                .fit()
+                .centerCrop()
+                .into(holder.image, new Callback(){
+
+                    @Override
+                    public void onSuccess() {
+                        holder.mProgressBar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                    }
+                });
+
         ImageLoader imageLoader = ImageLoader.getInstance();
 
-        imageLoader.displayImage(mAppend + imgURL, holder.image, new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-                if(holder.mProgressBar != null){
-                    holder.mProgressBar.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                if(holder.mProgressBar != null){
-                    holder.mProgressBar.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                if(holder.mProgressBar != null){
-                    holder.mProgressBar.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-                if(holder.mProgressBar != null){
-                    holder.mProgressBar.setVisibility(View.GONE);
-                }
-            }
-        });
+//        imageLoader.displayImage(mAppend + imgURL, holder.image, new ImageLoadingListener() {
+//            @Override
+//            public void onLoadingStarted(String imageUri, View view) {
+//                if(holder.mProgressBar != null){
+//                    holder.mProgressBar.setVisibility(View.VISIBLE);
+//                }
+//            }
+//
+//            @Override
+//            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+//                if(holder.mProgressBar != null){
+//                    holder.mProgressBar.setVisibility(View.GONE);
+//                }
+//            }
+//
+//            @Override
+//            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+//                if(holder.mProgressBar != null){
+//                    holder.mProgressBar.setVisibility(View.GONE);
+//                }
+//            }
+//
+//            @Override
+//            public void onLoadingCancelled(String imageUri, View view) {
+//                if(holder.mProgressBar != null){
+//                    holder.mProgressBar.setVisibility(View.GONE);
+//                }
+//            }
+//        });
 
         return convertView;
     }

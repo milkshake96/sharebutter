@@ -4,13 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--top toolbar-->
+    <RelativeLayout
+        android:id="@+id/rlHomeTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/snippet_top_homebar" />
+
+    </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Home Fragment"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimary"/>
+        android:layout_below="@+id/rlHomeTopBar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/LargeColumn"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
 
 </RelativeLayout>

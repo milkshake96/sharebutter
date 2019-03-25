@@ -18,11 +18,11 @@
 
 
                 <ImageView
-                    android:id="@+id/ivBackBtn"
+                    android:id="@+id/ivCategoriesBtn"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_alignParentStart="true"
-                    app:srcCompat="@drawable/ic_back" />
+                    app:srcCompat="@drawable/ic_categories" />
 
                 <TextView
                     android:id="@+id/tvAppName"

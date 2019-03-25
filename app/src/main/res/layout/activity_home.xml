@@ -12,23 +12,12 @@
         android:layout_height="match_parent">
 
 
-         <!--top toolbar-->
-        <RelativeLayout
-            android:id="@+id/rlHomeTopBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <include layout="@layout/snippet_top_homebar" />
-
-        </RelativeLayout>
-
         <!-- Middle section (body) -->
         <RelativeLayout
             android:id="@+id/rlmiddle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/llBtmTabs"
-            android:layout_below="@+id/rlHomeTopBar">
+            android:layout_above="@+id/llBtmTabs">
 
             <include layout="@layout/layout_middle_viewpager" />
 

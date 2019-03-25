@@ -67,7 +67,7 @@
             android:layout_height="@dimen/LargeColumn"
             android:background="@color/white"
             android:hint="@string/signup_hint_name"
-            android:textColorHint="@color/TextPrimaryTheme"
+            android:textColorHint="@color/grey"
             android:ems="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -117,7 +117,7 @@
             android:background="@color/white"
             android:ems="10"
             android:hint="@string/signup_hint_email"
-            android:textColorHint="@color/TextPrimaryTheme"
+            android:textColorHint="@color/grey"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -166,7 +166,7 @@
             android:layout_height="@dimen/LargeColumn"
             android:background="@color/white"
             android:ems="10"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
@@ -235,6 +235,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/signupPleaseWait"
         style="@style/TextViewCommon.Theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

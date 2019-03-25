@@ -59,7 +59,7 @@
                 android:layout_marginTop="@dimen/xxxSmallColumn"
                 android:layout_marginStart="@dimen/Margin"
                 android:layout_marginEnd="@dimen/Margin"
-                android:text="@string/profile_description" />
+                android:text="@string/profile_d0escription" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -81,7 +81,6 @@
         <RelativeLayout
             android:id="@+id/rlGridView"
             android:layout_below="@+id/divider1"
-            android:layout_above="@+id/rlBtmTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -95,15 +94,6 @@
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="1dp">
             </GridView>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rlBtmTabs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <include layout="@layout/layout_btm_tabs" />
         </RelativeLayout>
 
     </RelativeLayout>

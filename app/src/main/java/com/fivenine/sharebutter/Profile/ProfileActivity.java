@@ -71,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void tempGridSetup(){
         ArrayList<String> imgURLs = new ArrayList<>();
-        imgURLs.add("https://pbs.twimg.com/profile_images/616076655547682816/6gMRtQyY.jpg");
+        imgURLs.add("https://images-gmi-pmc.edge-generalmills.com/e450aae8-b596-441d-aa76-ed37965bfb5b.jpg");
         imgURLs.add("https://i.redd.it/9bf67ygj710z.jpg");
         imgURLs.add("https://c1.staticflickr.com/5/4276/34102458063_7be616b993_o.jpg");
         imgURLs.add("http://i.imgur.com/EwZRpvQ.jpg");

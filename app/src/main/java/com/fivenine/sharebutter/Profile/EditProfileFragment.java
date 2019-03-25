@@ -3,6 +3,7 @@ package com.fivenine.sharebutter.Profile;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.UniversalImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 
 public class EditProfileFragment extends Fragment {
 
@@ -33,7 +35,7 @@ public class EditProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating back to ProfileActivity");
-                getActivity().finish();
+                getActivity().onBackPressed();
             }
         });
 
@@ -43,6 +45,14 @@ public class EditProfileFragment extends Fragment {
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: setting profile image.");
         String imgURL = "www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
-        UniversalImageLoader.setImage(imgURL, mProfilePhoto, null, "https://");
+//        UniversalImageLoader.setImage(imgURL, mProfilePhoto, null, "https://");
+
+        Picasso.get()
+                .load(imgURL)
+                .fit()
+                .centerCrop()
+                .into(mProfilePhoto);
     }
+
+
 }
