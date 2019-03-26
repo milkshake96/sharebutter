@@ -61,5 +61,9 @@
     <string name="profile_fragment">Profile Fragment</string>
     <string name="add_offer_fragment">Add Offer Fragment</string>
     <string name="message_fragment">Message Fragment</string>
-    <string name="location_fragment">Location Fragment</string>\
+    <string name="location_fragment">Location Fragment</string>
+
+    <!-- Firebase database fields -->
+    <string name="dbname_users">users</string>
+    <string name="dbname_user_account_settings">user_account_settings</string>
 </resources>

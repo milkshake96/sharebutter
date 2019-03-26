@@ -7,11 +7,14 @@ import android.widget.Toast;
 
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.models.User;
+import com.fivenine.sharebutter.models.UserAccountSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseMethods {
 
@@ -20,6 +23,8 @@ public class FirebaseMethods {
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
     private String userID;
 
     private Context mContext;
@@ -38,7 +43,7 @@ public class FirebaseMethods {
 
         User user = new User();
 
-        for (DataSnapshot ds: datasnapshot.getChildren()){
+        for (DataSnapshot ds: datasnapshot.child(userID).getChildren()){
             Log.d(TAG, "checkIfUsernameExists: datasnapshot: " + ds);
 
             user.setUsername(ds.getValue(User.class).getUsername());
@@ -81,5 +86,30 @@ public class FirebaseMethods {
 
                     }
                 });
+    }
+
+    public void addNewUser(String username, String description, String profile_photo){
+
+        User user = new User( userID, StringManipulation.condenseUsername(username));
+
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(userID)
+                .setValue(user);
+
+
+        UserAccountSettings settings = new UserAccountSettings(
+                description,
+                username,
+                0,
+                0,
+                0,
+                profile_photo,
+                username
+        );
+
+        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+                .child(userID)
+                .setValue(settings);
+
     }
 }

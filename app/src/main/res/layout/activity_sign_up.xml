@@ -56,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signup_username"
+            android:textColor="@color/DarkGrey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
@@ -66,9 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/LargeColumn"
             android:background="@color/white"
+            android:ems="10"
             android:hint="@string/signup_hint_name"
             android:textColorHint="@color/grey"
-            android:ems="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
@@ -105,6 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signup_email"
+            android:textColor="@color/DarkGrey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
@@ -117,8 +119,8 @@
             android:background="@color/white"
             android:ems="10"
             android:hint="@string/signup_hint_email"
-            android:textColorHint="@color/grey"
             android:inputType="textEmailAddress"
+            android:textColorHint="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
@@ -155,6 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signup_password"
+            android:textColor="@color/DarkGrey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
@@ -205,9 +208,9 @@
             android:layout_height="@dimen/NormalColumn"
             android:layout_gravity="center"
             android:background="@drawable/btn_round_red"
+            android:elevation="3dp"
             android:text="SIGN UP"
             android:textColor="@color/white"
-            android:elevation="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent" />

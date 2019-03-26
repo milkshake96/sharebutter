@@ -139,11 +139,12 @@ public class SignUpActivity extends AppCompatActivity {
                                 append = myRef.push().getKey().substring(3,10);
                                 Log.d(TAG, "onDataChange: username already exists. Appending random string to name: " + append);
                             }
-                            username = username = append;
+                            username = username + append;
 
                             //add new user to the database
+                            firebaseMethods.addNewUser(username, "","");
 
-                            //add new user_account_settings to the database
+                            Toast.makeText(mContext, "Signup successful. Sending verification email.", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override

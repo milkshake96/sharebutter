@@ -59,7 +59,7 @@
                 android:layout_marginTop="@dimen/xxxSmallColumn"
                 android:layout_marginStart="@dimen/Margin"
                 android:layout_marginEnd="@dimen/Margin"
-                android:text="@string/profile_d0escription" />
+                android:text="@string/profile_description" />
         </RelativeLayout>
 
         <RelativeLayout
