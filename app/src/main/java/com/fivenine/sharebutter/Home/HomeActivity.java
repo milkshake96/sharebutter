@@ -137,6 +137,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
         checkCurrentUser(mAuth.getCurrentUser());
+
+        if(mAuth.getCurrentUser() != null) {
+            mAuth.signOut();
+        }
     }
 
     @Override

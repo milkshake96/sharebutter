@@ -10,7 +10,6 @@ public class UserAccountSettings {
     private long offers;
     private String profile_photo;
     private String username;
-    private String website;
 
     public UserAccountSettings(String description, String display_name, long followers, long likes,
                                long offers, String profile_photo, String username) {
