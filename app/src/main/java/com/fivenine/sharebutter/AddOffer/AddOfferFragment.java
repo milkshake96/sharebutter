@@ -12,7 +12,6 @@ import com.fivenine.sharebutter.R;
 public class AddOfferFragment extends Fragment {
 
     private static final String TAG = "AddOfferFragment";
-//    private Button btnLogin;
 
     @Nullable
     @Override
@@ -21,8 +20,6 @@ public class AddOfferFragment extends Fragment {
 
         return view;
 
-//        btnLogin = (Button) findViewById(R.id.llLoginButton);
-//        btnLogin.setOnClickListener();
     }
 
 }

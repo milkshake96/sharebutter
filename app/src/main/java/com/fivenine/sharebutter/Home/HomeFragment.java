@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 
 import com.fivenine.sharebutter.Authentication.LoginActivity;
 import com.fivenine.sharebutter.R;
+import com.fivenine.sharebutter.Utils.LogOutDialog;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
@@ -26,7 +29,7 @@ public class HomeFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container,false);
 
@@ -34,9 +37,9 @@ public class HomeFragment extends Fragment {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: navigating to LoginActivity");
-                Intent i = new Intent(getActivity(),LoginActivity.class);
-                startActivity(i);
+                LogOutDialog logOutDialog = new LogOutDialog();
+
+                getChildFragmentManager().beginTransaction().add(logOutDialog, "logOut").commit();
             }
         });
 

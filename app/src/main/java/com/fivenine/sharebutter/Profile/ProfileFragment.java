@@ -109,10 +109,4 @@ public class ProfileFragment extends Fragment {
         String imgURL = "www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
         UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "https://");
     }
-
-//    private void setupActivityWidgets(){
-//        mProgressBar = (ProgressBar) getView().findViewById(R.id.profileProgressBar);
-//        mProgressBar.setVisibility(View.GONE);
-//        profilePhoto = (ImageView) getView().findViewById(R.id.ivProfileImage);
-//    }
 }

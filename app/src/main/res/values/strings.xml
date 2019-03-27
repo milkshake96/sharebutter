@@ -54,6 +54,8 @@
     <string name="editprofile_hint_name">Name</string>
     <string name="editprofile_hint_description">Description</string>
     <string name="signin_loadingmsg_please_wait">Please Wait...</string>
+    <string name="gallery">GALLERY</string>
+    <string name="camera">CAMERA</string>
 
     <!-- Firebase messages -->
     <string name="auth_failed">Failed to Authenticate</string>
@@ -66,4 +68,5 @@
     <!-- Firebase database fields -->
     <string name="dbname_users">users</string>
     <string name="dbname_user_account_settings">user_account_settings</string>
+    <string name="logout_confirmation_msg">Are you sure you want to Log Out ?</string>
 </resources>

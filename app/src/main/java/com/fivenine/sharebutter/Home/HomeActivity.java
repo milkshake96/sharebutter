@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsBottom);
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
@@ -79,17 +79,17 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    //    BottomNavigationView setup
-    private void setupBottomNavigationView() {
-        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
-        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.btmNavViewBar);
-        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationViewEx);
-
-        Menu menu = bottomNavigationViewEx.getMenu();
-        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
-        menuItem.setChecked(true);
-    }
+//    //    BottomNavigationView setup
+//    private void setupBottomNavigationView() {
+//        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
+//        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.btmNavViewBar);
+//        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+//        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationViewEx);
+//
+//        Menu menu = bottomNavigationViewEx.getMenu();
+//        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+//        menuItem.setChecked(true);
+//    }
 
 
 //    ------------------------------------ Firebase ---------------------------------------------
