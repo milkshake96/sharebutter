@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/canned"
+            android:title="@string/categories_dried_canned_food"
+            app:itemTextColor="@color/colorPrimary"/>
+        <item
+            android:id="@+id/frozen"
+            android:title="@string/categories_fresh_frozen" />
+        <item
+            android:id="@+id/beverages"
+            android:title="@string/categories_beverages" />
+    </group>
+
+    <item android:title="@string/records">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="@string/offers_records" />
+            <item
+                android:id="@+id/view_history"
+                android:title="@string/view_history" />
+        </menu>
+    </item>
+
+</menu>

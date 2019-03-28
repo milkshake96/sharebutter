@@ -169,6 +169,11 @@
         <item name="android:textColor">@color/TextPrimaryTheme</item>
     </style>
 
+    <style name="TextViewMedium.Theme" parent="TextViewCommon">
+        <item name="android:textSize">@dimen/NormalText</item>
+        <item name="android:textColor">@color/TextPrimaryTheme</item>
+    </style>
+
     <style name="LargeTextView" parent="GothamRegular">
         <item name="android:textSize">@dimen/xLargeText</item>
         <item name="android:textColor">@color/TextPrimaryDark</item>
@@ -241,6 +246,11 @@
 
     <style name="LargeTextBold.Theme" parent="GothamBold">
         <item name="android:textSize">@dimen/xLargeText</item>
+        <item name="android:textColor">@color/TextPrimaryTheme</item>
+    </style>
+
+    <style name="xLargeTextBold.Theme" parent="GothamBold">
+        <item name="android:textSize">@dimen/xxLargeText</item>
         <item name="android:textColor">@color/TextPrimaryTheme</item>
     </style>
 
