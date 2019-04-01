@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,19 +13,56 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/relLayout1"
-            android:layout_marginBottom="@dimen/LargeColumn">
+            android:layout_marginBottom="@dimen/LargeColumn"
+            android:layout_below="@+id/relLayout2">
 
-            <include layout="@layout/layout_middle_viewpager"/>
+            <LinearLayout
+                android:id="@+id/ll_expiry_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="4dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upload_expired_date_text"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_current_selected_img_offer"
+                android:layout_width="225dp"
+                android:layout_height="225dp"
+                android:layout_below="@+id/ll_expiry_message"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/btn_round_green"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_current_selected_img_offer"
+                android:layout_margin="8dp">
+
+                <GridLayout
+                    android:id="@+id/gl_other_upload_img_offer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3"
+                    android:layout_margin="1dp">
+
+                </GridLayout>
+
+            </ScrollView>
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/relLayout2">
 
-            <include layout="@layout/layout_btm_tabs"/>
+            <include layout="@layout/layout_toolbar_addoffer">
+            </include>
 
 
         </RelativeLayout>
