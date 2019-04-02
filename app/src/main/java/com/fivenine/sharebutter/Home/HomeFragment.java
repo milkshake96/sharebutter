@@ -43,6 +43,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        ImageView categories_btn = (ImageView) view.findViewById(R.id.ivCategoriesBtn);
+        categories_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CategoriesActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
