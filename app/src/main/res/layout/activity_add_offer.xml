@@ -44,16 +44,21 @@
                 android:layout_gravity="center_horizontal" />
 
             <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corner_white_1"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="32dp"
-                    android:padding="8dp"
-                    android:background="@drawable/rounded_corner_white_1">
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/et_item_name"
@@ -111,11 +116,7 @@
                             android:src="@drawable/rounded_corner"/>
 
                     </RelativeLayout>
-
-
-
                 </LinearLayout>
-
             </ScrollView>
         </LinearLayout>
     </LinearLayout>
