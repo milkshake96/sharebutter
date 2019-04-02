@@ -82,4 +82,7 @@
     <string name="records">Records</string>
     <string name="offer_records">Offer Records</string>
     <string name="view_history">View History</string>
+
+    <!--Exchanges-->
+    <string name="upload_expired_date_text">Please make sure you had upload your food expired date image</string>
 </resources>
