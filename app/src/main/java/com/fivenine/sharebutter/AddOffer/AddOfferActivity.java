@@ -200,7 +200,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                                 item.setImg2URL(imgURLs.get(1));
                                 item.setImg3URL(imgURLs.get(2));
 
-                                databaseReference.setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                databaseReference.child(String.valueOf(item.getId())).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
