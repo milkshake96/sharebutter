@@ -42,9 +42,9 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
     public void init(){
         ivCurrentImage = view.findViewById(R.id.iv_current_selected_img_offer);
         glOfferImages = view.findViewById(R.id.gl_other_upload_img_offer);
-        ivBack = view.findViewById(R.id.iv_support_action);
-        tvAction = view.findViewById(R.id.tv_action);
-        tvTitle = view.findViewById(R.id.tv_title);
+        ivBack = view.findViewById(R.id.tb_iv_support_action);
+        tvAction = view.findViewById(R.id.tb_tv_action);
+        tvTitle = view.findViewById(R.id.tb_tv_title);
 
         ivBack.setVisibility(GONE);
         tvTitle.setVisibility(GONE);
