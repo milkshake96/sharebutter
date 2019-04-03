@@ -43,6 +43,7 @@ import java.util.List;
 public class AddOfferActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     private static final String TAG = "AddOfferActivity";
+    public static final String IMAGE_STORE_LOCATION = "itemImage";
 
     //Main Page Materials
     ViewPager vpImagesSelected;
@@ -183,38 +184,49 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
             for (int i = 0; i < selectedImages.size(); i++) {
 
                 final boolean lastImage = i == (selectedImages.size() - 1);
-                final String path = firebaseAuth.getCurrentUser().getUid() + "/" + item.getId() + "/" + i + ".jpeg";
-                imgURLs.add(path);
+                final String path = firebaseAuth.getCurrentUser().getUid() + "/" + IMAGE_STORE_LOCATION
+                        + "/" + item.getId() + "/" + i + ".jpeg";
                 storageReference = FirebaseStorage.getInstance().getReference().child(path);
 
                 storageReference.putFile(Uri.parse(selectedImages.get(i))).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()) {
-                            if(lastImage) {
-                                while (imgURLs.size() != 3){
-                                    imgURLs.add("No Image");
-                                }
-
-                                item.setImg1URL(imgURLs.get(0));
-                                item.setImg2URL(imgURLs.get(1));
-                                item.setImg3URL(imgURLs.get(2));
-
-                                databaseReference.child(String.valueOf(item.getId())).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            Toast.makeText(getApplicationContext(), "Upload Successful..", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
+                            storageReference.getDownloadUrl().addOnSuccessListener(updateItemImgUrl(lastImage));
                         }
                     }
                 });
             }
 
         }
+    }
+
+    private OnSuccessListener<Uri> updateItemImgUrl(final boolean lastImage){
+        return new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                imgURLs.add(uri.toString());
+
+                if(lastImage) {
+                    while (imgURLs.size() != 3){
+                        imgURLs.add("No Image");
+                    }
+
+                    item.setImg1URL(imgURLs.get(0));
+                    item.setImg2URL(imgURLs.get(1));
+                    item.setImg3URL(imgURLs.get(2));
+
+                    databaseReference.child(String.valueOf(item.getId())).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(), "Upload Successful..", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+        };
     }
 
     private void displayCalendarFragment() {
@@ -229,7 +241,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM YYYY");
         String currentDateString = simpleDateFormat.format(calendar.getTime());
 
         etExpiredDate.setText(currentDateString);
