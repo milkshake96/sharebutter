@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.fivenine.sharebutter.R;
@@ -24,7 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -144,7 +142,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         ImageView imageView = new ImageView(getContext());
         Picasso.get()
                 .load(image)
-                .placeholder(R.drawable.blur_background)
+                .placeholder(R.drawable.white_background)
                 .fit()
                 .into(imageView);
 

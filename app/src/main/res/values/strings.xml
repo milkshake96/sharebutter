@@ -94,4 +94,8 @@
     <string name="guide_msg">Kindly leave your contact information.</string>
     <string name="editpro_city">City:</string>
     <string name="editpro_state">State:</string>
+
+    <!--Facebook-->
+    <string name="facebook_app_id">661371884296430</string>
+    <string name="fb_login_protocol_scheme">fb661371884296430</string>
 </resources>

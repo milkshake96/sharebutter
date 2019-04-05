@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Authentication.LoginActivity">
-
 
     <TextView
         android:id="@+id/tvSignInTitle"
@@ -113,103 +113,103 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llSignInPassword" />
 
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        style="@style/SmallTextView.Theme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="25dp"
-        android:text="@string/login_forgot_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llSignInPassword" />
+    <!--<TextView-->
+        <!--android:id="@+id/tvForgotPassword"-->
+        <!--style="@style/SmallTextView.Theme"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:layout_marginEnd="25dp"-->
+        <!--android:text="@string/login_forgot_password"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/llSignInPassword" />-->
 
-    <LinearLayout
-        android:id="@+id/llBreakLine"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/LargeColumn"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="@dimen/MediumColumn"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/llBreakLine"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/LargeColumn"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="@dimen/MediumColumn"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword">-->
 
-        <TextView
-            android:id="@+id/divider3"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="@dimen/Margin"
-            android:background="@color/silver"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+        <!--<TextView-->
+            <!--android:id="@+id/divider3"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginEnd="@dimen/Margin"-->
+            <!--android:background="@color/silver"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="0.0"-->
+            <!--app:layout_constraintStart_toStartOf="parent" />-->
 
-        <TextView
-            android:id="@+id/tvOr"
-            style="@style/TextViewCommon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/login_breakline"
-            android:textColor="@color/silver" />
+        <!--<TextView-->
+            <!--android:id="@+id/tvOr"-->
+            <!--style="@style/TextViewCommon"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="@string/login_breakline"-->
+            <!--android:textColor="@color/silver" />-->
 
-        <TextView
-            android:id="@+id/divider4"
-            style="@style/HorizontalDivider"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/Margin"
-            android:background="@color/silver" />
-    </LinearLayout>
+        <!--<TextView-->
+            <!--android:id="@+id/divider4"-->
+            <!--style="@style/HorizontalDivider"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginStart="@dimen/Margin"-->
+            <!--android:background="@color/silver" />-->
+    <!--</LinearLayout>-->
 
-    <LinearLayout
-        android:id="@+id/llOtherLoginMethods"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/LargeColumn"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llBreakLine">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/llOtherLoginMethods"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/LargeColumn"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/llBreakLine">-->
 
-        <ImageView
-            android:id="@+id/ivFacebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/Margin"
-            app:srcCompat="@drawable/ic_facebook"
-            tools:layout_editor_absoluteY="463dp" />
+        <!--<ImageView-->
+            <!--android:id="@+id/ivFacebook"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="@dimen/Margin"-->
+            <!--app:srcCompat="@drawable/ic_facebook"-->
+            <!--tools:layout_editor_absoluteY="463dp" />-->
 
-        <ImageView
-            android:id="@+id/ivGmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_gmail" />
-    </LinearLayout>
+        <!--<ImageView-->
+            <!--android:id="@+id/ivGmail"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:srcCompat="@drawable/ic_gmail" />-->
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/llLoginButton"
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/xxxLargeColumn"
         android:layout_marginEnd="25dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llOtherLoginMethods">
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
 
         <Button
             android:id="@+id/btnLogin"
@@ -301,4 +301,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginRequestLoadingProgressbar"
         app:layout_constraintVertical_bias="0.051" />
+
 </android.support.constraint.ConstraintLayout>
