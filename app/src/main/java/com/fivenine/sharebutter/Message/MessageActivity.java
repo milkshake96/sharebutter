@@ -209,7 +209,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 messageArrayList.clear();
                 for(DataSnapshot chat : dataSnapshot.getChildren()){
                     Message message = chat.getValue(Message.class);
-                    messageArrayList.add(message);
+                    if(message.getSender().equals(firebaseUser.getUid()) &&
+                            message.getReceiver().equals(targetItem.getItemOwnerId()) ||
+                            message.getSender().equals(targetItem.getItemOwnerId()) &&
+                                    message.getReceiver().equals(firebaseUser.getUid())) {
+                        messageArrayList.add(message);
+                    }
                 }
 
                 messageAdapter = new MessageAdapter(MessageActivity.this, messageArrayList);

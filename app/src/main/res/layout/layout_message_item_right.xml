@@ -25,7 +25,7 @@
 
         <com.github.library.bubbleview.BubbleTextView
             android:id="@+id/tv_message"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical|right"
@@ -33,7 +33,6 @@
             android:padding="8dp"
             android:text="message"
             android:textColor="@color/theme"
-            android:layout_margin=""
             app:angle="8dp"
             app:arrowCenter="true"
             app:arrowHeight="8dp"
