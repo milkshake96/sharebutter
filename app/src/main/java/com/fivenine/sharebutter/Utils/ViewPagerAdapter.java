@@ -1,4 +1,4 @@
-package com.fivenine.sharebutter.AddOffer;
+package com.fivenine.sharebutter.Utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.fivenine.sharebutter.R;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
@@ -16,7 +19,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
     private List<Uri> imageUriList;
 
-    public ViewPagerAdapter(Context context, List<Uri> imageUriList){
+    public ViewPagerAdapter(Context context, List<Uri> imageUriList) {
         this.context = context;
         this.imageUriList = imageUriList;
     }
@@ -35,7 +38,15 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView imageView = new ImageView(context);
-        imageView.setImageURI(imageUriList.get(position));
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+        String url = imageUriList.get(position).toString();
+
+        Picasso.get()
+                .load(url)
+                .fit()
+                .centerCrop()
+                .into(imageView);
 
         container.addView(imageView, container.getWidth(), container.getHeight());
 
@@ -44,8 +55,6 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
     }
-
-
 }

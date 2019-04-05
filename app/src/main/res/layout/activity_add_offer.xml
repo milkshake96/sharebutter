@@ -73,18 +73,14 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/rounded_corner_white_1"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="16dp">
+                android:padding="32dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_margin="32dp"
                     android:background="@drawable/rounded_corner_white_1"
-                    android:padding="8dp">
+                    android:padding="32dp">
 
                     <EditText
                         android:id="@+id/et_item_name"

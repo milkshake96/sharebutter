@@ -1,8 +1,6 @@
 package com.fivenine.sharebutter.AddOffer;
 
 import android.app.DatePickerDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +19,7 @@ import android.widget.Toast;
 
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.DatePickerFragment;
+import com.fivenine.sharebutter.Utils.ViewPagerAdapter;
 import com.fivenine.sharebutter.models.Item;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,8 +31,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.FileNotFoundException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,6 +44,8 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
 
     //Main Page Materials
     ViewPager vpImagesSelected;
+
+
     ImageView ivCurrentImgPosition;
     ImageView ivCalendar;
     EditText etItemName;
@@ -69,6 +68,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
     StorageReference storageReference;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    int uploadedItem = 0;
 
     //Upload item
     Item item;
@@ -154,6 +154,8 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
         Boolean isNotValid = false;
         String msg = "";
 
+
+
         if (name.isEmpty() || description.isEmpty() || hashTag.isEmpty() ||
                 category.isEmpty() || expDate.isEmpty()) {
             isNotValid = true;
@@ -168,8 +170,8 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
         if (isNotValid) {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         } else {
+            uploadedItem = 0;
             Toast.makeText(this, "Posting Item...", Toast.LENGTH_SHORT).show();
-
             item = new Item(new Date().getTime(), firebaseAuth.getCurrentUser().getUid(),
                     name, description, hashTag, category, expDate, false);
 
@@ -178,32 +180,41 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                     .child(firebaseAuth.getCurrentUser().getUid());
 
             for (int i = 0; i < selectedImages.size(); i++) {
-
-                final boolean lastImage = i == (selectedImages.size() - 1);
                 final String path = firebaseAuth.getCurrentUser().getUid() + "/" + IMAGE_STORE_LOCATION
                         + "/" + item.getId() + "/" + i + ".jpeg";
                 storageReference = FirebaseStorage.getInstance().getReference().child(path);
-
                 storageReference.putFile(Uri.parse(selectedImages.get(i))).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            storageReference.getDownloadUrl().addOnSuccessListener(updateItemImgUrl(lastImage));
+                        uploadedItem++;
+                        if(uploadedItem == selectedImages.size()){
+                            uploadedItem = 0;
+
+                            for(int i = 0; i < selectedImages.size(); i++){
+                                final String path = firebaseAuth.getCurrentUser().getUid() + "/" + IMAGE_STORE_LOCATION
+                                        + "/" + item.getId() + "/" + i + ".jpeg";
+                                storageReference = FirebaseStorage.getInstance().getReference().child(path);
+                                OnSuccessListener<Uri> onDownloadSuccess = getOnDownloadSuccessListener();
+                                storageReference.getDownloadUrl().addOnSuccessListener(onDownloadSuccess);
+                            }
                         }
                     }
                 });
             }
 
+
+
         }
     }
 
-    private OnSuccessListener<Uri> updateItemImgUrl(final boolean lastImage){
+    private OnSuccessListener<Uri> getOnDownloadSuccessListener(){
         return new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 imgURLs.add(uri.toString());
+                uploadedItem++;
 
-                if(lastImage) {
+                if(uploadedItem == selectedImages.size()) {
                     while (imgURLs.size() != 3){
                         imgURLs.add("No Image");
                     }
