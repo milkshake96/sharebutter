@@ -1,6 +1,7 @@
 package com.fivenine.sharebutter.Message;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import com.github.library.bubbleview.BubbleTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
@@ -26,7 +29,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     private List<Message> messageList;
     private FirebaseUser firebaseUser;
 
-    public MessageAdapter(Context context, List<Message> messageList){
+    public MessageAdapter(Context context, List<Message> messageList) {
         this.context = context;
         this.messageList = messageList;
     }
@@ -34,7 +37,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @NonNull
     @Override
     public MessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(viewType == MSG_TYPE_RIGHT){
+        if (viewType == MSG_TYPE_RIGHT) {
             View view = LayoutInflater.from(context).inflate(R.layout.layout_message_item_right, parent, false);
             return new MessageAdapter.ViewHolder(view);
         } else {
@@ -45,10 +48,25 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder viewHolder, int position) {
+        Message currentMessage;
+        Message previousMessage = null;
+        if (position != 0) {
+            previousMessage = messageList.get(position - 1);
+        }
+        currentMessage = messageList.get(position);
+        viewHolder.tvMessage.setText(currentMessage.getMessage());
 
-        Message message = messageList.get(position);
-        viewHolder.tvMessage.setText(message.getMessage());
-        viewHolder.tvMessageTimeSent.setVisibility(View.GONE);
+        if(previousMessage != null) {
+            if (currentMessage.getTimeInMillis() - previousMessage.getTimeInMillis() > (1000L * 60L * 5L)) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, h:mm a");
+                String currentDate = simpleDateFormat.format(new Date(currentMessage.getTimeInMillis()));
+                viewHolder.tvMessageTimeSent.setText(currentDate);
+            } else {
+                viewHolder.tvMessageTimeSent.setVisibility(View.GONE);
+            }
+        } else {
+            viewHolder.tvMessageTimeSent.setVisibility(View.GONE);
+        }
 
         //Add Profile Picture Here
     }
@@ -58,7 +76,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         return messageList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvMessage;
         public TextView tvMessageTimeSent;
@@ -76,7 +94,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public int getItemViewType(int position) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(messageList.get(position).getSender().equals(firebaseUser.getUid())){
+        if (messageList.get(position).getSender().equals(firebaseUser.getUid())) {
             return MSG_TYPE_RIGHT;
         } else {
             return MSG_TYPE_LEFT;
