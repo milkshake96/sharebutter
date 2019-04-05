@@ -29,11 +29,11 @@
                 android:id="@+id/ivProfileImage"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                app:civ_border_color="@color/silver"
-                app:civ_border_width="1dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                app:civ_border_color="@color/silver"
+                app:civ_border_width="1dp" />
 
             <TextView
                 android:id="@+id/tvProfileUserName"
@@ -55,11 +55,41 @@
                 android:layout_below="@+id/tvProfileUserName"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="@dimen/xxxSmallColumn"
                 android:layout_marginStart="@dimen/Margin"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
                 android:layout_marginEnd="@dimen/Margin"
+                android:gravity="center_horizontal"
                 android:text="@string/profile_description" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDecription"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_city"
+                    style="@style/SmallTextView.Theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Butterworth"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_state"
+                    style="@style/SmallTextView.Theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Penang"/>
+
+
+
+            </LinearLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -67,7 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rlProfileDetails">
-            <include layout="@layout/snippet_top_profile"/>
+
+            <include layout="@layout/snippet_top_profile" />
         </RelativeLayout>
 
         <TextView
@@ -76,13 +107,13 @@
             android:layout_height="1dp"
             android:layout_below="@+id/rlProfileDetails2"
             android:layout_marginTop="@dimen/xxxSmallColumn"
-            android:background="@color/silver"/>
+            android:background="@color/silver" />
 
         <RelativeLayout
             android:id="@+id/rlGridView"
-            android:layout_below="@+id/divider1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1">
 
             <GridView
                 android:id="@+id/gvProfileOfferUploaded"
@@ -92,8 +123,7 @@
                 android:horizontalSpacing="1dp"
                 android:numColumns="3"
                 android:stretchMode="columnWidth"
-                android:verticalSpacing="1dp">
-            </GridView>
+                android:verticalSpacing="1dp"/>
         </RelativeLayout>
 
     </RelativeLayout>

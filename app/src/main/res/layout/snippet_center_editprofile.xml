@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivProfileImage"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/SmallColumn"
+                android:layout_marginTop="@dimen/xxSmallColumn"
                 android:text="@string/editprofile_change_photo" />
 
 
@@ -41,7 +41,7 @@
                 android:layout_height="@dimen/LargeColumn"
                 android:layout_below="@+id/changeProfilePhoto"
                 android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginTop="@dimen/SmallColumn"
+                android:layout_marginTop="@dimen/xxSmallColumn"
                 android:layout_marginRight="@dimen/xSmallColumn"
                 android:background="@color/white">
 
@@ -58,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
+                    android:textColor="@color/black"
                     android:background="@null"
                     android:hint="@string/editprofile_hint_name"
                     android:inputType="textNoSuggestions" />
@@ -99,9 +100,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
+                    android:textColor="@color/black"
                     android:background="@null"
-                    android:hint="@string/editprofile_hint_description"
-                    android:inputType="textNoSuggestions" />
+                    android:hint="@string/editprofile_hint_description"/>
             </RelativeLayout>
 
             <TextView
@@ -172,12 +173,103 @@
                 android:id="@+id/divider4"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
                 android:layout_below="@+id/rlLayout4"
                 android:layout_marginLeft="@dimen/xSmallColumn"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="@dimen/xSmallColumn"
                 android:background="@color/silver" />
 
+            <RelativeLayout
+                android:id="@+id/rl1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/MediumColumn"
+                android:layout_below="@+id/divider4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/xSmallColumn"
+                android:layout_marginTop="@dimen/SmallColumn"
+                android:layout_marginRight="@dimen/xSmallColumn"
+                android:background="@drawable/round_corner_red">
+
+                <TextView
+                    android:id="@+id/tv_city"
+                    style="@style/TextViewCommon.Theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/xxSmallColumn"
+                    android:text="@string/editpro_city" />
+
+                <!--<TextView-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginLeft="18dp"-->
+                    <!--android:layout_toRightOf="@+id/tv_city"-->
+                    <!--android:background="@color/colorPrimary" />-->
+
+                <TextView
+                    android:id="@+id/tv_city_name"
+                    style="@style/TextViewCommon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Butterworth"
+                    android:textColor="@color/black" />
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/xxSmallColumn"
+                    android:src="@drawable/drop_down" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/MediumColumn"
+                android:layout_below="@+id/rl1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/xSmallColumn"
+                android:layout_marginTop="@dimen/xSmallColumn"
+                android:layout_marginRight="@dimen/xSmallColumn"
+                android:background="@drawable/round_corner_red">
+
+                <TextView
+                    android:id="@+id/tv_state"
+                    style="@style/TextViewCommon.Theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/xxSmallColumn"
+                    android:text="@string/editpro_state" />
+
+                <!--<TextView-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginLeft="@dimen/xxxSmallColumn"-->
+                    <!--android:layout_toRightOf="@+id/tv_state"-->
+                    <!--android:background="@color/colorPrimary" />-->
+
+                <TextView
+                    android:id="@+id/tv_state_name"
+                    style="@style/TextViewCommon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Pinang"
+                    android:textColor="@color/black" />
+
+                <ImageView
+                    android:id="@+id/down_arrow"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/xxSmallColumn"
+                    android:src="@drawable/drop_down" />
+            </RelativeLayout>
         </RelativeLayout>
 
 
