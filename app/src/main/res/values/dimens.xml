@@ -29,6 +29,8 @@
     <dimen name="xxLargeColumn">72dp</dimen>
     <dimen name="xxxLargeColumn">80dp</dimen>
     <dimen name="xxxxLargeColumn">88dp</dimen>
+    <dimen name="fifthxLargeColumn">96dp</dimen>
+    <dimen name="sixthxLargeColumn">104dp</dimen>
 
     <dimen name="elevation">4dp</dimen>
     <!--Margin-->
