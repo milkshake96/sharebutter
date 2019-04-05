@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,7 +60,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     TextView tvItemExpDate;
 
     //Chat Box
-    ListView lvChatList;
+    RecyclerView rvChatList;
     ArrayList<Message> messageArrayList;
     MessageAdapter messageAdapter;
 
@@ -128,12 +130,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
         //Chat box
         rlChatBox = findViewById(R.id.rl_chat_box);
-        lvChatList = findViewById(R.id.lv_chat_list);
-        lvChatList.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-        lvChatList.setStackFromBottom(true);
+        rvChatList = findViewById(R.id.rv_chat_list);
+        rvChatList.setHasFixedSize(true);
         messageArrayList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(MessageActivity.this, messageArrayList);
-        lvChatList.setAdapter(messageAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager((getApplicationContext()));
+        linearLayoutManager.setStackFromEnd(true);
+        rvChatList.setLayoutManager(linearLayoutManager);
 
         etChatInput = findViewById(R.id.et_chat_input);
 
@@ -207,9 +209,11 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 messageArrayList.clear();
                 for(DataSnapshot chat : dataSnapshot.getChildren()){
                     Message message = chat.getValue(Message.class);
-                    messageAdapter.add(message);
+                    messageArrayList.add(message);
                 }
 
+                messageAdapter = new MessageAdapter(MessageActivity.this, messageArrayList);
+                rvChatList.setAdapter(messageAdapter);
             }
 
             @Override
