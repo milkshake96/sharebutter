@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="4dp">
+    android:layout_marginTop="4dp"
+    android:layout_marginRight="16dp">
 
     <TextView
         android:id="@+id/tv_time_message_sent"
@@ -31,7 +32,7 @@
 
         <com.github.library.bubbleview.BubbleTextView
             android:id="@+id/tv_message"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="message"
             android:textColor="@color/white"

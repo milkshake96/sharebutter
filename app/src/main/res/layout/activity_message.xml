@@ -187,7 +187,10 @@
                 android:layout_centerVertical="true"
                 android:background="@color/white"
                 android:hint="Say something..."
-                android:layout_marginLeft="16dp"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/iv_send_chat"
+                android:inputType="textMultiLine"/>
 
             <ImageView
                 android:id="@+id/iv_send_chat"
