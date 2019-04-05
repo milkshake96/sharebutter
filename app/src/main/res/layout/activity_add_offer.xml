@@ -109,18 +109,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <EditText
-                        android:id="@+id/et_city"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Item Location (City)" />
-
-                    <EditText
-                        android:id="@+id/et_state"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Item Location (State)" />
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
