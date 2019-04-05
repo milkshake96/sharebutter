@@ -1,87 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home.ItemInfoActivity">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivProfileImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/xxSmallColumn"
+        app:civ_border_color="@color/silver"
+        app:civ_border_width="1dp" />
+
     <LinearLayout
+        android:id="@+id/ll1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/layout_custom_toolbar"
-            ></include>
+        <!--add handshake icon at top right corner-->
+        <include layout="@layout/layout_custom_toolbar" />
+
+        <TextView
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tb_custom"
+            android:background="@color/silver" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_selected_upload_offer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5">
-        </android.support.v4.view.ViewPager>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="4">
-        </RelativeLayout>
-
+            android:layout_height="300dp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/ll1"
+        android:background="@color/silver" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/divider2">
 
-        <ImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/rounded_corner"
-            android:layout_margin="4dp">
-        </ImageView>
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="name"
-            android:layout_toRightOf="@+id/iv_profile"
-            android:layout_centerVertical="true"
-            android:textStyle="bold"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="location description"
-            android:layout_below="@+id/tv_name"
-            android:layout_toRightOf="@+id/iv_profile"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="4dp">
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:src="@drawable/red_dot"/>
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:src="@drawable/red_dot"/>
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:src="@drawable/red_dot"/>
-
-        </LinearLayout>
-
+        <include layout="@layout/layout_item_info" />
     </RelativeLayout>
-
 </RelativeLayout>

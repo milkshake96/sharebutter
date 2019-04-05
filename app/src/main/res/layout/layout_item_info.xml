@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/divider2">
+
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvUserName"
+                style="@style/TextViewCommon.Theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/xxxxLargeColumn"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:text="Yinling" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="@dimen/xxxSmallColumn"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/red_dot" />
+
+                <ImageView
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/dot" />
+
+                <ImageView
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/dot" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvHashTag"
+                style="@style/TextViewCommon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvUserName"
+                android:layout_marginLeft="@dimen/xxxxLargeColumn"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:layout_marginBottom="@dimen/xxxSmallColumn"
+                android:text="#milo#3in1"
+                android:textColor="@color/DarkGrey" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rl1"
+            android:background="@color/silver" />
+
+        <TextView
+            android:id="@+id/tvItemName"
+            style="@style/TextViewCommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider3"
+            android:inputType="textMultiLine"
+            android:layout_marginLeft="@dimen/xxSmallColumn"
+            android:layout_marginTop="@dimen/xxxSmallColumn"
+            android:layout_marginRight="@dimen/xxSmallColumn"
+            android:text="@string/details_item_name"
+            android:textColor="@color/DarkGrey" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            style="@style/TextViewCommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvItemName"
+            android:inputType="textMultiLine"
+            android:layout_marginLeft="@dimen/xxSmallColumn"
+            android:layout_marginRight="@dimen/xxSmallColumn"
+            android:text="@string/description"
+            android:textColor="@color/DarkGrey" />
+
+        <TextView
+            android:id="@+id/tvExpiredDateTitle"
+            style="@style/TextViewCommon.Theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_description"
+            android:layout_marginLeft="@dimen/xxSmallColumn"
+            android:layout_marginTop="@dimen/xxSmallColumn"
+            android:text="@string/expired_date_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvExpiredDate"
+            style="@style/TextViewCommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_description"
+            android:layout_toRightOf="@+id/tvExpiredDateTitle"
+            android:layout_marginTop="@dimen/xxSmallColumn"
+            android:layout_marginLeft="@dimen/xxxSmallColumn"
+            android:text="@string/expired_date"
+            android:textColor="@color/DarkGrey" />
+    </RelativeLayout>
+</RelativeLayout>
