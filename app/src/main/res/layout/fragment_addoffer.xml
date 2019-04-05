@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/relLayout2">
 
-            <include layout="@layout/layout_toolbar_addoffer">
+            <include layout="@layout/layout_custom_toolbar">
             </include>
 
 

@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
-        android:id="@+id/toolbar_add_offer"
+        android:id="@+id/tb_custom"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="@dimen/LargeColumn">
 
         <ImageView
             android:id="@+id/tb_iv_support_action"

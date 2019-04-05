@@ -13,6 +13,8 @@
         android:roundIcon="@drawable/ic_gift"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".Message.MakeOfferActivity"></activity>
+        <activity android:name=".Home.ItemInfoActivity" />
         <activity android:name=".Authentication.ForgetPasswordActivity" />
         <activity android:name=".Authentication.SignUpActivity" />
         <activity android:name=".Authentication.LoginActivity" />

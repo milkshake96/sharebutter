@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_custom_toolbar"
+        android:id="@+id/tb_custom">
+    </include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/tb_custom">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_no_offer_exist_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/ll_view_all_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View all Michelle Lee Offer to pick your favourite choice."
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/iv_view_all_offer"
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@color/grey"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_below="@+id/ll_view_all_offer">
+
+                <TextView
+                    android:id="@+id/tv_view_all_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Offer an item to exchange"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload your item photos"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"/>
+
+                <ImageView
+                    android:id="@+id/iv_upload_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginLeft="48dp"
+                    android:layout_marginRight="48dp"
+                    android:background="@color/grey"
+                    android:src="@drawable/ic_add"
+                    android:padding="48dp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_offer_exist_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_uploaded_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey"
+                    android:src="@drawable/ic_add"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="16dp">
+
+                    <TextView
+                        android:id="@+id/tv_item_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="name"/>
+
+                    <TextView
+                        android:id="@+id/tv_item_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="description"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="expired date: "/>
+
+                    <TextView
+                        android:id="@+id/tv_item_exp_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10/10/2019"
+                        android:layout_alignParentBottom="true"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:background="@color/grey"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="16dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="2">
+
+            <ListView
+                android:id="@+id/lv_chat_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
+
+        </LinearLayout>
+
+
+
+        <RelativeLayout
+            android:id="@+id/rl_chat_box"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/LargeColumn">
+
+            <EditText
+                android:id="@+id/et_chat_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@color/white"
+                android:hint="Say something..."
+                android:layout_marginLeft="16dp"/>
+
+            <ImageView
+                android:id="@+id/iv_send_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_send"
+                android:layout_marginRight="8dp"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

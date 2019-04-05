@@ -8,6 +8,7 @@ public class Item {
     };
 
     private Long id;
+    private String itemOwnerId;
     private String name;
     private String description;
     private String hashTag;
@@ -18,15 +19,17 @@ public class Item {
     private String img1URL;
     private String img2URL;
     private String img3URL;
+    private boolean traded;
 
     public Item() {
 
     }
 
-    public Item(Long id, String name, String description, String hashTag,
-                String category, String city, String state, String expiredDate){
+    public Item(Long id, String itemOwnerId, String name, String description, String hashTag,
+                String category, String city, String state, String expiredDate, boolean traded){
 
         this.id = id;
+        this.itemOwnerId = itemOwnerId;
         this.name = name;
         this.description = description;
         this.hashTag = hashTag;
@@ -34,6 +37,15 @@ public class Item {
         this.city = city;
         this.state = state;
         this.expiredDate = expiredDate;
+        this.traded = traded;
+    }
+
+    public String getItemOwnerId() {
+        return itemOwnerId;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -64,8 +76,8 @@ public class Item {
         return expiredDate;
     }
 
-    public Long getId() {
-        return id;
+    public boolean isTraded() {
+        return traded;
     }
 
     public void setId(Long id) {

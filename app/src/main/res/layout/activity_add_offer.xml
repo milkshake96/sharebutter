@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/layout_toolbar_addoffer"
+        <include layout="@layout/layout_custom_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </include>

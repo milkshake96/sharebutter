@@ -18,12 +18,14 @@ import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.LogOutDialog;
 import com.fivenine.sharebutter.models.Item;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "HomeFragment";
+    public static final String SELECTED_ITEM = "selected_item";
     private static final int ACTIVITY_NUM = 0;
 
     //Fragment View
@@ -52,6 +55,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private FirebaseUser firebaseUser;
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -79,9 +84,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         sliderSetup();
 
         mAuth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("item");
+        databaseReference = firebaseDatabase.getReference().child(getContext().getString(R.string.dbname_items));
         itemListener = itemListener();
         databaseReference.addListenerForSingleValueEvent(itemListener);
 
@@ -156,7 +162,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+                Gson gson = new Gson();
+                String selectedItem = gson.toJson(offerItems.get(position));
+
+                Intent intent = new Intent(getContext(),ItemInfoActivity.class);
+                intent.putExtra(SELECTED_ITEM, selectedItem);
+
+                startActivity(intent);
             }
         };
     }
@@ -169,6 +181,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 // Get Post object and use the values to update the UI
                 for(DataSnapshot existingUsers : dataSnapshot.getChildren()){
+                    if(existingUsers.getKey().equals(firebaseUser.getUid())){
+                        continue;
+                    }
+
                     for(DataSnapshot uploadedItem : existingUsers.getChildren()){
                         Item item = uploadedItem.getValue(Item.class);
                         offerItems.add(item);

@@ -176,9 +176,11 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
         } else {
             Toast.makeText(this, "Posting Item...", Toast.LENGTH_SHORT).show();
 
-            item = new Item(new Date().getTime(), name, description, hashTag, category, city, state, expDate);
+            item = new Item(new Date().getTime(), firebaseAuth.getCurrentUser().getUid(),
+                    name, description, hashTag, category, city, state, expDate, false);
+
             imgURLs = new ArrayList<>();
-            databaseReference = firebaseDatabase.getReference().child("item")
+            databaseReference = firebaseDatabase.getReference().child(AddOfferActivity.this.getString(R.string.dbname_items))
                     .child(firebaseAuth.getCurrentUser().getUid());
 
             for (int i = 0; i < selectedImages.size(); i++) {
