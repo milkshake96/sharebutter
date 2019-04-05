@@ -53,8 +53,6 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
     EditText etDescription;
     Spinner spCategory;
     EditText etHashTag;
-    EditText etCity;
-    EditText etState;
     EditText etExpiredDate;
 
     ArrayAdapter<String> spinnerAdapter;
@@ -109,8 +107,6 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
         etItemName = findViewById(R.id.et_item_name);
         etDescription = findViewById(R.id.et_item_description);
         etHashTag = findViewById(R.id.et_hash_tag);
-        etCity = findViewById(R.id.et_city);
-        etState = findViewById(R.id.et_state);
         etExpiredDate = findViewById(R.id.et_expired_date);
         spCategory = findViewById(R.id.sp_categories);
 
@@ -154,14 +150,12 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
         String description = etDescription.getText().toString().trim();
         String hashTag = etHashTag.getText().toString().trim();
         String category = spCategory.getSelectedItem().toString().trim();
-        String city = etCity.getText().toString().trim();
-        String state = etState.getText().toString().trim();
         String expDate = etExpiredDate.getText().toString().trim();
         Boolean isNotValid = false;
         String msg = "";
 
         if (name.isEmpty() || description.isEmpty() || hashTag.isEmpty() ||
-                category.isEmpty() || city.isEmpty() || state.isEmpty() || expDate.isEmpty()) {
+                category.isEmpty() || expDate.isEmpty()) {
             isNotValid = true;
             msg = "Please fill in all item information.";
         } else {
@@ -177,7 +171,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Posting Item...", Toast.LENGTH_SHORT).show();
 
             item = new Item(new Date().getTime(), firebaseAuth.getCurrentUser().getUid(),
-                    name, description, hashTag, category, city, state, expDate, false);
+                    name, description, hashTag, category, expDate, false);
 
             imgURLs = new ArrayList<>();
             databaseReference = firebaseDatabase.getReference().child(AddOfferActivity.this.getString(R.string.dbname_items))

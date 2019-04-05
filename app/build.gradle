@@ -46,6 +46,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:16.1.0'
     //Gson Library
     implementation 'com.google.code.gson:gson:2.8.4'
+    //Recycler View
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    //Bubble Text View
+    implementation 'com.github.lguipeng:BubbleView:1.0.1'
 }
 
 //Firebase
