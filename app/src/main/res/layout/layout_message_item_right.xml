@@ -33,7 +33,6 @@
             android:padding="8dp"
             android:text="message"
             android:textColor="@color/theme"
-            android:layout_margin=""
             app:angle="8dp"
             app:arrowCenter="true"
             app:arrowHeight="8dp"

@@ -92,4 +92,6 @@
     <string name="description">Chewy fruit candies with a refreshing sour and sweet taste \n 20pcs</string>
     <string name="details_item_name">Lot 100 Sour</string>
     <string name="guide_msg">Kindly leave your contact information.</string>
+    <string name="editpro_city">City:</string>
+    <string name="editpro_state">State:</string>
 </resources>
