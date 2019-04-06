@@ -93,14 +93,14 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         llImagePosition = findViewById(R.id.ll_image_position);
 
         //Item Info
-        tvItemName = findViewById(R.id.tvItemName);
-        tvDescription = findViewById(R.id.tv_item_description);
-        tvHashTag = findViewById(R.id.tvHashTag);
-        tvExpDate = findViewById(R.id.tvExpiredDate);
+        tvItemName = findViewById(R.id.tv_item_name);
+        tvDescription = findViewById(R.id.tv_description);
+        tvHashTag = findViewById(R.id.tv_hash_tag);
+        tvExpDate = findViewById(R.id.tv_expired_date);
 
         //User Info
         ivProfileImage = findViewById(R.id.ivProfileImage);
-        tvUserName = findViewById(R.id.tvUserName);
+        tvUserName = findViewById(R.id.tv_user_name);
 
         //Toolbar
         ivBack = findViewById(R.id.tb_iv_support_action);
@@ -154,11 +154,11 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         return new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
             }
 
             @Override
             public void onPageSelected(int i) {
+                updateCurrentSelectedPage(i);
             }
 
             @Override
@@ -166,5 +166,31 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
 
             }
         };
+    }
+
+    private void updateCurrentSelectedPage(final int selectedPage){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int counter = 0; counter < imageUriList.size(); counter++){
+                    final ImageView imageView = (ImageView)llImagePosition.getChildAt(counter);
+                    if(counter == selectedPage){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageResource(R.drawable.red_dot);
+                            }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageResource(R.drawable.dot);
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
     }
 }
