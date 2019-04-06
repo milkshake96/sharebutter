@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,9 +45,8 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
 
     //Main Page Materials
     ViewPager vpImagesSelected;
+    LinearLayout llCurrentImgPosition;
 
-
-    ImageView ivCurrentImgPosition;
     ImageView ivCalendar;
     EditText etItemName;
     EditText etDescription;
@@ -99,7 +99,15 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
             vpImagesSelected.addOnPageChangeListener(onImageChange);
         }
 
-        ivCurrentImgPosition = findViewById(R.id.iv_current_img_position);
+        llCurrentImgPosition = findViewById(R.id.ll_current_img_position);
+        for(int i = 0; i < llCurrentImgPosition.getChildCount(); i++){
+            ImageView imageView = (ImageView) llCurrentImgPosition.getChildAt(i);
+            if(i == 0)
+                imageView.setImageResource(R.drawable.red_dot);
+            else
+                imageView.setImageResource(R.drawable.dot);
+        }
+
 
         ivCalendar = findViewById(R.id.iv_get_calendar);
         ivCalendar.setOnClickListener(this);
@@ -263,7 +271,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
 
             @Override
             public void onPageSelected(int i) {
-
+                updateCurrentSelectedPage(i);
             }
 
             @Override
@@ -271,5 +279,31 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
 
             }
         };
+    }
+
+    private void updateCurrentSelectedPage(final int selectedPage){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int counter = 0; counter < selectedImages.size(); counter++){
+                    final ImageView imageView = (ImageView)llCurrentImgPosition.getChildAt(counter);
+                    if(counter == selectedPage){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageResource(R.drawable.red_dot);
+                            }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setImageResource(R.drawable.dot);
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
     }
 }
