@@ -91,7 +91,6 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         vpSelectedItemImages.setAdapter(viewPagerAdapter);
 
         llImagePosition = findViewById(R.id.ll_image_position);
-        llImagePosition = findViewById(R.id.ll_current_img_position);
         for(int i = 0; i < llImagePosition.getChildCount(); i++){
             ImageView imageView = (ImageView) llImagePosition.getChildAt(i);
             if(i == 0)

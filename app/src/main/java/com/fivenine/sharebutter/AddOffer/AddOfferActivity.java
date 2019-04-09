@@ -148,6 +148,8 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
             case R.id.iv_get_calendar:
                 displayCalendarFragment();
                 break;
+            case R.id.tb_iv_support_action:
+                finish();
             default:
                 break;
         }
