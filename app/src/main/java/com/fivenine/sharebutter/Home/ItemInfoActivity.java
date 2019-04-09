@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,14 +23,23 @@ import com.fivenine.sharebutter.models.Item;
 import com.fivenine.sharebutter.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ItemInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "ItemInfoActivity";
+    public static final String ITEM_OWNER = "item_owner";
 
     //Materials (Item Image)
     ViewPager vpSelectedItemImages;
@@ -56,6 +66,10 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
     FirebaseUser firebaseUser;
     User itemOwner;
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    ValueEventListener itemOwnerListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +82,15 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         //Get Data From previous page
         Gson gson = new Gson();
         currentSelectedItem = gson.fromJson(getIntent().getStringExtra(HomeFragment.SELECTED_ITEM), Item.class);
+
+        //User
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference()
+                .child(getString(R.string.dbname_users)).child(currentSelectedItem.getItemOwnerId());
+
+        itemOwnerListener = getItemOwnerListener();
+        databaseReference.addListenerForSingleValueEvent(itemOwnerListener);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         //Item Img
         vpSelectedItemImages = findViewById(R.id.vp_selected_upload_offer);
@@ -105,6 +128,17 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         tvHashTag = findViewById(R.id.tv_hash_tag);
         tvExpDate = findViewById(R.id.tv_expired_date);
 
+        tvItemName.setText(currentSelectedItem.getName());
+        tvDescription.setText(currentSelectedItem.getDescription());
+        tvHashTag.setText(currentSelectedItem.getHashTag());
+
+        try {
+            Date expDate = new SimpleDateFormat("dd MMM yyyy").parse(currentSelectedItem.getExpiredDate());
+            tvExpDate.setText(new SimpleDateFormat("dd MMMM yyyy").format(expDate.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         //User Info
         ivProfileImage = findViewById(R.id.ivProfileImage);
         tvUserName = findViewById(R.id.tv_user_name);
@@ -127,9 +161,6 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
 
         ivBack.setOnClickListener(this);
         tvAction.setOnClickListener(this);
-
-        //User
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
 
@@ -154,7 +185,28 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
     public void onTradeClicked(){
         Intent intent = new Intent(ItemInfoActivity.this, MessageActivity.class);
         intent.putExtra(HomeFragment.SELECTED_ITEM, getIntent().getStringExtra(HomeFragment.SELECTED_ITEM));
+
+        Gson gson = new Gson();
+        String itemOwnerString = gson.toJson(itemOwner);
+
+        intent.putExtra(ITEM_OWNER, itemOwnerString);
         startActivity(intent);
+    }
+
+    private ValueEventListener getItemOwnerListener(){
+        return new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                itemOwner = dataSnapshot.getValue(User.class);
+                //User Name
+                tvUserName.setText(itemOwner.getUsername());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
     }
 
     private ViewPager.OnPageChangeListener addOnPageChangeListener(){
