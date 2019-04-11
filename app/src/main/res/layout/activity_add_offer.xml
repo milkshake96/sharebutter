@@ -11,7 +11,7 @@
 
         <include layout="@layout/layout_custom_toolbar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></include>
+            android:layout_height="wrap_content"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_selected_upload_offer"

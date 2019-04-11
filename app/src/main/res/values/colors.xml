@@ -18,7 +18,8 @@
     <color name="black_semi_transparent">#b2000000</color>
     <color name="selected">#30000000</color>
     <color name="grey">#80808080</color>
-    <color name="light_grey">#ff808080</color>
+    <color name="midgrey">#dbdbdb</color>
+    <color name="light_grey">#f2f2f2</color>
     <color name="silver">#ffc0c0c0</color>
     <color name="shadowblack">#11000000</color>
     <color name="text_black">#e2000000</color>

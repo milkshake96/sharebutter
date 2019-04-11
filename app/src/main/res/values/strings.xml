@@ -98,4 +98,8 @@
     <!--Facebook-->
     <string name="facebook_app_id">661371884296430</string>
     <string name="fb_login_protocol_scheme">fb661371884296430</string>
+    <string name="offer_sent">Offer Sent</string>
+    <string name="offer_received">Offer Received</string>
+    <string name="sender_name">Sender Name</string>
+    <string name="receiver_name">Receiver Name</string>
 </resources>

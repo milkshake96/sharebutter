@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecordActivity.OfferRecordsActivity">
+
+    <include
+        layout="@layout/layout_custom_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/divider1"
+        android:layout_below="@+id/rl_top_toolbar"
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:background="@drawable/rec_btn_red_border"
+        android:layout_width="350dp"
+        android:layout_height="@dimen/MediumColumn"
+        android:layout_below="@+id/divider1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/xxSmallColumn"
+        android:layout_marginBottom="@dimen/xxSmallColumn"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_offer_sent"
+            style="@style/TextViewCommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/offer_sent" />
+
+        <!--vertical border-->
+        <TextView
+            android:id="@+id/vertical_border"
+            android:background="@color/colorPrimary"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/LargeColumn"
+            android:layout_gravity="center_vertical"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_offer_received"
+            style="@style/TextViewCommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@+id/tv_offer_sent"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            android:text="@string/offer_received" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/ll1"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_grey"
+        android:padding="4dp"
+        android:scrollbars="vertical" />
+
+</RelativeLayout>
