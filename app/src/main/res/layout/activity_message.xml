@@ -15,10 +15,8 @@
 
 
         <RelativeLayout
-            android:id="@+id/rl_no_offer_exist_page"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/ll_view_all_offer"
@@ -26,6 +24,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv_view_all_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View all Michelle Lee Offer to pick your favourite choice."
@@ -43,13 +42,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_no_offer_exist_page"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="300dp"
                 android:orientation="vertical"
                 android:layout_below="@+id/ll_view_all_offer">
 
                 <TextView
-                    android:id="@+id/tv_view_all_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Offer an item to exchange"
@@ -169,7 +168,8 @@
                 android:background="@color/grey"
                 android:scrollbars="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:padding="@dimen/xxxSmallColumn"/>
 
         </LinearLayout>
 

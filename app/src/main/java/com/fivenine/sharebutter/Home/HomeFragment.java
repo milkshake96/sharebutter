@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.fivenine.sharebutter.R;
+import com.fivenine.sharebutter.Utils.DisplayOfferAdapter;
 import com.fivenine.sharebutter.Utils.LogOutDialog;
 import com.fivenine.sharebutter.models.Item;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -68,7 +67,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home, container,false);
-        init();
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser != null){
+            init();
+        }
+
 
         return view;
     }
@@ -82,9 +87,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         vfDisplay = view.findViewById(R.id.vf_home_display);
         sliderSetup();
-
-        mAuth = FirebaseAuth.getInstance();
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child(getContext().getString(R.string.dbname_items));

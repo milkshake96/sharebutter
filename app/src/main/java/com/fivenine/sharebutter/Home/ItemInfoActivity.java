@@ -36,9 +36,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static android.view.View.GONE;
+
 public class ItemInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "ItemInfoActivity";
+    public static final String VIEW_ONLY = "view_only";
     public static final String ITEM_OWNER = "item_owner";
 
     //Materials (Item Image)
@@ -148,7 +151,6 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         tvTitle = findViewById(R.id.tb_tv_title);
         tvAction = findViewById(R.id.tb_tv_action);
 
-
         tvTitle.setText(currentSelectedItem.getName());
         tvAction.setText("");
 
@@ -157,7 +159,10 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 80, 80, true);
         iv.setImageBitmap(bMapScaled);
 
-        tvAction.setBackground(iv.getDrawable());
+        Boolean viewOnly = getIntent().getBooleanExtra(VIEW_ONLY, false);
+
+        if (!viewOnly)
+            tvAction.setBackground(iv.getDrawable());
 
         ivBack.setOnClickListener(this);
         tvAction.setOnClickListener(this);
@@ -188,8 +193,8 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
 
         Gson gson = new Gson();
         String itemOwnerString = gson.toJson(itemOwner);
-
         intent.putExtra(ITEM_OWNER, itemOwnerString);
+
         startActivity(intent);
     }
 
