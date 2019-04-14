@@ -42,6 +42,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
     private static final String TAG = "MessageActivity";
     public static final String CURRENT_TRADER = "current_trader";
+    public static final String CURRENT_TRADE_OFFER = "current_trade_offer";
 
     //Materials view all offers
     LinearLayout llViewAllOffers;
@@ -207,8 +208,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = new Intent(MessageActivity.this, TraderExistingOffers.class);
 
         Gson gson = new Gson();
-        String trader = gson.toJson(traderItemUser);
-        intent.putExtra(CURRENT_TRADER, trader);
+        intent.putExtra(CURRENT_TRADER, gson.toJson(traderItemUser));
+        intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
         startActivity(intent);
     }
 
@@ -216,8 +217,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = new Intent(MessageActivity.this, TraderExistingOffers.class);
 
         Gson gson = new Gson();
-        String trader = gson.toJson(traderItemUser);
-        intent.putExtra(CURRENT_TRADER, trader);
+        intent.putExtra(CURRENT_TRADER, gson.toJson(traderItemUser));
+        intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
         startActivity(intent);
     }
 

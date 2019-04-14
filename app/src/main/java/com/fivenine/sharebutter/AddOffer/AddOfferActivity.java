@@ -238,6 +238,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(getApplicationContext(), "Upload Successful..", Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         }
                     });

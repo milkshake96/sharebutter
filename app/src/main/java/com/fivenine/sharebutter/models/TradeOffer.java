@@ -8,7 +8,13 @@ public class TradeOffer {
 
     private long id;
     private String ownerId;
+    private String ownerUsername;
+    private String ownerEmail;
+    private String ownerPhoneNumber;
     private String requesterId;
+    private String requesterUsername;
+    private String requesterEmail;
+    private String requesterPhoneNumber;
     private String ownerItemId;
     private String requesterItemId;
     private String status;
@@ -47,5 +53,57 @@ public class TradeOffer {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getOwnerUsername() {
+        return ownerUsername;
+    }
+
+    public void setRequesterItemId(String requesterItemId) {
+        this.requesterItemId = requesterItemId;
+    }
+
+    public void setOwnerUsername(String ownerUsername) {
+        this.ownerUsername = ownerUsername;
+    }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
+
+    public String getOwnerPhoneNumber() {
+        return ownerPhoneNumber;
+    }
+
+    public void setOwnerPhoneNumber(String ownerPhoneNumber) {
+        this.ownerPhoneNumber = ownerPhoneNumber;
+    }
+
+    public String getRequesterUsername() {
+        return requesterUsername;
+    }
+
+    public void setRequesterUsername(String requesterUsername) {
+        this.requesterUsername = requesterUsername;
+    }
+
+    public String getRequesterEmail() {
+        return requesterEmail;
+    }
+
+    public void setRequesterEmail(String requesterEmail) {
+        this.requesterEmail = requesterEmail;
+    }
+
+    public String getRequesterPhoneNumber() {
+        return requesterPhoneNumber;
+    }
+
+    public void setRequesterPhoneNumber(String requesterPhoneNumber) {
+        this.requesterPhoneNumber = requesterPhoneNumber;
     }
 }
