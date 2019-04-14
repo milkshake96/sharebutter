@@ -12,7 +12,8 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@drawable/ic_gift"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:name=".ShareButterApp">
         <activity android:name=".Exchange.TraderExistingOffers"></activity>
         <activity android:name=".Message.MakeOfferActivity" />
         <activity android:name=".Home.ItemInfoActivity" />
