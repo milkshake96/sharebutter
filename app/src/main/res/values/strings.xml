@@ -104,4 +104,20 @@
     <string name="offer_received">Offer Received</string>
     <string name="sender_name">Sender Name</string>
     <string name="receiver_name">Receiver Name</string>
+
+    <!--Google Map-->
+    <string name="google_maps_API_key">AIzaSyDhOa94kkDTi4qhGvBt_FfSbMNl22QLC_8</string>
+    <string name="location_user_guide">You may find Nursing Home or Recycle Companies \nthat around you.</string>
+    <string name="search">SEARCH</string>
+    <string name="search_hint">Search here..</string>
+    <string name="search_item_name">Lot 100 Sour Mango</string>
+    <string name="search_item_hashtag">#Lot100#Mango\n#Sweet</string>
+    <string name="congratulations_msg">Congratulations!\nYou have complete your trading!</string>
+    <string name="feedback">Feedback</string>
+    <string name="rating">Rating</string>
+    <string name="message">Message</string>
+    <string name="user_trade">Your trade</string>
+    <string name="dislike">Dislike</string>
+    <string name="like">Like</string>
+
 </resources>

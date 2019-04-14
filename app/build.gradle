@@ -44,6 +44,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:16.1.0'
     //Firebase storage
     implementation 'com.google.firebase:firebase-storage:16.1.0'
+
+    //Firebase UI
+    implementation 'com.firebaseui:firebase-ui-database:4.3.2'
+
     //Gson Library
     implementation 'com.google.code.gson:gson:2.8.4'
     //Recycler View
@@ -62,6 +66,10 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0'
 
     implementation 'com.algolia:algoliasearch-android:3.27.0'
+
+    //Google Play Services
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
 }
 
 //Firebase

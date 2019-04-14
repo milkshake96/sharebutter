@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rl_top_toolbar"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/tb_custom"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/LargeColumn"
+        android:layout_marginEnd="@dimen/xxSmallColumn"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp">
+
+        <ImageView
+            android:id="@+id/tb_iv_support_action"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/tb_tv_title"
+            android:text="123"
+            style="@style/LargeTextBold.Theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/tb_tv_action"
+            android:text="123"
+            style="@style/TextViewCommon.Theme"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
