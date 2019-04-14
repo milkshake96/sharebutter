@@ -1,9 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Rating.RatingActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/layout_rating_toolbar" />
+
+    <TextView
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_top_toolbar"
+        android:background="@color/silver" />
+
+    <TextView
+        android:id="@+id/tv_user_trade"
+        style="@style/TextViewCommon.Theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider1"
+        android:layout_marginLeft="@dimen/xxSmallColumn"
+        android:layout_marginTop="@dimen/xxSmallColumn"
+        android:text="@string/user_trade" />
+
+    <LinearLayout
+        android:id="@+id/ll_offer_records"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_user_trade"
+        android:layout_marginTop="@dimen/xxxSmallColumn">
+
+        <include layout="@layout/layout_offer_record_card" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_breakline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_offer_records"
+        android:layout_marginTop="@dimen/xxxSmallColumn"
+        android:layout_marginBottom="@dimen/SmallColumn"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/divider2"
+            style="@style/HorizontalDivider"
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/silver" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextViewCommon.Theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/xxxSmallColumn"
+            android:layout_marginEnd="25dp"
+            android:layout_toRightOf="@+id/divider2"
+            android:text="Give a rate" />
+
+        <TextView
+            android:id="@+id/divider3"
+            style="@style/HorizontalDivider"
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/xxxSmallColumn"
+            android:layout_marginEnd="25dp"
+            android:layout_toRightOf="@+id/title"
+            android:background="@color/silver" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/message"
+        android:layout_width="@dimen/NormalColumn"
+        android:layout_height="@dimen/NormalColumn"
+        android:layout_below="@+id/rl_breakline"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="120dp"
+        android:src="@drawable/ic_dislike" />
+
+    <ImageView
+        android:id="@+id/rate"
+        android:layout_width="@dimen/NormalColumn"
+        android:layout_height="@dimen/NormalColumn"
+        android:layout_below="@+id/rl_breakline"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="120dp"
+        android:src="@drawable/ic_like" />
+
+    <TextView
+        android:id="@+id/tv_rate"
+        style="@style/TextViewCommon.Theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rate"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/xxxSmallColumn"
+        android:layout_marginRight="128dp"
+        android:layout_marginBottom="@dimen/xSmallColumn"
+        android:text="@string/like" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        style="@style/TextViewCommon.Theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="@dimen/xxxSmallColumn"
+        android:layout_marginBottom="@dimen/xSmallColumn"
+        android:text="@string/dislike" />
+
+</RelativeLayout>

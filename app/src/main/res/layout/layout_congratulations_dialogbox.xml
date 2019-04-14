@@ -1,5 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/iv_warning"
+        android:layout_width="@dimen/fifthxLargeColumn"
+        android:layout_height="@dimen/fifthxLargeColumn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/MediumColumn"
+        app:srcCompat="@drawable/fireworks" />
+
+    <TextView
+        android:id="@+id/congratulations_msg"
+        style="@style/TextViewCommon.Theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_warning"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/SmallColumn"
+        android:layout_marginBottom="@dimen/xSmallColumn"
+        android:text="@string/congratulations_msg"
+        android:textAlignment="center" />
+
+    <RelativeLayout
+        android:id="@+id/rl_breakline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/congratulations_msg"
+        android:layout_marginBottom="@dimen/SmallColumn"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/divider1"
+            style="@style/HorizontalDivider"
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/silver" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextViewCommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/xxxSmallColumn"
+            android:layout_marginEnd="25dp"
+            android:layout_toRightOf="@+id/divider1"
+            android:text="@string/feedback"
+            android:textColor="@color/DarkGrey" />
+
+        <TextView
+            android:id="@+id/divider2"
+            style="@style/HorizontalDivider"
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/xxxSmallColumn"
+            android:layout_marginEnd="25dp"
+            android:layout_toRightOf="@+id/title"
+            android:background="@color/silver" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/message"
+        android:layout_width="@dimen/NormalColumn"
+        android:layout_height="@dimen/NormalColumn"
+        android:layout_below="@+id/rl_breakline"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="120dp"
+        android:src="@drawable/ic_chat" />
+
+    <ImageView
+        android:id="@+id/rate"
+        android:layout_width="@dimen/NormalColumn"
+        android:layout_height="@dimen/NormalColumn"
+        android:layout_below="@+id/rl_breakline"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="120dp"
+        android:src="@drawable/ic_rate" />
+
+    <TextView
+        android:id="@+id/tv_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rate"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/xxxSmallColumn"
+        android:layout_marginRight="122.5dp"
+        android:layout_marginBottom="@dimen/xSmallColumn"
+        android:text="@string/rating" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="@dimen/xxxSmallColumn"
+        android:layout_marginBottom="@dimen/xSmallColumn"
+        android:text="@string/message" />
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/xxSmallColumn"
+        android:src="@drawable/ic_close"/>
 </RelativeLayout>

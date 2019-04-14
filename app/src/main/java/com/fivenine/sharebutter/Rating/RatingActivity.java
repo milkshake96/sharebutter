@@ -3,6 +3,8 @@ package com.fivenine.sharebutter.Rating;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.fivenine.sharebutter.R;
+
 public class RatingActivity extends AppCompatActivity {
 
     @Override
