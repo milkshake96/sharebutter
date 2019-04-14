@@ -16,11 +16,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fivenine.sharebutter.Authentication.LoginActivity;
 import com.fivenine.sharebutter.Exchange.ConfirmationActivity;
 import com.fivenine.sharebutter.Exchange.TraderExistingOffers;
+import com.fivenine.sharebutter.Home.HomeActivity;
 import com.fivenine.sharebutter.Home.HomeFragment;
 import com.fivenine.sharebutter.Home.ItemInfoActivity;
 import com.fivenine.sharebutter.R;
+import com.fivenine.sharebutter.Utils.OneSignalNotification;
 import com.fivenine.sharebutter.models.Chat;
 import com.fivenine.sharebutter.models.Item;
 import com.fivenine.sharebutter.models.MessageChannel;
@@ -34,6 +37,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.onesignal.OneSignal;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -119,11 +123,13 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         btnViewAllOffers = findViewById(R.id.btn_view_all_offer);
         btnViewAllOffers.setOnClickListener(this);
 
-        if(firebaseUser.getUid().equals(targetItemUser.getUser_id())){
-            llViewAllOffers.setVisibility(View.VISIBLE);
-        } else {
-            getTraderByUserID(firebaseUser.getUid());
-            llViewAllOffers.setVisibility(View.GONE);
+        if(targetItemUser != null) {
+            if (firebaseUser.getUid().equals(targetItemUser.getUser_id())) {
+                llViewAllOffers.setVisibility(View.VISIBLE);
+            } else {
+                getTraderByUserID(firebaseUser.getUid());
+                llViewAllOffers.setVisibility(View.GONE);
+            }
         }
 
         //When no item offered for trade
@@ -176,7 +182,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         targetItem = gson.fromJson(getIntent().getStringExtra(HomeFragment.SELECTED_ITEM), Item.class);
         targetItemUser = gson.fromJson(getIntent().getStringExtra(ItemInfoActivity.ITEM_OWNER), User.class);
         currentSelfMessageChannel = gson.fromJson(getIntent().getStringExtra(MessageFragment.MESSAGE_CHANNEL_ITEM_OWNER), MessageChannel.class);
-        if(currentTargetMessageChannel != null) {
+        if(currentSelfMessageChannel != null) {
             getTargetMessageChannel();
         }
 
@@ -245,40 +251,81 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
     private void sendChat(){
         String message = etChatInput.getText().toString();
+        String notificationMsg;
+        if(firebaseUser.getUid().equals(targetItemUser.getUser_id())){
+            notificationMsg = targetItemUser.getUsername() + ": " + message;
+        } else {
+            notificationMsg = traderItemUser.getUsername() + ": " + message;
+        }
 
         if(message.isEmpty()){
 //            Toast.makeText(this, "You can't send empty message", Toast.LENGTH_SHORT).show();
         } else {
             if(currentTradeOffer != null && currentSelfMessageChannel != null && currentTargetMessageChannel != null){
+                currentSelfMessageChannel.setSenderId(firebaseUser.getUid());
+                if(targetItemUser.getUser_id().equals(firebaseUser.getUid()))
+                    currentSelfMessageChannel.setReceiverId(traderItemUser.getUser_id());
+                else
+                    currentSelfMessageChannel.setReceiverId(targetItemUser.getUser_id());
+                currentSelfMessageChannel.setLatestMessage(notificationMsg);
+                currentSelfMessageChannel.setLatestMessageTime(String.valueOf(new Date().getTime()));
                 currentSelfMessageChannel.setUnSeenMessages(0);
+
+                currentTargetMessageChannel.setLatestMessage(notificationMsg);
+                currentTargetMessageChannel.setReceiverId(firebaseUser.getUid());
+                currentTargetMessageChannel.setSenderId(currentSelfMessageChannel.getReceiverId());
+                currentTargetMessageChannel.setReceiverId(currentSelfMessageChannel.getSenderId());
+
+                currentTargetMessageChannel.setLatestMessageTime(currentSelfMessageChannel.getLatestMessageTime());
                 currentTargetMessageChannel.setUnSeenMessages(currentTargetMessageChannel.getUnSeenMessages() + 1);
 
-                //Store into self id
                 //Message Channel
-                databaseReference.child(getString(R.string.dbname_message_channels))
-                        .child(currentTradeOffer.getOwnerId()).child(String.valueOf(currentSelfMessageChannel.getId()))
-                        .setValue(currentSelfMessageChannel);
+                if(firebaseUser.getUid().equals(currentTradeOffer.getOwnerId())){
+                    databaseReference.child(getString(R.string.dbname_message_channels))
+                            .child(currentTradeOffer.getOwnerId()).child(String.valueOf(currentSelfMessageChannel.getId()))
+                            .setValue(currentSelfMessageChannel);
 
-                //Store into target user id
-                //Message Channel
-                databaseReference.child(getString(R.string.dbname_message_channels))
-                        .child(currentTradeOffer.getRequesterId()).child(String.valueOf(currentSelfMessageChannel.getId()))
-                        .setValue(currentTargetMessageChannel);
+                    databaseReference.child(getString(R.string.dbname_message_channels))
+                            .child(currentTradeOffer.getRequesterId()).child(String.valueOf(currentSelfMessageChannel.getId()))
+                            .setValue(currentTargetMessageChannel);
+                } else {
+                    databaseReference.child(getString(R.string.dbname_message_channels))
+                            .child(currentTradeOffer.getRequesterId()).child(String.valueOf(currentSelfMessageChannel.getId()))
+                            .setValue(currentSelfMessageChannel);
+
+                    databaseReference.child(getString(R.string.dbname_message_channels))
+                            .child(currentTradeOffer.getOwnerId()).child(String.valueOf(currentSelfMessageChannel.getId()))
+                            .setValue(currentTargetMessageChannel);
+                }
             } else {
                 currentTradeOffer = new TradeOffer(new Date().getTime(),
                         targetItem.getItemOwnerId(), firebaseUser.getUid(),
                         String.valueOf(targetItem.getId()), "No Item",
                         TradeOffer.TRADE_PENDING);
 
-                currentSelfMessageChannel = new MessageChannel(currentTradeOffer.getId(),
-                        firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
-                        etChatInput.getText().toString(),
-                        String.valueOf(new Date().getTime())  ,0);
+                if(firebaseUser.getUid().equals(targetItemUser.getUser_id())){
 
-                currentTargetMessageChannel = new MessageChannel(currentTradeOffer.getId(),
-                        firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
-                        etChatInput.getText().toString(),
-                        String.valueOf(new Date().getTime())  ,1);
+                    currentSelfMessageChannel = new MessageChannel(currentTradeOffer.getId(),
+                            firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
+                            targetItemUser.getUsername() + ":" + etChatInput.getText().toString(),
+                            String.valueOf(new Date().getTime())  ,0);
+
+                    currentTargetMessageChannel = new MessageChannel(currentTradeOffer.getId(),
+                            firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
+                            targetItemUser.getUsername() + ":" + etChatInput.getText().toString(),
+                            String.valueOf(new Date().getTime())  ,1);
+                } else {
+
+                    currentSelfMessageChannel = new MessageChannel(currentTradeOffer.getId(),
+                            firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
+                            traderItemUser.getUsername() + ":" + etChatInput.getText().toString(),
+                            String.valueOf(new Date().getTime())  ,0);
+
+                    currentTargetMessageChannel = new MessageChannel(currentTradeOffer.getId(),
+                            firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
+                            traderItemUser.getUsername() + ":" + etChatInput.getText().toString(),
+                            String.valueOf(new Date().getTime())  ,1);
+                }
 
                 existingTradeList.add(currentTradeOffer);
                 existingMessageChannelList.add(currentSelfMessageChannel);
@@ -290,9 +337,23 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                         .setValue(currentTradeOffer);
 
                 //Message Channel
-                databaseReference.child(getString(R.string.dbname_message_channels))
-                        .child(currentTradeOffer.getOwnerId()).child(String.valueOf(currentSelfMessageChannel.getId()))
-                        .setValue(currentSelfMessageChannel);
+                if(firebaseUser.getUid().equals(currentTradeOffer.getOwnerId())){
+                    databaseReference.child(getString(R.string.dbname_message_channels))
+                            .child(currentTradeOffer.getOwnerId()).child(String.valueOf(currentSelfMessageChannel.getId()))
+                            .setValue(currentSelfMessageChannel);
+
+                    databaseReference.child(getString(R.string.dbname_message_channels))
+                            .child(currentTradeOffer.getRequesterId()).child(String.valueOf(currentSelfMessageChannel.getId()))
+                            .setValue(currentTargetMessageChannel);
+                } else {
+                    databaseReference.child(getString(R.string.dbname_message_channels))
+                            .child(currentTradeOffer.getRequesterId()).child(String.valueOf(currentSelfMessageChannel.getId()))
+                            .setValue(currentSelfMessageChannel);
+
+                    databaseReference.child(getString(R.string.dbname_message_channels))
+                            .child(currentTradeOffer.getOwnerId()).child(String.valueOf(currentSelfMessageChannel.getId()))
+                            .setValue(currentTargetMessageChannel);
+                }
 
                 //Store into target user id
                 //Trade Offer
@@ -300,18 +361,13 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                         .child(currentTradeOffer.getRequesterId()).child(String.valueOf(currentTradeOffer.getId()))
                         .setValue(currentTradeOffer);
 
-                //Message Channel
-                databaseReference.child(getString(R.string.dbname_message_channels))
-                        .child(currentTradeOffer.getRequesterId()).child(String.valueOf(currentSelfMessageChannel.getId()))
-                        .setValue(currentTargetMessageChannel);
-
                 databaseReference.child(getString(R.string.dbname_chats))
                         .child(firebaseUser.getUid()).child(String.valueOf(currentSelfMessageChannel.getId()))
                         .addValueEventListener(chatListener);
             }
-
+            Chat newChat;
             if(firebaseUser.getUid().equals(currentSelfMessageChannel.getSenderId())){
-                Chat newChat = new Chat(message, currentSelfMessageChannel.getSenderId(), currentSelfMessageChannel.getReceiverId(),
+                newChat = new Chat(message, currentSelfMessageChannel.getSenderId(), currentSelfMessageChannel.getReceiverId(),
                         Long.parseLong(currentSelfMessageChannel.getLatestMessageTime()), currentSelfMessageChannel.getId());
 
                 //Chats
@@ -321,7 +377,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 databaseReference.child(MessageActivity.this.getString(R.string.dbname_chats)).child(newChat.getReceiver())
                         .child(String.valueOf(currentSelfMessageChannel.getId())).push().setValue(newChat);
             } else {
-                Chat newChat = new Chat(message, currentSelfMessageChannel.getReceiverId(), currentSelfMessageChannel.getSenderId(),
+                newChat = new Chat(message, currentSelfMessageChannel.getReceiverId(), currentSelfMessageChannel.getSenderId(),
                         Long.parseLong(currentSelfMessageChannel.getLatestMessageTime()), currentSelfMessageChannel.getId());
 
                 //Chats
@@ -332,6 +388,13 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                         .child(String.valueOf(currentSelfMessageChannel.getId())).push().setValue(newChat);
             }
 
+            if(firebaseUser.getUid().equals(targetItemUser.getUser_id())){
+                OneSignalNotification.sendNotification(getString(R.string.one_signal_api_key), getString(R.string.one_signal_app_id),
+                        HomeActivity.ONE_SIGNAL_TAG, traderItemUser.getUser_id(), notificationMsg);
+            } else {
+                OneSignalNotification.sendNotification(getString(R.string.one_signal_api_key), getString(R.string.one_signal_app_id),
+                                HomeActivity.ONE_SIGNAL_TAG, targetItemUser.getUser_id(), notificationMsg);
+            }
 
             etChatInput.setText("");
         }
@@ -494,7 +557,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                     llViewAllOffers.setVisibility(GONE);
                 }
 
-                if(firebaseUser.equals(targetItemUser.getUser_id())){
+                if(firebaseUser.getUid().equals(targetItemUser.getUser_id())){
                     tvTitle.setText(traderItemUser.getUsername());
                 } else {
                     tvTitle.setText(targetItemUser.getUsername());

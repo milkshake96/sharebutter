@@ -96,4 +96,17 @@
     <string name="guide_msg">Kindly leave your contact information.</string>
     <string name="editpro_city">City:</string>
     <string name="editpro_state">State:</string>
+
+
+
+
+
+
+
+
+
+
+    <!--One Signal-->
+    <string name="one_signal_app_id">fd4c85f0-cf1f-4825-aa2b-542e33e90394</string>
+    <string name="one_signal_api_key">NDdhNjA4YTUtNjYxMi00NGMxLTk5YzQtZDJhYmYzM2IxNDAw</string>
 </resources>

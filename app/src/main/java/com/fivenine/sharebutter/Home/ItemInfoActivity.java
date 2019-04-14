@@ -176,7 +176,6 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         else
             ivItemTraded.setVisibility(GONE);
 
-        monitorItemStatus();
     }
 
 
@@ -216,6 +215,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
                 itemOwner = dataSnapshot.getValue(User.class);
                 //User Name
                 tvUserName.setText(itemOwner.getUsername());
+                monitorItemStatus();
             }
 
             @Override

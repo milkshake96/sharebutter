@@ -2,6 +2,7 @@ package com.fivenine.sharebutter.Utils;
 
 import android.os.AsyncTask;
 import android.os.StrictMode;
+import android.support.v7.app.AppCompatActivity;
 
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 public class OneSignalNotification {
 
-    public static final void sendNotification(final String email, final String message) {
+    public static final void sendNotification(final String apiKey, final String appId, final String tag, final String email, final String message) {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -33,13 +34,13 @@ public class OneSignalNotification {
                         con.setDoInput(true);
 
                         con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                        con.setRequestProperty("Authorization", "Basic MjhjOTI3MGQtYzYxYy00YjU4LTkyMWUtNWQ3NmNmMjFhM2Q3");
+                        con.setRequestProperty("Authorization", "Basic " + apiKey);
                         con.setRequestMethod("POST");
 
                         String strJsonBody = "{"
-                                + "\"app_id\": \"7e2111cd-ebc2-466e-8b8b-a9f386da1526\","
+                                + "\"app_id\": \""+ appId +"\","
 
-                                + "\"filters\": [{\"field\": \"tag\", \"key\": \"user_id\", \"relation\": \"=\", \"value\": \"" + send_email + "\"}],"
+                                + "\"filters\": [{\"field\": \"tag\", \"key\": \"" + tag + "\", \"relation\": \"=\", \"value\": \"" + send_email + "\"}],"
 
                                 + "\"data\": {\"foo\": \"bar\"},"
                                 + "\"contents\": {\"en\": \""+ send_message +"\"}"

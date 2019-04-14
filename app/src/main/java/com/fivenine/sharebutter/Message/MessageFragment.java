@@ -102,8 +102,9 @@ public class MessageFragment extends Fragment {
                     MessageChannel messageChannel = existingMessageChannel.getValue(MessageChannel.class);
                     messageChannelList.add(messageChannel);
                 }
-
-                databaseReference.child(getString(R.string.dbname_users)).addListenerForSingleValueEvent(userListListener);
+                if(getActivity() != null){
+                    databaseReference.child(getString(R.string.dbname_users)).addListenerForSingleValueEvent(userListListener);
+                }
             }
 
             @Override
@@ -114,10 +115,11 @@ public class MessageFragment extends Fragment {
     }
 
     private ValueEventListener getUserListListener(){
-        userList.clear();
         return new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userList.clear();
+
                 for(DataSnapshot currentUser : dataSnapshot.getChildren()){
                     User tempUser = currentUser.getValue(User.class);
                     if(tempUser.getUser_id().equals(firebaseUser.getUid())){
@@ -134,6 +136,8 @@ public class MessageFragment extends Fragment {
 
                 messageAdapter = new MessageAdapter(getActivity(), messageChannelList, userList);
                 rvMessageList.setAdapter(messageAdapter);
+
+
             }
 
             @Override
