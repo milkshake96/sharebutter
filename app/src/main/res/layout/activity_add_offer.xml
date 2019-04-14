@@ -13,6 +13,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <TextView
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rl_top_toolbar"
+            android:background="@color/silver" />
+
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_selected_upload_offer"
             android:layout_width="match_parent"
