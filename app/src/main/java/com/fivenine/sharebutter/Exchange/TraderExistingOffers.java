@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fivenine.sharebutter.AddOffer.AddOfferActivity;
-import com.fivenine.sharebutter.AddOffer.AddOfferFragment;
 import com.fivenine.sharebutter.Home.ItemInfoActivity;
 import com.fivenine.sharebutter.Message.MessageActivity;
 import com.fivenine.sharebutter.R;
@@ -32,7 +31,6 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-import static android.view.View.GONE;
 import static com.fivenine.sharebutter.AddOffer.AddOfferFragment.SELECTED_IMAGES;
 import static com.fivenine.sharebutter.Home.HomeFragment.SELECTED_ITEM;
 import static com.fivenine.sharebutter.Message.MessageActivity.CURRENT_TRADE_OFFER;
@@ -40,7 +38,7 @@ import static com.fivenine.sharebutter.Message.MessageActivity.CURRENT_TRADE_OFF
 public class TraderExistingOffers extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "TraderExistingOffers";
-    public static final String ITEM_TRADER = "item_trader";
+    public static final String ITEM_TARGETED = "item_targeted";
     public static final String ITEM_SELECTED = "item_selected";
     private final int CODE_MULTIPLE_IMG_GALLERY = 2;
     private final int CODE_CONFIRM = 1;
@@ -64,6 +62,7 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
     //Var
     ArrayList<Item> existingTraderItems;
     Item currentSelectedItem;
+    Item targetedItem;
     TradeOffer currentTradeOffer;
     User currentTrader;
 
@@ -79,6 +78,7 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
     private void init() {
         Gson gson = new Gson();
         currentTrader = gson.fromJson(getIntent().getStringExtra(MessageActivity.CURRENT_TRADER), User.class);
+        targetedItem = gson.fromJson(getIntent().getStringExtra(ITEM_TARGETED), Item.class);
         currentTradeOffer = gson.fromJson(getIntent().getStringExtra(CURRENT_TRADE_OFFER), TradeOffer.class);
 
         gvExistingTraderOffers = findViewById(R.id.gv_trader_items);
@@ -174,7 +174,7 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
 
                 ImageView imageView = (ImageView) parent.getChildAt(position);
                 imageView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                imageView.setPadding(2, 2, 2, 2);
+                imageView.setPadding(10, 10, 10, 10);
 
                 currentSelectedItem = (Item) parent.getItemAtPosition(position);
                 tvAction.setText("NEXT");
@@ -207,6 +207,7 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
                 Intent intent = new Intent(TraderExistingOffers.this, ConfirmationActivity.class);
                 Gson gson = new Gson();
                 intent.putExtra(ITEM_SELECTED, gson.toJson(currentSelectedItem));
+                intent.putExtra(ITEM_TARGETED, gson.toJson(targetedItem));
                 intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
                 startActivityForResult(intent, CODE_CONFIRM);
             }

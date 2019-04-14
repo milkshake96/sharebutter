@@ -106,4 +106,8 @@ public class TradeOffer {
     public void setRequesterPhoneNumber(String requesterPhoneNumber) {
         this.requesterPhoneNumber = requesterPhoneNumber;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

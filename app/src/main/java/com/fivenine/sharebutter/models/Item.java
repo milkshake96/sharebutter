@@ -64,7 +64,7 @@ public class Item {
         return expiredDate;
     }
 
-    public boolean isTraded() {
+    public boolean getTraded() {
         return traded;
     }
 
@@ -94,5 +94,9 @@ public class Item {
 
     public void setImg3URL(String img3URL) {
         this.img3URL = img3URL;
+    }
+
+    public void setTraded(boolean traded) {
+        this.traded = traded;
     }
 }

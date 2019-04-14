@@ -31,7 +31,7 @@ import static android.view.View.GONE;
 public class MessageFragment extends Fragment {
 
     private static final String TAG = "MessageFragment";
-    public static final String MESSAGE_CHANNEL = "message_channel";
+    public static final String MESSAGE_CHANNEL_ITEM_OWNER = "message_channel";
 //    private Button btnLogin;
 
     View view;
@@ -88,17 +88,16 @@ public class MessageFragment extends Fragment {
         messageChannelListener = getMessageChannelListener();
 
         databaseReference.child(getString(R.string.dbname_message_channels))
-                .child(firebaseUser.getUid()).addListenerForSingleValueEvent(messageChannelListener);
+                .child(firebaseUser.getUid()).addValueEventListener(messageChannelListener);
 
         userListListener = getUserListListener();
     }
 
     private ValueEventListener getMessageChannelListener(){
-        messageChannelList.clear();
-
         return new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                messageChannelList.clear();
                 for (DataSnapshot existingMessageChannel : dataSnapshot.getChildren()) {
                     MessageChannel messageChannel = existingMessageChannel.getValue(MessageChannel.class);
                     messageChannelList.add(messageChannel);

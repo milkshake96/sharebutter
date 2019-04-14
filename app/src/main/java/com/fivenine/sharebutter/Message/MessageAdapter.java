@@ -9,20 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.fivenine.sharebutter.Home.ItemInfoActivity;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.models.MessageChannel;
 import com.fivenine.sharebutter.models.User;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -31,11 +30,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     private Context context;
     private List<MessageChannel> messageChannelList;
     private List<User> userList;
+    private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
 
     public MessageAdapter(Context context, List<MessageChannel> messageChannelList, List<User> userList) {
         this.context = context;
         this.messageChannelList = messageChannelList;
         this.userList = userList;
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @NonNull
@@ -66,6 +69,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         viewHolder.tvLatestMessage.setText(currentMessageChannel.getLatestMessage());
         viewHolder.tvLatestMessageTime.setText(time);
+
+        if(currentMessageChannel.getUnSeenMessages() == 0){
+            viewHolder.tvUnseenMessages.setVisibility(View.GONE);
+        }
         viewHolder.tvUnseenMessages.setText(String.valueOf(currentMessageChannel.getUnSeenMessages()));
     }
 
@@ -96,14 +103,26 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, MessageActivity.class);
-            Gson gson = new Gson();
+            final Intent intent = new Intent(context, MessageActivity.class);
+            final Gson gson = new Gson();
+            final View currentView = v;
 
             MessageChannel messageChannel = messageChannelList.get(getAdapterPosition());
-            String currentMessageChannel = gson.toJson(messageChannel);
+            messageChannel.setUnSeenMessages(0);
 
-            intent.putExtra(MessageFragment.MESSAGE_CHANNEL, currentMessageChannel);
-            v.getContext().startActivity(intent);
+            final MessageChannel updatedMessageChannel = messageChannel;
+
+            databaseReference.child(context.getString(R.string.dbname_message_channels))
+                    .child(firebaseUser.getUid()).child(String.valueOf(messageChannel.getId()))
+                    .setValue(messageChannel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    String currentMessageChannel = gson.toJson(updatedMessageChannel);
+
+                    intent.putExtra(MessageFragment.MESSAGE_CHANNEL_ITEM_OWNER, currentMessageChannel);
+                    currentView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

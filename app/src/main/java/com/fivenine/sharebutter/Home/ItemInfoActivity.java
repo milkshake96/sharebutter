@@ -55,6 +55,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
     TextView tvItemName;
     TextView tvDescription;
     TextView tvExpDate;
+    ImageView ivItemTraded;
 
     //Materials (User Description)
     ImageView ivProfileImage;
@@ -88,11 +89,12 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
 
         //User
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference()
-                .child(getString(R.string.dbname_users)).child(currentSelectedItem.getItemOwnerId());
+        databaseReference = firebaseDatabase.getReference();
 
         itemOwnerListener = getItemOwnerListener();
-        databaseReference.addListenerForSingleValueEvent(itemOwnerListener);
+        databaseReference.child(getString(R.string.dbname_users))
+                .child(currentSelectedItem.getItemOwnerId()).addListenerForSingleValueEvent(itemOwnerListener);
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         //Item Img
@@ -130,6 +132,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         tvDescription = findViewById(R.id.tv_description);
         tvHashTag = findViewById(R.id.tv_hash_tag);
         tvExpDate = findViewById(R.id.tv_expired_date);
+        ivItemTraded = findViewById(R.id.iv_item_traded);
 
         tvItemName.setText(currentSelectedItem.getName());
         tvDescription.setText(currentSelectedItem.getDescription());
@@ -161,11 +164,19 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
 
         Boolean viewOnly = getIntent().getBooleanExtra(VIEW_ONLY, false);
 
-        if (!viewOnly)
-            tvAction.setBackground(iv.getDrawable());
-
         ivBack.setOnClickListener(this);
         tvAction.setOnClickListener(this);
+
+        if (!viewOnly && !currentSelectedItem.getTraded()) {
+            tvAction.setBackground(iv.getDrawable());
+        }
+
+        if(currentSelectedItem.getTraded())
+            ivItemTraded.setVisibility(View.VISIBLE);
+        else
+            ivItemTraded.setVisibility(GONE);
+
+        monitorItemStatus();
     }
 
 
@@ -256,5 +267,30 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         }).start();
+    }
+
+    private void monitorItemStatus(){
+        databaseReference.child(getString(R.string.dbname_items))
+                .child(itemOwner.getUser_id()).child(String.valueOf(currentSelectedItem.getId())).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                currentSelectedItem = dataSnapshot.getValue(Item.class);
+
+                if(currentSelectedItem.getTraded())
+                    ivItemTraded.setVisibility(View.VISIBLE);
+                else
+                    ivItemTraded.setVisibility(GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
