@@ -120,4 +120,7 @@
     <string name="dislike">Dislike</string>
     <string name="like">Like</string>
 
+    <!--One Signal-->
+    <string name="one_signal_app_id">fd4c85f0-cf1f-4825-aa2b-542e33e90394</string>
+    <string name="one_signal_api_key">NDdhNjA4YTUtNjYxMi00NGMxLTk5YzQtZDJhYmYzM2IxNDAw</string>
 </resources>

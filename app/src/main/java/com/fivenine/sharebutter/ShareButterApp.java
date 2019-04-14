@@ -1,0 +1,19 @@
+package com.fivenine.sharebutter;
+
+import android.app.Application;
+
+import com.onesignal.OneSignal;
+
+public class ShareButterApp extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+
+        //One Signal Initialization
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
+    }
+}

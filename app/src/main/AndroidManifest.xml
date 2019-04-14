@@ -15,7 +15,8 @@
         android:icon="@mipmap/ic_gift"
         android:roundIcon="@mipmap/ic_gift"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:name=".ShareButterApp">
         <activity android:name=".Rating.RatingActivity"></activity>
 
         <meta-data

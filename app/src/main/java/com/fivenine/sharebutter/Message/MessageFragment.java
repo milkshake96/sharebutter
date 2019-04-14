@@ -31,7 +31,7 @@ import static android.view.View.GONE;
 public class MessageFragment extends Fragment {
 
     private static final String TAG = "MessageFragment";
-    public static final String MESSAGE_CHANNEL = "message_channel";
+    public static final String MESSAGE_CHANNEL_ITEM_OWNER = "message_channel";
 //    private Button btnLogin;
 
     View view;
@@ -88,23 +88,23 @@ public class MessageFragment extends Fragment {
         messageChannelListener = getMessageChannelListener();
 
         databaseReference.child(getString(R.string.dbname_message_channels))
-                .child(firebaseUser.getUid()).addListenerForSingleValueEvent(messageChannelListener);
+                .child(firebaseUser.getUid()).addValueEventListener(messageChannelListener);
 
         userListListener = getUserListListener();
     }
 
     private ValueEventListener getMessageChannelListener(){
-        messageChannelList.clear();
-
         return new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                messageChannelList.clear();
                 for (DataSnapshot existingMessageChannel : dataSnapshot.getChildren()) {
                     MessageChannel messageChannel = existingMessageChannel.getValue(MessageChannel.class);
                     messageChannelList.add(messageChannel);
                 }
-
-                databaseReference.child(getString(R.string.dbname_users)).addListenerForSingleValueEvent(userListListener);
+                if(getActivity() != null){
+                    databaseReference.child(getString(R.string.dbname_users)).addListenerForSingleValueEvent(userListListener);
+                }
             }
 
             @Override
@@ -115,10 +115,11 @@ public class MessageFragment extends Fragment {
     }
 
     private ValueEventListener getUserListListener(){
-        userList.clear();
         return new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userList.clear();
+
                 for(DataSnapshot currentUser : dataSnapshot.getChildren()){
                     User tempUser = currentUser.getValue(User.class);
                     if(tempUser.getUser_id().equals(firebaseUser.getUid())){
@@ -135,6 +136,8 @@ public class MessageFragment extends Fragment {
 
                 messageAdapter = new MessageAdapter(getActivity(), messageChannelList, userList);
                 rvMessageList.setAdapter(messageAdapter);
+
+
             }
 
             @Override

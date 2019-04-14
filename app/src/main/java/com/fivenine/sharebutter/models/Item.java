@@ -24,7 +24,7 @@ public class Item {
     }
 
     public Item(Long id, String itemOwnerId, String name, String description, String hashTag,
-                String category, String expiredDate, boolean traded){
+                String category, String expiredDate, boolean traded) {
 
         this.id = id;
         this.itemOwnerId = itemOwnerId;
@@ -64,8 +64,12 @@ public class Item {
         return expiredDate;
     }
 
-    public boolean isTraded() {
+    public boolean getTraded() {
         return traded;
+    }
+
+    public void setTraded(boolean traded) {
+        this.traded = traded;
     }
 
     public void setId(Long id) {

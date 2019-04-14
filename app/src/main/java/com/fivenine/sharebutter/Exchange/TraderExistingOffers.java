@@ -1,7 +1,8 @@
 package com.fivenine.sharebutter.Exchange;
 
+import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.Color;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +11,14 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.fivenine.sharebutter.AddOffer.AddOfferActivity;
 import com.fivenine.sharebutter.Home.ItemInfoActivity;
 import com.fivenine.sharebutter.Message.MessageActivity;
 import com.fivenine.sharebutter.R;
-import com.fivenine.sharebutter.Utils.DisplayOfferAdapter;
 import com.fivenine.sharebutter.models.Item;
+import com.fivenine.sharebutter.models.TradeOffer;
 import com.fivenine.sharebutter.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,20 +31,22 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import static com.fivenine.sharebutter.AddOffer.AddOfferFragment.SELECTED_IMAGES;
 import static com.fivenine.sharebutter.Home.HomeFragment.SELECTED_ITEM;
+import static com.fivenine.sharebutter.Message.MessageActivity.CURRENT_TRADE_OFFER;
 
 public class TraderExistingOffers extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "TraderExistingOffers";
-    public static final String ITEM_TRADER = "item_trader";
+    public static final String ITEM_TARGETED = "item_targeted";
+    public static final String ITEM_SELECTED = "item_selected";
+    private final int CODE_MULTIPLE_IMG_GALLERY = 2;
+    private final int CODE_CONFIRM = 1;
 
     //Widgets
     GridView gvExistingTraderOffers;
     DisplayExistingItemAdapter displayExistingItemAdapter;
     AdapterView.OnItemClickListener onOfferClicked;
-
-    ArrayList<Item> existingTraderItems;
-    User currentTrader;
 
     //Toolbars
     ImageView ivSupportAction;
@@ -54,7 +59,13 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
     FirebaseUser firebaseUser;
     ValueEventListener existingTraderItemListListener;
 
+    //Var
+    ArrayList<Item> existingTraderItems;
     Item currentSelectedItem;
+    Item targetedItem;
+    TradeOffer currentTradeOffer;
+    User currentTrader;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +75,11 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
         init();
     }
 
-    private void init(){
+    private void init() {
         Gson gson = new Gson();
         currentTrader = gson.fromJson(getIntent().getStringExtra(MessageActivity.CURRENT_TRADER), User.class);
+        targetedItem = gson.fromJson(getIntent().getStringExtra(ITEM_TARGETED), Item.class);
+        currentTradeOffer = gson.fromJson(getIntent().getStringExtra(CURRENT_TRADE_OFFER), TradeOffer.class);
 
         gvExistingTraderOffers = findViewById(R.id.gv_trader_items);
         gvExistingTraderOffers.setNumColumns(3);
@@ -79,6 +92,7 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
         tvTitle.setText(title);
 
         tvAction = findViewById(R.id.tb_tv_action);
+        tvAction.setOnClickListener(this);
         tvAction.setText("");
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -86,13 +100,17 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
         databaseReference = firebaseDatabase.getReference();
         existingTraderItemListListener = getExistingItemListListener();
 
-        onOfferClicked = getOnOfferClickListener();
+        if (firebaseUser.getUid().equals(currentTrader.getUser_id())) {
+            onOfferClicked = getOnOfferClickTraderListener();
+        } else {
+            onOfferClicked = getOnOfferClickOwnerListener();
+        }
 
         databaseReference.child(getString(R.string.dbname_items)).child(currentTrader.getUser_id())
                 .addValueEventListener(existingTraderItemListListener);
     }
 
-    private ValueEventListener getExistingItemListListener(){
+    private ValueEventListener getExistingItemListListener() {
         existingTraderItems = new ArrayList<>();
 
 
@@ -101,13 +119,13 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 existingTraderItems.clear();
 
-                if(firebaseUser.getUid().equals(currentTrader.getUser_id())){
+                if (firebaseUser.getUid().equals(currentTrader.getUser_id())) {
                     Item addItem = new Item();
                     addItem.setImg1URL(String.valueOf(R.drawable.btn_corner_red));
                     existingTraderItems.add(addItem);
                 }
 
-                for(DataSnapshot item : dataSnapshot.getChildren()){
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
                     Item currentItem = item.getValue(Item.class);
                     existingTraderItems.add(currentItem);
                 }
@@ -125,47 +143,99 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
         };
     }
 
-    private AdapterView.OnItemClickListener getOnOfferClickListener(){
-        return new AdapterView.OnItemClickListener(){
+    private AdapterView.OnItemClickListener getOnOfferClickOwnerListener() {
+        return new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(firebaseUser.getUid().equals(currentTrader.getUser_id())){
-                    for(int i = 0; i < parent.getChildCount(); i++){
-                        ImageView imageView = (ImageView) parent.getChildAt(i);
-                        imageView.setBackgroundColor(Color.TRANSPARENT);
-                        imageView.setPadding(0,0,0,0);
-                    }
+                Intent intent = new Intent(TraderExistingOffers.this, ItemInfoActivity.class);
 
-                    ImageView imageView = (ImageView) parent.getChildAt(position);
-                    imageView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    imageView.setPadding(2,2,2,2);
+                Gson gson = new Gson();
+                String selectedItem = gson.toJson(existingTraderItems.get(position));
+                intent.putExtra(ItemInfoActivity.VIEW_ONLY, true);
+                intent.putExtra(SELECTED_ITEM, selectedItem);
 
-                    currentSelectedItem = (Item)parent.getItemAtPosition(position);
-                    tvAction.setText("NEXT");
-                } else {
-                    Intent intent = new Intent(TraderExistingOffers.this, ItemInfoActivity.class);
+                startActivity(intent);
+            }
+        };
+    }
 
-                    Gson gson = new Gson();
-                    String selectedItem = gson.toJson(existingTraderItems.get(position));
-                    intent.putExtra(ItemInfoActivity.VIEW_ONLY, true);
-                    intent.putExtra(SELECTED_ITEM, selectedItem);
+    private AdapterView.OnItemClickListener getOnOfferClickTraderListener() {
+        return new AdapterView.OnItemClickListener() {
 
-                    startActivity(intent);
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i = 0; i < parent.getChildCount(); i++) {
+                    ImageView imageView = (ImageView) parent.getChildAt(i);
+                    imageView.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    imageView.setPadding(0, 0, 0, 0);
                 }
+
+                ImageView imageView = (ImageView) parent.getChildAt(position);
+                imageView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                imageView.setPadding(10, 10, 10, 10);
+
+                currentSelectedItem = (Item) parent.getItemAtPosition(position);
+                tvAction.setText("NEXT");
             }
         };
     }
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.tb_iv_support_action:
                 finish();
                 break;
+            case R.id.tb_tv_action:
+                onAction();
+                break;
             default:
                 break;
+        }
+    }
+
+    private void onAction() {
+        if (tvAction.getText().toString().equals("NEXT")) {
+            if (currentSelectedItem.getId() == null) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                startActivityForResult(Intent.createChooser(intent, "Selection various images"), CODE_MULTIPLE_IMG_GALLERY);
+            } else {
+                Intent intent = new Intent(TraderExistingOffers.this, ConfirmationActivity.class);
+                Gson gson = new Gson();
+                intent.putExtra(ITEM_SELECTED, gson.toJson(currentSelectedItem));
+                intent.putExtra(ITEM_TARGETED, gson.toJson(targetedItem));
+                intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
+                startActivityForResult(intent, CODE_CONFIRM);
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CODE_MULTIPLE_IMG_GALLERY && resultCode == RESULT_OK) {
+            ClipData clipData = data.getClipData();
+            ArrayList<String> imgUri = new ArrayList<>();
+
+            if (clipData != null) {
+                for (int i = 0; i < clipData.getItemCount(); i++) {
+                    imgUri.add(clipData.getItemAt(i).getUri().toString());
+                }
+            }
+
+            if(imgUri.size() > 3 || imgUri.size() < 1){
+                Toast.makeText(this, "Must select > 1 or < 3 image", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(TraderExistingOffers.this, AddOfferActivity.class);
+                intent.putStringArrayListExtra(SELECTED_IMAGES, imgUri);
+                startActivity(intent);
+            }
+        } else if (requestCode == CODE_CONFIRM && resultCode == RESULT_OK){
+            finish();
         }
     }
 }

@@ -29,10 +29,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.onesignal.OneSignal;
 
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
+    public static final String ONE_SIGNAL_TAG = "user_id";
     private Context mContext = HomeActivity.this;
     private static final int ACTIVITY_NUM = 0;
 
@@ -118,6 +120,8 @@ public class HomeActivity extends AppCompatActivity {
 
                 if (user != null) {
                     // User is signed in
+
+                    OneSignal.sendTag(ONE_SIGNAL_TAG, user.getUid());
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     // User is signed out

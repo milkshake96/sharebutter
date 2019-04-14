@@ -31,8 +31,8 @@
                     android:layout_margin="8dp"
                     android:layout_weight="1"/>
 
-                <ImageView
-                    android:id="@+id/iv_view_all_offer"
+                <Button
+                    android:id="@+id/btn_view_all_offer"
                     android:layout_width="100dp"
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"
@@ -98,6 +98,13 @@
                     android:background="@color/grey"
                     android:src="@drawable/ic_add"/>
 
+                <ImageView
+                    android:id="@+id/iv_uploaded_photo_traded"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.8"
+                    android:src="@color/white"/>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -146,7 +153,8 @@
 
                 </LinearLayout>
 
-                <ImageView
+                <Button
+                    android:id="@+id/btn_chage_trade"
                     android:layout_width="100dp"
                     android:layout_height="25dp"
                     android:background="@color/grey"
