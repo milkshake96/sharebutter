@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:id="@+id/tb_custom"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/LargeColumn"
         android:layout_marginEnd="@dimen/xxSmallColumn"
         android:layout_marginRight="16dp"
@@ -23,20 +23,12 @@
 
         <TextView
             android:id="@+id/tb_tv_title"
-            android:text="123"
             style="@style/LargeTextBold.Theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
-
-        <TextView
-            android:id="@+id/tb_tv_action"
-            android:text="123"
-            style="@style/TextViewCommon.Theme"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerInParent="true"
+            android:text="@string/search"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

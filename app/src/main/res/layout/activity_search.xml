@@ -6,7 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".Home.CategoriesActivity">
 
+    <include layout="@layout/layout_search_toolbar" />
 
+    <EditText
+        android:id="@+id/et_search_field"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/NormalColumn"
+        android:layout_below="@+id/rl_top_toolbar"
+        android:layout_marginLeft="@dimen/fifthxLargeColumn"
+        android:layout_marginTop="@dimen/xxxSmallColumn"
+        android:layout_marginRight="@dimen/MarginDouble"
+        android:background="@color/transparent"
+        android:ems="10"
+        android:hint="@string/search_hint"
+        android:padding="@dimen/xxxSmallColumn"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/grey"
+        android:textSize="18sp" />
 
+    <LinearLayout
+        android:id="@+id/search_field"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/NormalColumn"
+        android:layout_below="@+id/rl_top_toolbar"
+        android:layout_marginLeft="@dimen/MarginDouble"
+        android:layout_marginTop="@dimen/xxxSmallColumn"
+        android:layout_marginRight="@dimen/MarginDouble"
+        android:background="@drawable/btn_grey_border">
+
+        <ImageView
+            android:id="@+id/iv_search_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/xSmallColumn"
+            app:srcCompat="@drawable/ic_search" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/result_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_field"
+        android:layout_marginTop="@dimen/xSmallColumn"
+        android:layout_marginRight="@dimen/xSmallColumn"
+        android:layout_marginLeft="@dimen/xSmallColumn"/>
 
 </RelativeLayout>

@@ -95,4 +95,21 @@ public class Item {
     public void setImg3URL(String img3URL) {
         this.img3URL = img3URL;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", itemOwnerId='" + itemOwnerId + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", hashTag='" + hashTag + '\'' +
+                ", category='" + category + '\'' +
+                ", expiredDate='" + expiredDate + '\'' +
+                ", img1URL='" + img1URL + '\'' +
+                ", img2URL='" + img2URL + '\'' +
+                ", img3URL='" + img3URL + '\'' +
+                ", traded=" + traded +
+                '}';
+    }
 }

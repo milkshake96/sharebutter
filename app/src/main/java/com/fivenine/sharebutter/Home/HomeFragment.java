@@ -1,5 +1,6 @@
 package com.fivenine.sharebutter.Home;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,12 +12,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.DisplayOfferAdapter;
 import com.fivenine.sharebutter.Utils.LogOutDialog;
 import com.fivenine.sharebutter.models.Item;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +43,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     View view;
 
     //Materials
+    ImageView searchBtn;
     ImageView logoutBtn;
     ImageView categoriesBtn;
     ViewFlipper vfDisplay;
@@ -85,6 +90,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         categoriesBtn = view.findViewById(R.id.ivCategoriesBtn);
         categoriesBtn.setOnClickListener(this);
 
+        searchBtn = view.findViewById(R.id.ivSearchBtn);
+        searchBtn.setOnClickListener(this);
+
         vfDisplay = view.findViewById(R.id.vf_home_display);
         sliderSetup();
 
@@ -107,6 +115,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.ivLoginbtn:
                 logoutOnClick();
                 break;
+            case R.id.ivSearchBtn:
+                startActivity(new Intent(getActivity(),SearchActivity.class));
+                break;
             default:
                 break;
         }
@@ -114,6 +125,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void categoriesOnClick(){
         Intent intent = new Intent(getActivity(), CategoriesActivity.class);
+        startActivity(intent);
+    }
+    public void searchOnClick(){
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
         startActivity(intent);
     }
 
@@ -124,18 +139,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void sliderSetup() {
         sliderDisplayImgURLs = new ArrayList<>();
-        sliderDisplayImgURLs.add("http://i.imgur.com/EwZRpvQ.jpg");
-        sliderDisplayImgURLs.add("https://i.redd.it/9bf67ygj710z.jpg");
-        sliderDisplayImgURLs.add("https://c1.staticflickr.com/5/4276/34102458063_7be616b993_o.jpg");
-        sliderDisplayImgURLs.add("http://i.imgur.com/EwZRpvQ.jpg");
-        sliderDisplayImgURLs.add("http://i.imgur.com/JTb2pXP.jpg");
-        sliderDisplayImgURLs.add("https://i.redd.it/59kjlxxf720z.jpg");
-        sliderDisplayImgURLs.add("https://i.redd.it/pwduhknig00z.jpg");
-        sliderDisplayImgURLs.add("https://i.redd.it/clusqsm4oxzy.jpg");
-        sliderDisplayImgURLs.add("https://i.redd.it/svqvn7xs420z.jpg");
-        sliderDisplayImgURLs.add("http://i.imgur.com/j4AfH6P.jpg");
-        sliderDisplayImgURLs.add("https://i.redd.it/89cjkojkl10z.jpg");
-        sliderDisplayImgURLs.add("https://i.redd.it/aw7pv8jq4zzy.jpg");
+        sliderDisplayImgURLs.add("https://clocktower-apartments.com/wp-content/uploads/2017/08/Eating-in-your-Seattle-Apartment-1000x400.jpg");
+        sliderDisplayImgURLs.add("https://brooklynboulders.com/wp-content/uploads/2015/11/photo-1441123285228-1448e608f3d5-1000x400.jpeg");
+        sliderDisplayImgURLs.add("https://www.thehealthyloaf.com.au/wp-content/uploads/2018/01/sharing-the-food-PSTU2CT-1000x400.jpg");
+        sliderDisplayImgURLs.add("https://www.villa-athena-dday.com/wp-content/uploads/2018/06/IMG_20180504_090724-1000x400.jpg");
+        sliderDisplayImgURLs.add("https://p.dam-img.rfdcontent.com/cms/001/306/575/1000x400_crop-north-force.jpg");
+        sliderDisplayImgURLs.add("https://static1.squarespace.com/static/55f7166be4b02accbd8e3210/t/57f2e918579fb34674b8926f/1475537182819/");
+        sliderDisplayImgURLs.add("https://cdn.filestackcontent.com/quality=value:100/output=compress:true,background:FFFFFF/resize=width:1000/DeBDfSAMR2SsrbybVfDW");
 
         for(String image : sliderDisplayImgURLs){
             flipperImages(image);
