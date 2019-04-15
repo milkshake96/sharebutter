@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="@color/grey">
+    android:layout_height="95dp">
 
     <RelativeLayout
+        android:id="@+id/rl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="1dp"
         android:background="@color/white">
+
+        <TextView
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/iv_message_item_profile_pic"
+            android:background="@color/light_grey"
+            android:layout_marginTop="15dp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_message_item_profile_pic"
-            android:layout_width="@dimen/LargeColumn"
-            android:layout_height="@dimen/LargeColumn"
-            android:src="@color/StatusBar.Light"
+            android:layout_width="@dimen/xLargeColumn"
+            android:layout_height="@dimen/xLargeColumn"
+            android:src="@drawable/girl"
             android:layout_centerVertical="true"
-            android:layout_margin="@dimen/xxxSmallColumn"/>
+            android:layout_marginStart="@dimen/xxSmallColumn"
+            android:layout_marginEnd="@dimen/xxxSmallColumn"/>
 
         <LinearLayout
             android:id="@+id/ll_message_item1"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_toLeftOf="@+id/ll_message_item2"
             android:layout_toRightOf="@+id/iv_message_item_profile_pic"
@@ -34,22 +42,25 @@
                 android:layout_height="wrap_content"
                 android:text="@string/profile_username"
                 android:textStyle="bold"
-                android:layout_margin="4dp"/>
+                android:layout_marginStart="@dimen/xxxSmallColumn"/>
 
             <TextView
                 android:id="@+id/tv_message_item_last_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_message_item_user_name"
-                android:text="@string/description"
-                android:layout_margin="4dp"/>
+                android:text="@string/privatemsg_sample"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:layout_marginStart="@dimen/xxxSmallColumn"
+                android:layout_marginEnd="@dimen/xxxSmallColumn"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_message_item2"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:orientation="vertical"
             android:padding="@dimen/xxxSmallColumn">
 
@@ -62,20 +73,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"/>
+                android:layout_margin="3dp"/>
 
             <TextView
                 android:id="@+id/tv_message_item_unseen_messages"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:background="@color/colorPrimary"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/btn_round_red"
                 android:text="5"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:layout_gravity="center_horizontal|bottom"
+                android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"/>
-
         </LinearLayout>
     </RelativeLayout>
+
 </RelativeLayout>

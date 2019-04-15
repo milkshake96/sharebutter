@@ -3,15 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/layout_custom_toolbar"
-        android:id="@+id/tb_custom">
-    </include>
+    <include
+        android:id="@+id/tb_custom"
+        layout="@layout/layout_custom_toolbar" />
+
+    <TextView
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tb_custom"
+        android:background="@color/medium_grey" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@+id/tb_custom">
+        android:layout_below="@+id/divider1"
+        android:orientation="vertical">
 
 
         <RelativeLayout
@@ -20,59 +27,80 @@
 
             <LinearLayout
                 android:id="@+id/ll_view_all_offer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/NormalColumn">
 
                 <TextView
                     android:id="@+id/tv_view_all_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View all Michelle Lee Offer to pick your favourite choice."
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"/>
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/xxSmallColumn"
+                    android:layout_weight="1"
+                    android:text="View all offer to pick your favourite choice" />
 
                 <Button
                     android:id="@+id/btn_view_all_offer"
-                    android:layout_width="100dp"
+                    android:layout_width="80dp"
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"
-                    android:src="@color/grey"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/xxxSmallColumn"
                     android:layout_weight="1"
-                    android:layout_margin="8dp"/>
+                    android:background="@drawable/btn_red_border"
+                    android:src="@color/grey"
+                    android:text="View All"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_no_offer_exist_page"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:orientation="vertical"
-                android:layout_below="@+id/ll_view_all_offer">
+                android:layout_below="@+id/ll_view_all_offer"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewCommon.Theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="1dp"
+                    android:text="Offer an item to exchange" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Offer an item to exchange"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="1dp"/>
+                    android:layout_margin="1dp"
+                    android:text="Upload your item photos" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Upload your item photos"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="1dp"/>
-
-                <ImageView
-                    android:id="@+id/iv_upload_photo"
+                <RelativeLayout
+                    android:id="@+id/rl_add_img"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginLeft="48dp"
-                    android:layout_marginRight="48dp"
-                    android:background="@color/grey"
-                    android:src="@drawable/ic_add"
-                    android:padding="48dp"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/xxxSmallColumn"
+                    android:layout_marginBottom="@dimen/xxSmallColumn">
+
+                    <ImageView
+                        android:id="@+id/iv_upload_photo"
+                        android:layout_width="225dp"
+                        android:layout_height="225dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/xxxSmallColumn"
+                        android:src="@drawable/layout_add_offer_sign" />
+
+                    <ImageView
+                        android:id="@+id/iv_add_sign"
+                        android:layout_width="@dimen/xxxxLargeColumn"
+                        android:layout_height="@dimen/xxxxLargeColumn"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_add" />
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -82,8 +110,8 @@
             android:id="@+id/ll_offer_exist_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_weight="1"
+            android:orientation="vertical"
             android:visibility="gone">
 
             <RelativeLayout
@@ -95,17 +123,25 @@
                     android:id="@+id/iv_uploaded_photo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/grey"
-                    android:src="@drawable/ic_add"/>
+                    android:background="@color/light_grey" />
 
-                <ImageView
+                <include
                     android:id="@+id/iv_uploaded_photo_traded"
+                    layout="@layout/layout_offer_traded"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:alpha="0.8"
-                    android:src="@color/white"/>
+                    android:background="@color/medium_grey"
+                    android:padding="100dp"
+                    android:src="@drawable/grey_gift"/>
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/medium_grey" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -113,22 +149,24 @@
                 android:layout_weight="4">
 
                 <LinearLayout
+                    android:id="@+id/ll4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="16dp">
+                    android:layout_marginStart="@dimen/xxSmallColumn"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_item_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="name"/>
+                        android:text="name" />
 
                     <TextView
                         android:id="@+id/tv_item_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="description"/>
+                        android:text="description" />
 
                 </LinearLayout>
 
@@ -136,20 +174,22 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll4"
                     android:layout_alignParentBottom="true"
-                    android:layout_margin="16dp">
+                    android:layout_marginStart="@dimen/xxSmallColumn">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="expired date: "/>
+                        android:text="Expired date: "
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/tv_item_exp_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10/10/2019"
-                        android:layout_alignParentBottom="true"/>
+                        android:layout_alignParentBottom="true"
+                        android:text="10/10/2019" />
 
                 </LinearLayout>
 
@@ -157,10 +197,14 @@
                     android:id="@+id/btn_chage_trade"
                     android:layout_width="100dp"
                     android:layout_height="25dp"
-                    android:background="@color/grey"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:layout_margin="16dp"/>
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="@dimen/xxxSmallColumn"
+                    android:background="@drawable/btn_red_border"
+                    android:text="CHANGE OFFER"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10sp" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -168,19 +212,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_chat_list"
-                android:background="@color/grey"
-                android:scrollbars="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/xxxSmallColumn"/>
+                android:background="@color/light_grey"
+                android:padding="@dimen/xxxSmallColumn"
+                android:scrollbars="vertical" />
 
         </LinearLayout>
-
 
 
         <RelativeLayout
@@ -193,22 +236,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:background="@color/white"
-                android:hint="Say something..."
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="8dp"
                 android:layout_toLeftOf="@+id/iv_send_chat"
-                android:inputType="textMultiLine"/>
+                android:background="@color/white"
+                android:hint="Say something..."
+                android:inputType="textMultiLine" />
 
             <ImageView
                 android:id="@+id/iv_send_chat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_send"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
-                />
+                android:src="@drawable/ic_send" />
         </RelativeLayout>
 
     </LinearLayout>

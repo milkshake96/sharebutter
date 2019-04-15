@@ -5,17 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home.ItemInfoActivity">
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/ivProfileImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/xxSmallColumn"
-        app:civ_border_color="@color/silver"
-        app:civ_border_width="1dp" />
-
     <LinearLayout
         android:id="@+id/ll1"
         android:layout_width="match_parent"
@@ -30,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/tb_custom"
-            android:background="@color/silver" />
+            android:background="@color/medium_grey" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_selected_upload_offer"
@@ -38,23 +27,25 @@
             android:layout_height="300dp" />
     </LinearLayout>
 
-    <ImageView
+    <include
+        layout="@layout/layout_offer_traded"
         android:id="@+id/iv_item_traded"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/LargeColumn"
         android:alpha="0.8"
-        android:src="@color/grey"
-        android:layout_above="@+id/divider2"
-        android:visibility="gone"
-        />
+        android:background="@color/medium_grey"
+        android:src="@drawable/grey_gift"
+        android:padding="100dp"
+        android:layout_above="@+id/divider2">
+    </include>
 
     <TextView
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/ll1"
-        android:background="@color/silver" />
+        android:background="@color/medium_grey" />
 
     <RelativeLayout
         android:layout_width="match_parent"

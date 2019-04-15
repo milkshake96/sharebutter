@@ -49,7 +49,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/search_field"
         android:layout_marginTop="@dimen/xSmallColumn"
-        android:layout_marginRight="@dimen/xSmallColumn"
-        android:layout_marginLeft="@dimen/xSmallColumn"/>
+        android:layout_marginRight="@dimen/xxSmallColumn"
+        android:layout_marginLeft="@dimen/xxSmallColumn"/>
 
 </RelativeLayout>

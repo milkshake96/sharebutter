@@ -17,11 +17,11 @@
                 android:id="@+id/ivProfileImage"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
-                app:civ_border_color="@color/silver"
-                app:civ_border_width="1dp" />
+                app:civ_border_color="@color/light_grey"
+                app:civ_border_width="1dp"
+                android:src="@drawable/girl"/>
 
             <TextView
                 android:id="@+id/changeProfilePhoto"
@@ -83,7 +83,7 @@
                 android:layout_height="@dimen/LargeColumn"
                 android:layout_below="@+id/rlLayout1"
                 android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginTop="@dimen/SmallColumn"
+                android:layout_marginTop="@dimen/xSmallColumn"
                 android:layout_marginRight="@dimen/xSmallColumn"
                 android:background="@color/white">
 
@@ -149,127 +149,27 @@
 
 
             <!--Column 3-->
-            <RelativeLayout
-                android:id="@+id/rlLayout4"
+
+            <Spinner
+                android:id="@+id/sp_city"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/MediumColumn"
-                android:layout_below="@+id/divider3"
-                android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginRight="@dimen/xSmallColumn"
-                android:background="@color/white">
-
-                <EditText
-                    android:id="@+id/etEditProfileDescription3"
-                    style="@style/TextViewCommon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="40dp"
-                    android:background="@null"
-                    android:inputType="textNoSuggestions" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/rlLayout4"
-                android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="@dimen/xSmallColumn"
-                android:background="@color/silver" />
-
-            <RelativeLayout
-                android:id="@+id/rl1"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/MediumColumn"
-                android:layout_below="@+id/divider4"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginTop="@dimen/SmallColumn"
-                android:layout_marginRight="@dimen/xSmallColumn"
-                android:background="@drawable/round_corner_red">
-
-                <TextView
-                    android:id="@+id/tv_city"
-                    style="@style/TextViewCommon.Theme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/xxSmallColumn"
-                    android:text="@string/editpro_city" />
-
-                <!--<TextView-->
-                    <!--android:layout_width="2dp"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_marginLeft="18dp"-->
-                    <!--android:layout_toRightOf="@+id/tv_city"-->
-                    <!--android:background="@color/colorPrimary" />-->
-
-                <TextView
-                    android:id="@+id/tv_city_name"
-                    style="@style/TextViewCommon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="Butterworth"
-                    android:textColor="@color/black" />
-
-                <ImageView
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/xxSmallColumn"
-                    android:src="@drawable/drop_down" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MediumColumn"
-                android:layout_below="@+id/rl1"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/xSmallColumn"
+                android:layout_below="@id/divider3"
+                android:layout_marginStart="@dimen/xSmallColumn"
+                android:layout_marginEnd="@dimen/xSmallColumn"
                 android:layout_marginTop="@dimen/xSmallColumn"
-                android:layout_marginRight="@dimen/xSmallColumn"
-                android:background="@drawable/round_corner_red">
+                android:textAlignment="textStart" />
 
-                <TextView
-                    android:id="@+id/tv_state"
-                    style="@style/TextViewCommon.Theme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/xxSmallColumn"
-                    android:text="@string/editpro_state" />
+            <Spinner
+                android:id="@+id/sp_state"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/MediumColumn"
+                android:layout_below="@id/sp_city"
+                android:layout_marginStart="@dimen/xSmallColumn"
+                android:layout_marginEnd="@dimen/xSmallColumn"
+                android:layout_marginTop="@dimen/xSmallColumn"
+                android:textAlignment="textStart" />
 
-                <!--<TextView-->
-                    <!--android:layout_width="2dp"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_marginLeft="@dimen/xxxSmallColumn"-->
-                    <!--android:layout_toRightOf="@+id/tv_state"-->
-                    <!--android:background="@color/colorPrimary" />-->
-
-                <TextView
-                    android:id="@+id/tv_state_name"
-                    style="@style/TextViewCommon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="Pinang"
-                    android:textColor="@color/black" />
-
-                <ImageView
-                    android:id="@+id/down_arrow"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/xxSmallColumn"
-                    android:src="@drawable/drop_down" />
-            </RelativeLayout>
         </RelativeLayout>
 
 

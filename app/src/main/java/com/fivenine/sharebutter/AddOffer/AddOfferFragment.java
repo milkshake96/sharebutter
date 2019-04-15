@@ -30,7 +30,7 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
     private View view;
     private ImageView ivCurrentImage;
     private GridLayout glOfferImages;
-    private ImageView ivBack;
+    private ImageView ivBack, ivAddSign;
     private TextView tvAction;
     private TextView tvTitle;
 
@@ -49,14 +49,16 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
         ivCurrentImage = view.findViewById(R.id.iv_current_selected_img_offer);
         glOfferImages = view.findViewById(R.id.gl_other_upload_img_offer);
         ivBack = view.findViewById(R.id.tb_iv_support_action);
+        ivAddSign = view.findViewById(R.id.iv_add_sign);
         tvAction = view.findViewById(R.id.tb_tv_action);
         tvTitle = view.findViewById(R.id.tb_tv_title);
 
         ivBack.setVisibility(GONE);
-        tvTitle.setVisibility(GONE);
+        tvTitle.setVisibility(View.VISIBLE);
+        tvTitle.setText("Add Offer");
         tvAction.setOnClickListener(this);
-        tvAction.setText("NEXT");
-        tvAction.setVisibility(GONE);
+        tvAction.setText("");
+        tvAction.setVisibility(View.INVISIBLE);
 
         glOfferImages.setUseDefaultMargins(true);
         ivCurrentImage.setOnClickListener(this);
@@ -93,6 +95,7 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getContext(), "Maximum 3 Pictures only.", Toast.LENGTH_SHORT).show();
         } else if (glOfferImages.getChildCount() > 0 && glOfferImages.getChildCount() <= 3) {
             tvAction.setVisibility(View.VISIBLE);
+            ivAddSign.setVisibility(View.GONE);
         } else {
             tvAction.setVisibility(GONE);
         }
@@ -108,9 +111,11 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
             startActivityForResult(Intent.createChooser(intent, "Selection various images"), CODE_MULTIPLE_IMG_GALLERY);
         } else if (v.getId() == R.id.tb_tv_action) {
-            Intent intent = new Intent(getContext(), AddOfferActivity.class);
-            intent.putStringArrayListExtra(SELECTED_IMAGES, imgUri);
-            startActivity(intent);
+            if(tvAction.getText().toString().equals("NEXT")){
+                Intent intent = new Intent(getContext(), AddOfferActivity.class);
+                intent.putStringArrayListExtra(SELECTED_IMAGES, imgUri);
+                startActivity(intent);
+            }
         } else {
 
             if (v.getTag() != null) {

@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +46,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
 
     //Main Page Materials
     ViewPager vpImagesSelected;
-    LinearLayout llCurrentImgPosition;
+    RelativeLayout llCurrentImgPosition;
 
     ImageView ivCalendar;
     EditText etItemName;

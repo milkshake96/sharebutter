@@ -174,7 +174,7 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
 
                 ImageView imageView = (ImageView) parent.getChildAt(position);
                 imageView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                imageView.setPadding(10, 10, 10, 10);
+                imageView.setPadding(5, 5, 5, 5);
 
                 currentSelectedItem = (Item) parent.getItemAtPosition(position);
                 tvAction.setText("NEXT");

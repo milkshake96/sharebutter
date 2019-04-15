@@ -1,54 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:id="@+id/ll3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_below="@+id/relLayout2"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/SmallColumn"
+                android:layout_height="@dimen/SmallColumn"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/SmallColumn"
+                android:layout_marginEnd="@dimen/xxxSmallColumn"
+                android:src="@drawable/ic_warning" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/xxxSmallColumn"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:layout_marginBottom="@dimen/xxxSmallColumn"
+                android:padding="@dimen/xxxSmallColumn"
+                android:textAlignment="center"
+                android:text="@string/add_offer_guide" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/ll3"
+            android:background="@color/light_grey" />
 
         <RelativeLayout
+            android:id="@+id/relLayout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/relLayout1"
-            android:layout_marginBottom="@dimen/LargeColumn"
-            android:layout_below="@+id/relLayout2">
+            android:layout_below="@+id/divider3">
 
             <LinearLayout
                 android:id="@+id/ll_expiry_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="4dp">
+                android:layout_marginTop="@dimen/xxSmallColumn"
+                android:layout_marginBottom="@dimen/xxxSmallColumn"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/upload_expired_date_text"/>
+                    style="@style/TextViewCommon.Theme"
+                    android:text="Upload your offer here" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/iv_current_selected_img_offer"
-                android:layout_width="225dp"
-                android:layout_height="225dp"
+            <RelativeLayout
+                android:id="@+id/rl_add_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_expiry_message"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/btn_round_green"/>
+                android:layout_marginTop="@dimen/xxxSmallColumn"
+                android:layout_marginBottom="@dimen/xxSmallColumn">
+
+                <ImageView
+                    android:id="@+id/iv_current_selected_img_offer"
+                    android:layout_width="225dp"
+                    android:layout_height="225dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/xxxSmallColumn"
+                    android:src="@drawable/layout_add_offer_sign" />
+
+                <ImageView
+                    android:id="@+id/iv_add_sign"
+                    android:layout_width="@dimen/xxxxLargeColumn"
+                    android:layout_height="@dimen/xxxxLargeColumn"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_add" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rl_add_img"
+                android:background="@color/medium_grey" />
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_current_selected_img_offer"
+                android:layout_below="@id/divider4"
                 android:layout_margin="8dp">
 
                 <GridLayout
                     android:id="@+id/gl_other_upload_img_offer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:columnCount="3"
-                    android:layout_margin="1dp">
+                    android:layout_margin="1dp"
+                    android:columnCount="3">
 
                 </GridLayout>
 
@@ -57,16 +118,20 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/relLayout2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/relLayout2">
+            android:layout_height="wrap_content">
 
-            <include layout="@layout/layout_custom_toolbar">
-            </include>
-
+            <include layout="@layout/layout_custom_toolbar" />
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/relLayout2"
+            android:background="@color/medium_grey" />
 
 
     </RelativeLayout>
