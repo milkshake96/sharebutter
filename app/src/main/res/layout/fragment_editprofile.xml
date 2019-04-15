@@ -15,12 +15,18 @@
             <include layout="@layout/snippet_top_editprofiletoolbar" />
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rlLayout1"
+            android:background="@color/medium_grey" />
 
         <RelativeLayout
             android:id="@+id/rlLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/rlLayout1">
+            android:layout_below="@+id/divider2">
 
             <include layout="@layout/snippet_center_editprofile" />
         </RelativeLayout>

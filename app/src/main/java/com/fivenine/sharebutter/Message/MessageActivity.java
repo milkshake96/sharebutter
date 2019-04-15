@@ -16,7 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fivenine.sharebutter.Authentication.LoginActivity;
 import com.fivenine.sharebutter.Exchange.ConfirmationActivity;
 import com.fivenine.sharebutter.Exchange.TraderExistingOffers;
 import com.fivenine.sharebutter.Home.HomeActivity;
@@ -37,7 +36,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
-import com.onesignal.OneSignal;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -64,7 +62,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     //Materials (When item to offer exist)
     LinearLayout llOfferExistPage;
     ImageView ivOfferPhoto;
-    ImageView ivOfferPhotoTraded;
+    RelativeLayout rlOfferPhotoTraded;
     TextView tvItemName;
     TextView tvItemDescription;
     TextView tvItemExpDate;
@@ -140,7 +138,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         //When selected an item for trade
         llOfferExistPage = findViewById(R.id.ll_offer_exist_page);
         ivOfferPhoto = findViewById(R.id.iv_uploaded_photo);
-        ivOfferPhotoTraded = findViewById(R.id.iv_uploaded_photo_traded);
+        rlOfferPhotoTraded = findViewById(R.id.rl_uploaded_photo_traded);
         tvItemName = findViewById(R.id.tv_item_name);
         tvItemDescription = findViewById(R.id.tv_item_description);
         tvItemExpDate = findViewById(R.id.tv_item_exp_date);
@@ -506,6 +504,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 //Update item image
                 Picasso.get()
                         .load(traderItem.getImg1URL())
+                        .centerCrop()
                         .fit()
                         .into(ivOfferPhoto);
 
@@ -525,11 +524,11 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 }
 
                 if(traderItem.getTraded()){
-                    ivOfferPhotoTraded.setVisibility(View.VISIBLE);
+                    rlOfferPhotoTraded.setVisibility(View.VISIBLE);
                     btnChangeTrade.setEnabled(false);
                 }
                 else{
-                    ivOfferPhotoTraded.setVisibility(GONE);
+                    rlOfferPhotoTraded.setVisibility(GONE);
                     btnChangeTrade.setEnabled(true);
                 }
 

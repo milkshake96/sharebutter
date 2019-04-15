@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#c44e64</color>
-    <color name="colorPrimaryDark">#912b3e</color>
-    <color name="colorAccent">#D54747</color>
+    <color name="colorPrimary">#D54747</color>
+    <color name="colorPrimaryDark">#a5262c</color>
+    <color name="colorAccent">#bc4048</color>
 
-    <color name="theme">#c44e64</color>
-    <color name="highlight">#912b3e</color>
-    <color name="subtheme">#9e3549</color>
+    <color name="theme">#a5262c</color>
+    <color name="highlight">#bc4048</color>
+    <color name="subtheme">#a83743</color>
     <color name="purple">#DD177E</color>
     <color name="light_purple">#D63B83</color>
     <color name="black">#ff000000</color>
@@ -18,9 +18,10 @@
     <color name="black_semi_transparent">#b2000000</color>
     <color name="selected">#30000000</color>
     <color name="grey">#80808080</color>
-    <color name="midgrey">#dbdbdb</color>
+    <color name="midgrey">#8e8e8e</color>
     <color name="light_grey">#f2f2f2</color>
     <color name="silver">#ffc0c0c0</color>
+    <color name="medium_grey">#e0e0e0</color>
     <color name="shadowblack">#11000000</color>
     <color name="text_black">#e2000000</color>
     <color name="progress_bar">#ff00dc50</color>
@@ -59,7 +60,7 @@
     <color name="TextSecondaryLight">#A5A5A5</color>
     <color name="TextDisableLight">#3FFF</color>
 
-    <color name="TextPrimaryTheme">#c44e64</color>
+    <color name="TextPrimaryTheme">#D54747</color>
 
     <color name="Background">#fff</color>
     <color name="Background.Pale">#EBEBF1</color>

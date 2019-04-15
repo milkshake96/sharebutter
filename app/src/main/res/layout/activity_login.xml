@@ -87,7 +87,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/MarginDouble"
-            app:srcCompat="@drawable/ic_password" />
+            app:srcCompat="@drawable/ic_authenticate" />
 
         <EditText
             android:id="@+id/etSignInPassword"

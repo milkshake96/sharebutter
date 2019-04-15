@@ -10,9 +10,9 @@
         android:layout_height="150dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="@dimen/xSmallColumn"
-        android:layout_marginTop="@dimen/xSmallColumn"
-        android:layout_marginBottom="@dimen/xxxSmallColumn"
+        android:layout_marginLeft="@dimen/xxSmallColumn"
+        android:layout_marginTop="@dimen/xxSmallColumn"
+        android:layout_marginBottom="@dimen/xxSmallColumn"
         app:srcCompat="@drawable/lot100mango" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="@dimen/xSmallColumn"
         android:layout_marginRight="@dimen/xSmallColumn"
-        android:layout_marginTop="@dimen/xSmallColumn"
+        android:layout_marginTop="@dimen/xxSmallColumn"
         android:layout_toEndOf="@+id/iv_item_img"
         android:text="@string/search_item_name"
         android:textColor="@color/colorPrimary"

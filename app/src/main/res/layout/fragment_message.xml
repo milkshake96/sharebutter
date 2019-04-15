@@ -10,7 +10,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/layout_custom_toolbar"></include>
+        <include layout="@layout/layout_custom_toolbar"/>
+
+        <TextView
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rl_top_toolbar"
+            android:background="@color/medium_grey" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_message_list"

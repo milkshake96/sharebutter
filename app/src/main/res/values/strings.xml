@@ -48,7 +48,7 @@
     <string name="profile_edit_profile">Edit Profile</string>
     <string name="profile_edit_profile_text">Edit Profile</string>
     <string name="profile_username">Yin Ling</string>
-    <string name="profile_description">I am Utarian, studying Information System Engineering. I live in Penang, Malaysia. My hobby is swimming.</string>
+    <string name="profile_description">Utarian, studying Information System Engineering. Penang lang.</string>
     <string name="editprofile_done">DONE</string>
     <string name="editprofile_change_photo">Change Photo</string>
     <string name="editprofile_hint_name">Name</string>
@@ -123,4 +123,6 @@
     <!--One Signal-->
     <string name="one_signal_app_id">fd4c85f0-cf1f-4825-aa2b-542e33e90394</string>
     <string name="one_signal_api_key">NDdhNjA4YTUtNjYxMi00NGMxLTk5YzQtZDJhYmYzM2IxNDAw</string>
+    <string name="add_offer_guide">Please make sure you has upload your food expired date image.</string>
+    <string name="privatemsg_sample">Hi, I am interested on the Lot100 Mango that you offer.</string>
 </resources>

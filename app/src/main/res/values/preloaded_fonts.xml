@@ -2,5 +2,12 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/aclonica</item>
+        <item>@font/allura</item>
+        <item>@font/bilbo</item>
+        <item>@font/damion</item>
+        <item>@font/galada</item>
+        <item>@font/grand_hotel</item>
+        <item>@font/leckerli_one</item>
+        <item>@font/lily_script_one</item>
     </array>
 </resources>

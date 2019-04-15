@@ -3,82 +3,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/layout_custom_toolbar" />
+
+    <TextView
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_top_toolbar"
+        android:background="@color/silver" />
+
     <LinearLayout
         android:id="@+id/ll_add_offer_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/divider1"
         android:orientation="vertical">
-
-        <include layout="@layout/layout_custom_toolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_selected_upload_offer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_height="300dp" />
 
-        </android.support.v4.view.ViewPager>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:background="@color/LightGray"
-            android:orientation="vertical">
+            android:background="@color/LightGray">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/ll_current_img_position"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/xxxSmallColumn"
-                android:layout_marginRight="@dimen/xxxSmallColumn"
-                android:orientation="horizontal">
+                android:layout_marginEnd="@dimen/xxxSmallColumn">
 
                 <ImageView
                     android:layout_width="5dp"
                     android:layout_height="5dp"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="4dp"
+                    android:layout_toLeftOf="@+id/grey_dot1"
                     android:src="@drawable/colour_dot" />
 
                 <ImageView
+                    android:id="@+id/grey_dot1"
                     android:layout_width="5dp"
                     android:layout_height="5dp"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_toStartOf="@+id/grey_dot2"
                     android:src="@drawable/dot" />
 
                 <ImageView
+                    android:id="@+id/grey_dot2"
                     android:layout_width="5dp"
                     android:layout_height="5dp"
-                    android:layout_gravity="right"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="3dp"
                     android:src="@drawable/dot" />
-            </LinearLayout>
+            </RelativeLayout>
 
             <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextViewCommon.Theme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/ll_current_img_position"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/xxxSmallColumn"
                 android:text="Item Details" />
 
             <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/rounded_corner_white_1"
-                android:padding="32dp">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tv_title">
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/rounded_corner_white_1"
-                    android:padding="32dp">
+                    android:layout_marginStart="@dimen/xSmallColumn"
+                    android:layout_marginTop="@dimen/xxxSmallColumn"
+                    android:layout_marginEnd="@dimen/xSmallColumn"
+                    android:layout_marginBottom="@dimen/xxxSmallColumn"
+                    android:background="@drawable/rec_btn_white_background"
+                    android:padding="20dp">
 
                     <EditText
                         android:id="@+id/et_item_name"
@@ -98,21 +104,18 @@
                         android:layout_height="wrap_content"
                         android:hint="Hashtag (#milo)" />
 
-                    <Spinner
-                        android:id="@+id/sp_categories"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
                     <RelativeLayout
+                        android:id="@+id/rl_expired_date"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/et_expired_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:hint="Item Expired Date" />
+                            android:hint="Item Expired Date"
+                            android:textColor="@color/colorPrimary" />
 
                         <ImageView
                             android:id="@+id/iv_get_calendar"
@@ -121,13 +124,17 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_margin="8dp"
-                            android:src="@drawable/rounded_corner" />
-
+                            android:src="@drawable/ic_calendar" />
                     </RelativeLayout>
+
+                    <Spinner
+                        android:id="@+id/sp_categories"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MediumColumn"
+                        android:textAlignment="textStart" />
+
                 </LinearLayout>
             </ScrollView>
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
-
-
 </RelativeLayout>

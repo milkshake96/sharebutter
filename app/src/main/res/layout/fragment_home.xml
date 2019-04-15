@@ -7,7 +7,8 @@
     <RelativeLayout
         android:id="@+id/rlHomeTopBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <include layout="@layout/snippet_top_homebar" />
 
@@ -18,42 +19,46 @@
         android:id="@+id/rlHomeContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rlHomeTopBar"
-        android:layout_marginBottom="@dimen/LargeColumn">
+        android:layout_below="@id/rlHomeTopBar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <ViewFlipper
                 android:id="@+id/vf_home_display"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:layout_marginBottom="@dimen/xxxSmallColumn">
-            </ViewFlipper>s
+                android:background="@drawable/rec_btn_white_background"
+                android:layout_weight="4"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/light_grey">
 
                 <TextView
+                    style="@style/TextViewCommon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="latest"
-                    android:layout_margin="4dp"/>
+                    android:layout_marginStart="@dimen/xxxSmallColumn"
+                    android:layout_marginTop="@dimen/xxxSmallColumn"
+                    android:text="Latest"
+                    android:textColor="@color/black" />
 
                 <GridView
                     android:id="@+id/gv_display_upload_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="@dimen/xxxSmallColumn"
+                    android:horizontalSpacing="3dp"
                     android:numColumns="3"
-                    android:verticalSpacing="8dp"
-                    android:horizontalSpacing="4dp"
-                    android:layout_margin="2dp">
-                </GridView>
+                    android:verticalSpacing="3dp"/>
 
             </LinearLayout>
 

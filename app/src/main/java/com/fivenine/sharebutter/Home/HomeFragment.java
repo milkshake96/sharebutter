@@ -139,13 +139,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void sliderSetup() {
         sliderDisplayImgURLs = new ArrayList<>();
-        sliderDisplayImgURLs.add("https://clocktower-apartments.com/wp-content/uploads/2017/08/Eating-in-your-Seattle-Apartment-1000x400.jpg");
-        sliderDisplayImgURLs.add("https://brooklynboulders.com/wp-content/uploads/2015/11/photo-1441123285228-1448e608f3d5-1000x400.jpeg");
-        sliderDisplayImgURLs.add("https://www.thehealthyloaf.com.au/wp-content/uploads/2018/01/sharing-the-food-PSTU2CT-1000x400.jpg");
-        sliderDisplayImgURLs.add("https://www.villa-athena-dday.com/wp-content/uploads/2018/06/IMG_20180504_090724-1000x400.jpg");
-        sliderDisplayImgURLs.add("https://p.dam-img.rfdcontent.com/cms/001/306/575/1000x400_crop-north-force.jpg");
-        sliderDisplayImgURLs.add("https://static1.squarespace.com/static/55f7166be4b02accbd8e3210/t/57f2e918579fb34674b8926f/1475537182819/");
-        sliderDisplayImgURLs.add("https://cdn.filestackcontent.com/quality=value:100/output=compress:true,background:FFFFFF/resize=width:1000/DeBDfSAMR2SsrbybVfDW");
+        sliderDisplayImgURLs.add("https://d6prv7be4nrvy.cloudfront.net/wp-content/uploads/1000X500.jpg");
+        sliderDisplayImgURLs.add("https://www.madison-fichtl.com/wp-content/uploads/2017/12/IMG_1713-1000x500.jpg");
+        sliderDisplayImgURLs.add("http://sydney.edu.au/environment-institute/wp-content/uploads/2017/07/954_FoodImage-1000x500-c-center.jpg");
+        sliderDisplayImgURLs.add("https://www.tradewindsins.com/wp-content/uploads/sites/61/2017/03/Pizza-and-Friends-1000x500.jpg");
+        sliderDisplayImgURLs.add("http://annajones.co.uk/cms/wp-content/uploads/2017/09/Lunchbox-1000x500.jpg");
+        sliderDisplayImgURLs.add("https://gomealprep.de/wp-content/uploads/2017/08/meal-prep-mit-fitprep-3fach-mit-essen-und-deckel-1000x500.png");
+        sliderDisplayImgURLs.add("https://www.theprocessrecoverycenter.com/wp-content/uploads/2018/11/Christmas1-1000x500.jpg");
 
         for(String image : sliderDisplayImgURLs){
             flipperImages(image);

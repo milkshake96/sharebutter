@@ -12,12 +12,15 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/layout_custom_toolbar"></include>
+            layout="@layout/layout_custom_toolbar"/>
 
         <GridView
+            android:background="@color/light_grey"
             android:id="@+id/gv_trader_items"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
             android:padding="@dimen/xxxSmallColumn">
         </GridView>
     </LinearLayout>

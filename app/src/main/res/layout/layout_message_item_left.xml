@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:text="chats sent time"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/theme"
-        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:textSize="11sp"
         android:layout_margin="@dimen/xxSmallColumn"/>
 
     <LinearLayout
@@ -24,20 +24,20 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_chat_profile_pic"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/NormalColumn"
+            android:layout_height="@dimen/NormalColumn"
             android:layout_gravity="left|top"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"/>
+            android:src="@drawable/girl"
+            android:layout_marginStart="@dimen/xxxSmallColumn"
+            android:layout_marginEnd="8dp"/>
 
         <com.github.library.bubbleview.BubbleTextView
             android:id="@+id/tv_message"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="chats"
-            android:textColor="@color/white"
-            android:layout_centerVertical="true"
+            android:textSize="15sp"
+            android:textColor="@color/colorAccent"
             android:layout_gravity="center_vertical"
             android:padding="8dp"
             app:arrowWidth="8dp"
@@ -45,6 +45,6 @@
             app:arrowHeight="8dp"
             app:arrowPosition="12dp"
             app:arrowLocation="left"
-            app:bubbleColor="@color/theme"/>
+            app:bubbleColor="@color/white"/>
     </LinearLayout>
 </RelativeLayout>
