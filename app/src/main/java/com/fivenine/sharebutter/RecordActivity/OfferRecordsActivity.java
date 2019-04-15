@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OfferRecordsActivity extends AppCompatActivity implements View.OnClickListener {
+public class OfferRecordsActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static final String SELECTION_TAG_ON = "ON";
     public static final String SELECTION_TAG_OFF = "OFF";
@@ -91,6 +91,7 @@ public class OfferRecordsActivity extends AppCompatActivity implements View.OnCl
 
         if(isHistoryPage){
             tbTvTitle.setText("History");
+
         } else {
             tbTvTitle.setText("Offer Records");
         }
@@ -165,7 +166,7 @@ public class OfferRecordsActivity extends AppCompatActivity implements View.OnCl
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         Item requesterItem = dataSnapshot.getValue(Item.class);
                                         offerRecordSentList.get(position).setTraderItem(requesterItem);
-                                        offerRecordSentAdapter = new OfferRecordAdapter(OfferRecordsActivity.this, offerRecordSentList);
+                                        offerRecordSentAdapter = new OfferRecordAdapter(OfferRecordsActivity.this, offerRecordSentList, isHistoryPage);
                                         rvTradeList.setAdapter(offerRecordSentAdapter);
                                     }
 
@@ -204,7 +205,7 @@ public class OfferRecordsActivity extends AppCompatActivity implements View.OnCl
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         Item requesterItem = dataSnapshot.getValue(Item.class);
                                         offerRecordReceivedList.get(position).setTraderItem(requesterItem);
-                                        offerRecordReceivedAdapter = new OfferRecordAdapter(OfferRecordsActivity.this, offerRecordReceivedList);
+                                        offerRecordReceivedAdapter = new OfferRecordAdapter(OfferRecordsActivity.this, offerRecordReceivedList, isHistoryPage);
                                     }
 
                                     @Override

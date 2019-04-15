@@ -74,9 +74,9 @@
 
     <RelativeLayout
         android:id="@+id/rl2"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/NormalColumn"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="110dp"
         android:layout_below="@+id/rl_breakline">
 
         <ImageView
@@ -88,6 +88,7 @@
             android:src="@drawable/history_user" />
 
         <TextView
+            android:id="@+id/tv_user_name"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/xxSmallColumn"
@@ -98,9 +99,9 @@
 
     <RelativeLayout
         android:id="@+id/rl3"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/NormalColumn"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="110dp"
         android:layout_below="@+id/rl2">
 
         <ImageView
@@ -112,6 +113,7 @@
             android:src="@drawable/gmail" />
 
         <TextView
+            android:id="@+id/tv_user_email"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/xxSmallColumn"
@@ -122,9 +124,9 @@
 
     <RelativeLayout
         android:id="@+id/rl4"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/NormalColumn"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="110dp"
         android:layout_below="@+id/rl3">
 
         <ImageView
@@ -136,6 +138,7 @@
             android:src="@drawable/call" />
 
         <TextView
+            android:id="@+id/tv_user_phone_number"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/xxSmallColumn"
