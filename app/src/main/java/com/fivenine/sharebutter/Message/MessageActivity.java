@@ -698,6 +698,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 traderItemUser = dataSnapshot.getValue(User.class);
+
+                if(firebaseUser.getUid().equals(targetItemUser.getUser_id())){
+                    tvTitle.setText(traderItemUser.getUsername());
+                } else {
+                    tvTitle.setText(targetItemUser.getUsername());
+                }
             }
 
             @Override
