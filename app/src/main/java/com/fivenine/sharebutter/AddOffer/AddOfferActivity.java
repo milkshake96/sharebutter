@@ -22,12 +22,16 @@ import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.DatePickerFragment;
 import com.fivenine.sharebutter.Utils.ViewPagerAdapter;
 import com.fivenine.sharebutter.models.Item;
+import com.fivenine.sharebutter.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -73,6 +77,9 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
     //Upload item
     Item item;
     ArrayList<String> imgURLs;
+
+    //var
+    User currentUser;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -137,6 +144,8 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
         storageReference = FirebaseStorage.getInstance().getReference();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+
+        getCurrentUser();
     }
 
     @Override
@@ -183,7 +192,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
             uploadedItem = 0;
             Toast.makeText(this, "Posting Item...", Toast.LENGTH_SHORT).show();
             item = new Item(new Date().getTime(), firebaseAuth.getCurrentUser().getUid(),
-                    name, description, hashTag, category, expDate, false);
+                    currentUser.getUsername(), name, description, hashTag, category, expDate, false);
 
             imgURLs = new ArrayList<>();
             databaseReference = firebaseDatabase.getReference().child(AddOfferActivity.this.getString(R.string.dbname_items))
@@ -308,5 +317,20 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         }).start();
+    }
+
+    private void getCurrentUser(){
+        databaseReference.child(getString(R.string.dbname_users)).child(firebaseAuth.getCurrentUser().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        currentUser = dataSnapshot.getValue(User.class);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 }

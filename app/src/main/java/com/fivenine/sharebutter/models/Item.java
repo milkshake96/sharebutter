@@ -9,6 +9,7 @@ public class Item {
 
     private Long id;
     private String itemOwnerId;
+    private String itemOwnerName;
     private String name;
     private String description;
     private String hashTag;
@@ -23,17 +24,22 @@ public class Item {
 
     }
 
-    public Item(Long id, String itemOwnerId, String name, String description, String hashTag,
+    public Item(Long id, String itemOwnerId, String itemOwnerName, String name, String description, String hashTag,
                 String category, String expiredDate, boolean traded) {
 
         this.id = id;
         this.itemOwnerId = itemOwnerId;
+        this.itemOwnerName = itemOwnerName;
         this.name = name;
         this.description = description;
         this.hashTag = hashTag;
         this.category = category;
         this.expiredDate = expiredDate;
         this.traded = traded;
+    }
+
+    public String getItemOwnerName() {
+        return itemOwnerName;
     }
 
     public String getItemOwnerId() {
