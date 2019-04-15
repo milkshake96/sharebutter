@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fivenine.sharebutter.Home.HomeActivity;
+import com.fivenine.sharebutter.Home.HomeFragment;
+import com.fivenine.sharebutter.Profile.ProfileFragment;
 import com.fivenine.sharebutter.R;
 
 import java.util.ArrayList;
@@ -25,8 +30,9 @@ import static android.view.View.GONE;
 public class AddOfferFragment extends Fragment implements View.OnClickListener {
     public static final String SELECTED_IMAGES = "selected_images";
     private static final String TAG = "AddOfferFragment";
-
+    private   final int RC_ADD_NEW_OFFER = 3;
     private final int CODE_MULTIPLE_IMG_GALLERY = 2;
+
     private View view;
     private ImageView ivCurrentImage;
     private GridLayout glOfferImages;
@@ -36,10 +42,13 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<String> imgUri;
 
+    private ViewGroup container;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_addoffer, container, false);
+        this.container = container;
 
         init();
         return view;
@@ -69,6 +78,17 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode == RC_ADD_NEW_OFFER && resultCode == RESULT_OK){
+            HomeActivity mHomeActivity = (HomeActivity)getActivity();
+            mHomeActivity.viewPager.arrowScroll(View.FOCUS_LEFT);
+
+            tvAction.setText("");
+            ivAddSign.setVisibility(View.VISIBLE);
+            ivCurrentImage.setImageDrawable(view.getResources().getDrawable(R.drawable.layout_add_offer_sign));
+
+            glOfferImages.removeAllViews();
+        }
+
         if (requestCode == CODE_MULTIPLE_IMG_GALLERY && resultCode == RESULT_OK) {
             ClipData clipData = data.getClipData();
             imgUri = new ArrayList<>();
@@ -95,6 +115,7 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getContext(), "Maximum 3 Pictures only.", Toast.LENGTH_SHORT).show();
         } else if (glOfferImages.getChildCount() > 0 && glOfferImages.getChildCount() <= 3) {
             tvAction.setVisibility(View.VISIBLE);
+            tvAction.setText("NEXT");
             ivAddSign.setVisibility(View.GONE);
         } else {
             tvAction.setVisibility(GONE);
@@ -114,7 +135,7 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
             if(tvAction.getText().toString().equals("NEXT")){
                 Intent intent = new Intent(getContext(), AddOfferActivity.class);
                 intent.putStringArrayListExtra(SELECTED_IMAGES, imgUri);
-                startActivity(intent);
+                startActivityForResult(intent, RC_ADD_NEW_OFFER);
             }
         } else {
 

@@ -159,6 +159,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                 displayCalendarFragment();
                 break;
             case R.id.tb_iv_support_action:
+                setResult(RESULT_CANCELED);
                 finish();
             default:
                 break;
@@ -248,6 +249,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(getApplicationContext(), "Upload Successful..", Toast.LENGTH_SHORT).show();
+                                setResult(RESULT_OK);
                                 finish();
                             }
                         }

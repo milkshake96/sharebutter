@@ -43,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private static final int ERROR_DIALOG_REQUEST = 9001;
+    public SectionsPagerAdapter adapter;
+    public ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +72,14 @@ public class HomeActivity extends AppCompatActivity {
 
     //    Aadding the 4 tabs: Categories, Home, Search, and Authentication
     private void setupViewPager() {
-        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment()); //index 0
         adapter.addFragment(new ProfileFragment()); //index 1
         adapter.addFragment(new AddOfferFragment()); //index 2
         adapter.addFragment(new MessageFragment()); //index 3
         adapter.addFragment(new LocationFragment()); //index 4
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsBottom);
