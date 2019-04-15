@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url 'https://plugins.gradle.org/m2/'}
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.11.0, 0.99.99]'
@@ -18,9 +18,9 @@ android {
     compileSdkVersion 28
     defaultConfig {
         manifestPlaceholders = [
-            onesignal_app_id: 'fd4c85f0-cf1f-4825-aa2b-542e33e90394',
-            // Project number pulled from dashboard, local value is ignored.
-            onesignal_google_project_number: 'REMOTE'
+                onesignal_app_id               : 'fd4c85f0-cf1f-4825-aa2b-542e33e90394',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
         ]
 
         applicationId "com.fivenine.sharebutter"
