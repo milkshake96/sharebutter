@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecordActivity.HistoryActivity">
+
+    <include layout="@layout/layout_custom_toolbar" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/TextViewCommon.Theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_top_toolbar"
+        android:layout_marginStart="@dimen/xxSmallColumn"
+        android:layout_marginTop="@dimen/xxSmallColumn"
+        android:text="Your trade" />
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="@dimen/xxxSmallColumn">
+
+        <include
+            android:id="@+id/history_card"
+            layout="@layout/layout_offer_record_card" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_breakline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl1"
+        android:layout_marginTop="@dimen/xxxSmallColumn"
+        android:layout_marginBottom="@dimen/SmallColumn"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/divider2"
+            style="@style/HorizontalDivider"
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/silver" />
+
+        <TextView
+            android:id="@+id/title2"
+            style="@style/TextViewCommon.Theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/xxxSmallColumn"
+            android:layout_marginEnd="25dp"
+            android:layout_toRightOf="@+id/divider2"
+            android:text="Contact" />
+
+        <TextView
+            android:id="@+id/divider3"
+            style="@style/HorizontalDivider"
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/xxxSmallColumn"
+            android:layout_marginEnd="25dp"
+            android:layout_toRightOf="@+id/title2"
+            android:background="@color/silver" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_width="200dp"
+        android:layout_height="@dimen/NormalColumn"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rl_breakline">
+
+        <ImageView
+            android:id="@+id/iv_history_user"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/SmallColumn"
+            android:layout_height="@dimen/SmallColumn"
+            android:layout_marginStart="@dimen/xxSmallColumn"
+            android:src="@drawable/history_user" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/xxSmallColumn"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_history_user"
+            android:text="Yinling Tan" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl3"
+        android:layout_width="200dp"
+        android:layout_height="@dimen/NormalColumn"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rl2">
+
+        <ImageView
+            android:id="@+id/iv_gmail"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/SmallColumn"
+            android:layout_height="@dimen/SmallColumn"
+            android:layout_marginStart="@dimen/xxSmallColumn"
+            android:src="@drawable/gmail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/xxSmallColumn"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_gmail"
+            android:text="johndoe@gmail.com" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl4"
+        android:layout_width="200dp"
+        android:layout_height="@dimen/NormalColumn"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rl3">
+
+        <ImageView
+            android:id="@+id/iv_call"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/SmallColumn"
+            android:layout_height="@dimen/SmallColumn"
+            android:layout_marginStart="@dimen/xxSmallColumn"
+            android:src="@drawable/call" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/xxSmallColumn"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_call"
+            android:text="60124066542" />
+    </RelativeLayout>
+</RelativeLayout>

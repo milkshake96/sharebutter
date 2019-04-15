@@ -11,13 +11,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".ShareButterApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_gift"
         android:roundIcon="@mipmap/ic_gift"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        android:name=".ShareButterApp">
-        <activity android:name=".Rating.RatingActivity"></activity>
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".RecordActivity.HistoryActivity"></activity>
+        <activity android:name=".Rating.RatingActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
