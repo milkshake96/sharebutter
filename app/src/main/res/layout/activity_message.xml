@@ -126,14 +126,11 @@
                     android:background="@color/light_grey" />
 
                 <include
-                    android:id="@+id/iv_uploaded_photo_traded"
+                    android:id="@+id/rl_uploaded_photo_traded"
                     layout="@layout/layout_offer_traded"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:alpha="0.8"
-                    android:background="@color/medium_grey"
-                    android:padding="100dp"
-                    android:src="@drawable/grey_gift"/>
+                    android:padding="100dp"/>
 
             </RelativeLayout>
 

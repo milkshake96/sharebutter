@@ -29,11 +29,10 @@
 
     <include
         layout="@layout/layout_offer_traded"
-        android:id="@+id/iv_item_traded"
+        android:id="@+id/rl_item_traded"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/LargeColumn"
-        android:alpha="0.8"
         android:background="@color/medium_grey"
         android:src="@drawable/grey_gift"
         android:padding="100dp"

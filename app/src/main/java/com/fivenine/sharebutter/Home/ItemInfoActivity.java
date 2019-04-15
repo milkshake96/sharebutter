@@ -1,6 +1,5 @@
 package com.fivenine.sharebutter.Home;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,10 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.fivenine.sharebutter.AddOffer.AddOfferFragment;
 import com.fivenine.sharebutter.Message.MessageActivity;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.ViewPagerAdapter;
@@ -55,7 +53,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
     TextView tvItemName;
     TextView tvDescription;
     TextView tvExpDate;
-    ImageView ivItemTraded;
+    RelativeLayout rlItemTraded;
 
     //Materials (User Description)
     ImageView ivProfileImage;
@@ -132,7 +130,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         tvDescription = findViewById(R.id.tv_description);
         tvHashTag = findViewById(R.id.tv_hash_tag);
         tvExpDate = findViewById(R.id.tv_expired_date);
-        ivItemTraded = findViewById(R.id.iv_item_traded);
+        rlItemTraded = findViewById(R.id.rl_item_traded);
 
         tvItemName.setText(currentSelectedItem.getName());
         tvDescription.setText(currentSelectedItem.getDescription());
@@ -172,9 +170,9 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if(currentSelectedItem.getTraded())
-            ivItemTraded.setVisibility(View.VISIBLE);
+            rlItemTraded.setVisibility(View.VISIBLE);
         else
-            ivItemTraded.setVisibility(GONE);
+            rlItemTraded.setVisibility(GONE);
 
     }
 
@@ -277,9 +275,9 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
                 currentSelectedItem = dataSnapshot.getValue(Item.class);
 
                 if(currentSelectedItem.getTraded())
-                    ivItemTraded.setVisibility(View.VISIBLE);
+                    rlItemTraded.setVisibility(View.VISIBLE);
                 else
-                    ivItemTraded.setVisibility(GONE);
+                    rlItemTraded.setVisibility(GONE);
             }
 
             @Override
