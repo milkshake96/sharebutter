@@ -35,7 +35,7 @@ public class SearchActivity extends AppCompatActivity {
     private static final String TAG = "SearchActivity";
 
     private EditText mSearchField;
-    private ImageView mSearchBtn;
+    private ImageView mSearchBtn, mBack;
     private RecyclerView mRecycleView;
     private SearchListingAdapter mAdapter;
 
@@ -51,8 +51,10 @@ public class SearchActivity extends AppCompatActivity {
         mSearchField = findViewById(R.id.et_search_field);
         mSearchBtn = findViewById(R.id.iv_search_btn);
         mRecycleView = findViewById(R.id.result_list);
+        mBack = findViewById(R.id.tb_iv_support_action);
 
         getItemList();
+        backOnClick();
 
         mSearchField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -68,6 +70,21 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 searchFilter(s.toString());
+            }
+        });
+    }
+
+
+
+    public void backOnClick(){
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
             }
         });
     }

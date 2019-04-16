@@ -26,6 +26,10 @@ public class CategoriesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CategoriesActivity.this, HomeActivity.class);
                 startActivity(intent);
+
+                finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
             }
         });
     }
