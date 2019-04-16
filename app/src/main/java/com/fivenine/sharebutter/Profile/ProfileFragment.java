@@ -102,7 +102,6 @@ public class ProfileFragment extends Fragment {
 
         postedItemList = new ArrayList<>();
         setupFirebaseAuth();
-        getPostedItemListFromDB();
         return view;
     }
 
@@ -144,8 +143,9 @@ public class ProfileFragment extends Fragment {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
-                if (user != null) {
+                if (user != null && user.isEmailVerified()) {
                     // User is signed in
+                    getPostedItemListFromDB();
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     // User is signed out

@@ -100,9 +100,18 @@ public class HomeActivity extends AppCompatActivity {
     private void checkCurrentUser(FirebaseUser user) {
         Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
 
-        if (user == null) {
+        if (user == null ) {
             Intent intent = new Intent(mContext, LoginActivity.class);
             startActivity(intent);
+            finish();
+        } else {
+            if (!user.isEmailVerified()){
+                mAuth.signOut();
+                
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
     }
 
