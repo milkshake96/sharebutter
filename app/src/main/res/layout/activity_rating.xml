@@ -78,7 +78,7 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/message"
+        android:id="@+id/iv_like"
         android:layout_width="@dimen/NormalColumn"
         android:layout_height="@dimen/NormalColumn"
         android:layout_below="@+id/rl_breakline"
@@ -87,7 +87,7 @@
         android:src="@drawable/ic_dislike" />
 
     <ImageView
-        android:id="@+id/rate"
+        android:id="@+id/iv_dislike"
         android:layout_width="@dimen/NormalColumn"
         android:layout_height="@dimen/NormalColumn"
         android:layout_below="@+id/rl_breakline"
@@ -101,7 +101,7 @@
         style="@style/TextViewCommon.Theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rate"
+        android:layout_below="@+id/iv_rate"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="@dimen/xxxSmallColumn"
@@ -114,7 +114,7 @@
         style="@style/TextViewCommon.Theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/message"
+        android:layout_below="@+id/iv_message"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="120dp"

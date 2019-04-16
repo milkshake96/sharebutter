@@ -67,7 +67,7 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/message"
+        android:id="@+id/iv_message"
         android:layout_width="@dimen/NormalColumn"
         android:layout_height="@dimen/NormalColumn"
         android:layout_below="@+id/rl_breakline"
@@ -76,7 +76,7 @@
         android:src="@drawable/ic_chat" />
 
     <ImageView
-        android:id="@+id/rate"
+        android:id="@+id/iv_rate"
         android:layout_width="@dimen/NormalColumn"
         android:layout_height="@dimen/NormalColumn"
         android:layout_below="@+id/rl_breakline"
@@ -89,7 +89,7 @@
         android:id="@+id/tv_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rate"
+        android:layout_below="@+id/iv_rate"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="@dimen/xxxSmallColumn"
@@ -101,7 +101,7 @@
         android:id="@+id/tv_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/message"
+        android:layout_below="@+id/iv_message"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="116dp"
@@ -110,9 +110,13 @@
         android:text="@string/message" />
 
     <ImageView
+        android:id="@+id/iv_close"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/xxSmallColumn"
-        android:src="@drawable/ic_close"/>
+        android:layout_marginStart="@dimen/xxSmallColumn"
+        android:layout_marginTop="@dimen/xxSmallColumn"
+        android:layout_marginEnd="@dimen/xxSmallColumn"
+        android:layout_marginBottom="@dimen/xxSmallColumn"
+        android:src="@drawable/ic_close" />
 </RelativeLayout>

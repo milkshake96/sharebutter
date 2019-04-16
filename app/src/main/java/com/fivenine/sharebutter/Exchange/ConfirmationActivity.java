@@ -111,13 +111,13 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
 
                 MessageChannel currentSelfMessageChannel = new MessageChannel(currentTradeOffer.getId(),
                         firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
-                        "Offer Sent",
-                        String.valueOf(new Date().getTime())  ,0);
-
-                MessageChannel currentTargetMessageChannel = new MessageChannel(currentTradeOffer.getId(),
-                        firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
                         "New Offer",
                         String.valueOf(new Date().getTime())  ,1);
+
+                MessageChannel currentTargetMessageChannel = new MessageChannel(currentTradeOffer.getId(),
+                        currentTradeOffer.getOwnerId(), firebaseUser.getUid(),
+                        "Offer Sent",
+                        String.valueOf(new Date().getTime())  ,0);
 
                 //Store into self id
                 //Trade Offer
