@@ -111,14 +111,19 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
 
 
         if (glOfferImages.getChildCount() > 3) {
-            tvAction.setVisibility(GONE);
+            tvAction.setText("");
+            tvAction.setEnabled(false);
             Toast.makeText(getContext(), "Maximum 3 Pictures only.", Toast.LENGTH_SHORT).show();
+            ivAddSign.setVisibility(View.GONE);
         } else if (glOfferImages.getChildCount() > 0 && glOfferImages.getChildCount() <= 3) {
             tvAction.setVisibility(View.VISIBLE);
             tvAction.setText("NEXT");
+            tvAction.setEnabled(true);
             ivAddSign.setVisibility(View.GONE);
         } else {
-            tvAction.setVisibility(GONE);
+            tvAction.setText("");
+            tvAction.setEnabled(false);
+            ivAddSign.setVisibility(View.GONE);
         }
     }
 
