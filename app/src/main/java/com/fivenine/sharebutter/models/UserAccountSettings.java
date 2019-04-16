@@ -10,15 +10,17 @@ public class UserAccountSettings {
     private long offers;
     private String profile_photo;
     private String username;
+    private String state;
 
     public UserAccountSettings(String description, String display_name, long followers, long likes,
-                               long offers, String profile_photo, String username) {
+                               long offers, String profile_photo, String state, String username) {
         this.description = description;
         this.display_name = display_name;
         this.followers = followers;
         this.likes = likes;
         this.offers = offers;
         this.profile_photo = profile_photo;
+        this.state = state;
         this.username = username;
     }
 
@@ -30,7 +32,7 @@ public class UserAccountSettings {
         return description;
     }
 
-    public void setDscription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -74,6 +76,14 @@ public class UserAccountSettings {
         this.profile_photo = profile_photo;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -91,6 +101,7 @@ public class UserAccountSettings {
                 ", following=" + likes +
                 ", posts=" + offers +
                 ", profile_photo='" + profile_photo + '\'' +
+                ", state='" + state + '\'' +
                 ", username='" + username + '\'' +
                 '}';
     }

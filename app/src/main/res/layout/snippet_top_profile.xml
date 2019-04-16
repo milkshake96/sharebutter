@@ -22,44 +22,48 @@
         <TextView
             android:id="@+id/tvProfileUserName"
             style="@style/SmallTextView"
-            android:textColor="@color/DarkGrey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ivProfileImage"
-            android:layout_marginTop="4dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="@string/profile_username" />
+            android:layout_marginTop="4dp"
+            android:text="@string/profile_username"
+            android:textColor="@color/DarkGrey" />
 
-        <LinearLayout
-            android:id="@+id/rl_place"
+        <TextView
+            android:id="@+id/tv_state"
+            style="@style/SmallTextView.Theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvProfileUserName"
-            android:layout_gravity="center_horizontal">
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Penang" />
+        <!--<LinearLayout-->
+        <!--android:id="@+id/rl_place"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/tvProfileUserName"-->
+        <!--android:gravity="center_horizontal">-->
 
-            <TextView
-                android:id="@+id/tv_city"
-                style="@style/SmallTextView.Theme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Butterworth" />
+        <!--<TextView-->
+        <!--android:id="@+id/tv_city"-->
+        <!--style="@style/SmallTextView.Theme"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Butterworth" />-->
 
-            <ImageView
-                android:layout_width="3dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/xxxSmallColumn"
-                android:layout_marginEnd="@dimen/xxxSmallColumn"
-                android:src="@drawable/dot" />
+        <!--<ImageView-->
+        <!--android:layout_width="3dp"-->
+        <!--android:layout_height="3dp"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_marginStart="@dimen/xxxSmallColumn"-->
+        <!--android:layout_marginEnd="@dimen/xxxSmallColumn"-->
+        <!--android:src="@drawable/dot" />-->
 
-            <TextView
-                android:id="@+id/tv_state"
-                style="@style/SmallTextView.Theme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Penang" />
-        </LinearLayout>
+
+        <!--</LinearLayout>-->
     </RelativeLayout>
 
     <LinearLayout
@@ -140,8 +144,8 @@
             style="@style/SmallTextView"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/xSmallColumn"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/xSmallColumn"
             android:text="@string/profile_description"
             android:textAlignment="center" />
 
@@ -152,8 +156,8 @@
             android:layout_height="@dimen/xSmallColumn"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/xSmallColumn"
-            android:gravity="center_horizontal|center_vertical"
             android:background="@drawable/rec_btn_red_border_white_background"
+            android:gravity="center_horizontal|center_vertical"
             android:text="@string/profile_edit_profile_text" />
 
         <!--<LinearLayout-->

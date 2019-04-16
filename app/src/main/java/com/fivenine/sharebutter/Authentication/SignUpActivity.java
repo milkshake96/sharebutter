@@ -141,7 +141,7 @@ public class SignUpActivity extends AppCompatActivity {
                             username = username + append;
 
                             //add new user to the database
-                            firebaseMethods.addNewUser(username, "", "");
+                            firebaseMethods.addNewUser(username, "", "", "");
 
                             Toast.makeText(mContext, "Signup successful. Sending verification email.", Toast.LENGTH_SHORT).show();
 
