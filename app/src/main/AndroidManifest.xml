@@ -17,6 +17,7 @@
         android:roundIcon="@mipmap/ic_gift"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
         <activity android:name=".RecordActivity.HistoryActivity"></activity>
         <activity android:name=".Rating.RatingActivity" />
 
@@ -50,8 +51,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Profile.ProfileActivity" />
-        <activity android:name=".AddOffer.AddOfferActivity" />
-        <activity android:name=".Message.MessageActivity" />
+        <activity android:name=".AddOffer.AddOfferActivity"
+            android:windowSoftInputMode="adjustPan"  />
+        <activity android:name=".Message.MessageActivity"
+            android:windowSoftInputMode="adjustPan"  />
         <activity android:name=".Location.LocationActivity" />
         <activity
             android:name="com.facebook.FacebookActivity"

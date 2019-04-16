@@ -74,7 +74,7 @@ public class ProfileFragment extends Fragment {
 
         gridView = (GridView) view.findViewById(R.id.gvProfileOfferUploaded);
         mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
-        mProgressBar.setVisibility(View.GONE);
+        mProgressBar.setVisibility(View.VISIBLE);
 
         mContext = getActivity();
         mFirebaseMethods = new FirebaseMethods(getActivity());
@@ -184,6 +184,33 @@ public class ProfileFragment extends Fragment {
                             postedItemList.add(postedItem);
                         }
 
+                        mProgressBar.setVisibility(View.GONE);
+                        displayOfferAdapter = new DisplayOfferAdapter(getContext(), postedItemList);
+                        gridView.setAdapter(displayOfferAdapter);
+                        monitorPostedItemChangesFromDB();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    private void monitorPostedItemChangesFromDB(){
+        mProgressBar.setVisibility(View.VISIBLE);
+
+        myRef.child(getString(R.string.dbname_items)).child(mAuth.getCurrentUser().getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        postedItemList.clear();
+                        for(DataSnapshot curItem : dataSnapshot.getChildren()){
+                            Item postedItem = curItem.getValue(Item.class);
+                            postedItemList.add(postedItem);
+                        }
+
+                        mProgressBar.setVisibility(View.GONE);
                         displayOfferAdapter = new DisplayOfferAdapter(getContext(), postedItemList);
                         gridView.setAdapter(displayOfferAdapter);
                     }

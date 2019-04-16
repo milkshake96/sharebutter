@@ -19,12 +19,12 @@
                 android:layout_height="120dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
+                android:src="@drawable/girl"
                 app:civ_border_color="@color/light_grey"
-                app:civ_border_width="1dp"
-                android:src="@drawable/girl"/>
+                app:civ_border_width="1dp" />
 
             <TextView
-                android:id="@+id/changeProfilePhoto"
+                android:id="@+id/tv_changeProfilePhoto"
                 style="@style/TextViewCommon.Theme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 android:id="@+id/rlLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/LargeColumn"
-                android:layout_below="@+id/changeProfilePhoto"
+                android:layout_below="@+id/tv_changeProfilePhoto"
                 android:layout_marginLeft="@dimen/xSmallColumn"
                 android:layout_marginTop="@dimen/xxSmallColumn"
                 android:layout_marginRight="@dimen/xSmallColumn"
@@ -58,10 +58,10 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
-                    android:textColor="@color/black"
                     android:background="@null"
                     android:hint="@string/editprofile_hint_name"
-                    android:inputType="textNoSuggestions" />
+                    android:inputType="textNoSuggestions"
+                    android:textColor="@color/black" />
             </RelativeLayout>
 
             <TextView
@@ -100,9 +100,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
-                    android:textColor="@color/black"
                     android:background="@null"
-                    android:hint="@string/editprofile_hint_description"/>
+                    android:hint="@string/editprofile_hint_description"
+                    android:textColor="@color/black" />
             </RelativeLayout>
 
             <TextView
@@ -149,29 +149,42 @@
 
 
             <!--Column 3-->
-
-            <Spinner
-                android:id="@+id/sp_city"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:id="@+id/rl4"
+                android:layout_centerHorizontal="true"
+                android:layout_width="250dp"
                 android:layout_height="@dimen/MediumColumn"
                 android:layout_below="@id/divider3"
                 android:layout_marginStart="@dimen/xSmallColumn"
+                android:layout_marginTop="@dimen/SmallColumn"
                 android:layout_marginEnd="@dimen/xSmallColumn"
-                android:layout_marginTop="@dimen/xSmallColumn"
-                android:textAlignment="textStart" />
+                android:background="@drawable/rec_btn_red_border">
 
-            <Spinner
-                android:id="@+id/sp_state"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MediumColumn"
-                android:layout_below="@id/sp_city"
-                android:layout_marginStart="@dimen/xSmallColumn"
-                android:layout_marginEnd="@dimen/xSmallColumn"
-                android:layout_marginTop="@dimen/xSmallColumn"
-                android:textAlignment="textStart" />
+                <Spinner
+                    android:id="@+id/sp_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/MediumColumn"
+                    android:textAlignment="center" />
+            </RelativeLayout>
 
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/rl5"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="@dimen/MediumColumn"-->
+                <!--android:layout_marginStart="@dimen/xSmallColumn"-->
+                <!--android:layout_marginTop="@dimen/xxSmallColumn"-->
+                <!--android:layout_marginEnd="@dimen/xSmallColumn"-->
+                <!--android:layout_below="@id/rl4"-->
+                <!--android:background="@drawable/rec_btn_red_border">-->
+
+                <!--<Spinner-->
+                    <!--android:id="@+id/sp_city"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/MediumColumn"-->
+                    <!--android:textAlignment="center"/>-->
+
+            <!--</RelativeLayout>-->
         </RelativeLayout>
-
 
     </ScrollView>
 </merge>
