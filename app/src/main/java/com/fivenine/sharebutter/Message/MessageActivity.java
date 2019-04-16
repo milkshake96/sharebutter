@@ -604,6 +604,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                     databaseReference.child(getString(R.string.dbname_chats))
                             .child(firebaseUser.getUid()).child(String.valueOf(currentSelfMessageChannel.getId()))
                             .addValueEventListener(chatListener);
+
+                    monitorTradeOffer();
                 }
             }
 
