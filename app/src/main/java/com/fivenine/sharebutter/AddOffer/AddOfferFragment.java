@@ -103,16 +103,16 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
                     imageView.setOnClickListener(this);
                     imageView.setDrawingCacheEnabled(true);
                     imageView.setTag(i);
-
                     imgUri.add(clipData.getItemAt(i).getUri().toString());
                     glOfferImages.addView(imageView, glOfferImages.getWidth() / 3, glOfferImages.getWidth() / 3);
                 }
             }
         }
 
+
         if (glOfferImages.getChildCount() > 3) {
             tvAction.setVisibility(GONE);
-            Toast.makeText(getContext(), "Maximum 3 Pictures only.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Maximum 3 Pictures on ly.", Toast.LENGTH_SHORT).show();
         } else if (glOfferImages.getChildCount() > 0 && glOfferImages.getChildCount() <= 3) {
             tvAction.setVisibility(View.VISIBLE);
             tvAction.setText("NEXT");

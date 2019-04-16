@@ -41,7 +41,7 @@
                 android:layout_height="@dimen/LargeColumn"
                 android:layout_below="@+id/tv_changeProfilePhoto"
                 android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginTop="@dimen/xxSmallColumn"
+                android:layout_marginTop="@dimen/NormalColumn"
                 android:layout_marginRight="@dimen/xSmallColumn"
                 android:background="@color/white">
 
@@ -70,7 +70,6 @@
                 android:layout_height="1dp"
                 android:layout_below="@+id/rlLayout1"
                 android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginTop="@dimen/xxxSmallColumn"
                 android:layout_marginRight="@dimen/xSmallColumn"
                 android:background="@color/silver" />
 
@@ -102,6 +101,7 @@
                     android:layout_marginStart="40dp"
                     android:background="@null"
                     android:hint="@string/editprofile_hint_description"
+                    android:inputType="textMultiLine"
                     android:textColor="@color/black" />
             </RelativeLayout>
 
@@ -111,41 +111,39 @@
                 android:layout_height="1dp"
                 android:layout_below="@+id/rlLayout2"
                 android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginTop="@dimen/xxxSmallColumn"
                 android:layout_marginRight="@dimen/xSmallColumn"
                 android:background="@color/silver" />
 
 
-            <!--Column 2-->
-            <RelativeLayout
-                android:id="@+id/rlLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MediumColumn"
-                android:layout_below="@+id/divider2"
-                android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginRight="@dimen/xSmallColumn"
-                android:background="@color/white">
+            <!--&lt;!&ndash;Column 2&ndash;&gt;-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/rlLayout3"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/MediumColumn"-->
+                <!--android:layout_below="@+id/divider2"-->
+                <!--android:layout_marginLeft="@dimen/xSmallColumn"-->
+                <!--android:layout_marginRight="@dimen/xSmallColumn"-->
+                <!--android:background="@color/white">-->
 
-                <EditText
-                    android:id="@+id/etEditProfileDescription2"
-                    style="@style/TextViewCommon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="40dp"
-                    android:background="@null"
-                    android:inputType="textNoSuggestions" />
-            </RelativeLayout>
+                <!--<EditText-->
+                    <!--android:id="@+id/etEditProfileDescription2"-->
+                    <!--style="@style/TextViewCommon"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="40dp"-->
+                    <!--android:background="@null"-->
+                    <!--android:inputType="textNoSuggestions" />-->
+            <!--</RelativeLayout>-->
 
-            <TextView
-                android:id="@+id/divider3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/rlLayout3"
-                android:layout_marginLeft="@dimen/xSmallColumn"
-                android:layout_marginTop="@dimen/xxxSmallColumn"
-                android:layout_marginRight="@dimen/xSmallColumn"
-                android:background="@color/silver" />
+            <!--<TextView-->
+                <!--android:id="@+id/divider3"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_below="@+id/rlLayout3"-->
+                <!--android:layout_marginLeft="@dimen/xSmallColumn"-->
+                <!--android:layout_marginRight="@dimen/xSmallColumn"-->
+                <!--android:background="@color/silver" />-->
 
 
             <!--Column 3-->
@@ -154,7 +152,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="250dp"
                 android:layout_height="@dimen/MediumColumn"
-                android:layout_below="@id/divider3"
+                android:layout_below="@id/divider2"
                 android:layout_marginStart="@dimen/xSmallColumn"
                 android:layout_marginTop="@dimen/SmallColumn"
                 android:layout_marginEnd="@dimen/xSmallColumn"
