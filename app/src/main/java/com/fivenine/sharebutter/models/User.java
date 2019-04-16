@@ -4,10 +4,12 @@ public class User {
 
     private String user_id;
     private String username;
+    private String profilePhoto;
 
-    public User(String user_id, String username) {
+    public User(String user_id, String username, String profilePhoto) {
         this.user_id = user_id;
         this.username = username;
+        this.profilePhoto = profilePhoto;
     }
 
     public User() {
