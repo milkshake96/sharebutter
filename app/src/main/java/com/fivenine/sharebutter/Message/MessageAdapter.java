@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,12 +58,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             if(currentMessageChannel.getSenderId().equals(userList.get(i).getUser_id()) ||
                     currentMessageChannel.getReceiverId().equals(userList.get(i).getUser_id())){
                 viewHolder.tvUserName.setText(userList.get(i).getUsername());
+
+                Picasso.get()
+                        .load(userList.get(i).getProfilePhoto())
+                        .fit()
+                        .centerCrop()
+                        .into(viewHolder.ivProfilePic);
             }
         }
 
-        //viewHolder.ivProfilePic;
-//        for(int i = 0; i <userList.size(); i++){
-//        }
+
 
         Date latestDate = new Date(Long.parseLong(currentMessageChannel.getLatestMessageTime()));
         String time = new SimpleDateFormat("h:mm a").format(latestDate);

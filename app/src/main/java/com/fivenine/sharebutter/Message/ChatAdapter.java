@@ -13,6 +13,7 @@ import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.models.Chat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -67,6 +68,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         }
 
         //Add Profile Picture Here
+        if(currentChat.getSenderImgUrl()!= null){
+            Picasso.get()
+                    .load(currentChat.getSenderImgUrl())
+                    .centerCrop()
+                    .fit()
+                    .into(viewHolder.ivChatProfilePic);
+        }
     }
 
     @Override

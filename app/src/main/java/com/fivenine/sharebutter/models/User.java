@@ -33,6 +33,13 @@ public class User {
         this.username = username;
     }
 
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
 
     @Override
     public String toString() {

@@ -3,6 +3,7 @@ package com.fivenine.sharebutter.models;
 public class Chat {
     private String message;
     private String sender;
+    private String senderImgUrl;
     private String receiver;
     private Long timeInMillis;
     private Long messageChannelId;
@@ -35,5 +36,13 @@ public class Chat {
 
     public Long getMessageChannelId() {
         return messageChannelId;
+    }
+
+    public String getSenderImgUrl() {
+        return senderImgUrl;
+    }
+
+    public void setSenderImgUrl(String senderImgUrl) {
+        this.senderImgUrl = senderImgUrl;
     }
 }

@@ -369,6 +369,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 newChat = new Chat(message, currentSelfMessageChannel.getSenderId(), currentSelfMessageChannel.getReceiverId(),
                         Long.parseLong(currentSelfMessageChannel.getLatestMessageTime()), currentSelfMessageChannel.getId());
 
+                if(firebaseUser.getUid().equals(traderItemUser.getUser_id())) {
+                    newChat.setSenderImgUrl(traderItemUser.getProfilePhoto());
+                } else {
+                    newChat.setSenderImgUrl(targetItemUser.getProfilePhoto());
+                }
+
                 //Chats
                 databaseReference.child(MessageActivity.this.getString(R.string.dbname_chats)).child(newChat.getSender())
                         .child(String.valueOf(currentSelfMessageChannel.getId())).push().setValue(newChat);
@@ -378,6 +384,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             } else {
                 newChat = new Chat(message, currentSelfMessageChannel.getReceiverId(), currentSelfMessageChannel.getSenderId(),
                         Long.parseLong(currentSelfMessageChannel.getLatestMessageTime()), currentSelfMessageChannel.getId());
+
+                if(firebaseUser.getUid().equals(traderItemUser.getUser_id())) {
+                    newChat.setSenderImgUrl(traderItemUser.getProfilePhoto());
+                } else {
+                    newChat.setSenderImgUrl(targetItemUser.getProfilePhoto());
+                }
 
                 //Chats
                 databaseReference.child(MessageActivity.this.getString(R.string.dbname_chats)).child(newChat.getSender())

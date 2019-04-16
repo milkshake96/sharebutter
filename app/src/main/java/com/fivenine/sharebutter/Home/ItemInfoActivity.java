@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -213,6 +214,12 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
                 itemOwner = dataSnapshot.getValue(User.class);
                 //User Name
                 tvUserName.setText(itemOwner.getUsername());
+                Picasso.get()
+                        .load(itemOwner.getProfilePhoto())
+                        .fit()
+                        .centerCrop()
+                        .into(ivProfileImage);
+
                 monitorItemStatus();
             }
 
