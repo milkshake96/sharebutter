@@ -17,11 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fivenine.sharebutter.Exchange.ConfirmationActivity;
+import com.fivenine.sharebutter.Exchange.RatingDialog;
 import com.fivenine.sharebutter.Exchange.TraderExistingOffers;
 import com.fivenine.sharebutter.Home.HomeActivity;
 import com.fivenine.sharebutter.Home.HomeFragment;
 import com.fivenine.sharebutter.Home.ItemInfoActivity;
 import com.fivenine.sharebutter.R;
+import com.fivenine.sharebutter.RecordActivity.OfferRecordCard;
 import com.fivenine.sharebutter.Utils.OneSignalNotification;
 import com.fivenine.sharebutter.models.Chat;
 import com.fivenine.sharebutter.models.Item;
@@ -48,8 +50,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
     private static final String TAG = "MessageActivity";
     private final int RC_UPLOAD_OFFER = 5;
+    private final int RC_TRADE_OFFER = 6;
     public static final String CURRENT_TRADER = "current_trader";
     public static final String CURRENT_TRADE_OFFER = "current_trade_offer";
+    public static final String COMPLETED_TRADE_OFFER = "completed_trade_offer";
+
+    public OfferRecordCard completedTradeOffer;
 
     //Materials view all offers
     LinearLayout llViewAllOffers;
@@ -369,6 +375,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 newChat = new Chat(message, currentSelfMessageChannel.getSenderId(), currentSelfMessageChannel.getReceiverId(),
                         Long.parseLong(currentSelfMessageChannel.getLatestMessageTime()), currentSelfMessageChannel.getId());
 
+                if(firebaseUser.getUid().equals(traderItemUser.getUser_id())) {
+                    newChat.setSenderImgUrl(traderItemUser.getProfilePhoto());
+                } else {
+                    newChat.setSenderImgUrl(targetItemUser.getProfilePhoto());
+                }
+
                 //Chats
                 databaseReference.child(MessageActivity.this.getString(R.string.dbname_chats)).child(newChat.getSender())
                         .child(String.valueOf(currentSelfMessageChannel.getId())).push().setValue(newChat);
@@ -378,6 +390,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             } else {
                 newChat = new Chat(message, currentSelfMessageChannel.getReceiverId(), currentSelfMessageChannel.getSenderId(),
                         Long.parseLong(currentSelfMessageChannel.getLatestMessageTime()), currentSelfMessageChannel.getId());
+
+                if(firebaseUser.getUid().equals(traderItemUser.getUser_id())) {
+                    newChat.setSenderImgUrl(traderItemUser.getProfilePhoto());
+                } else {
+                    newChat.setSenderImgUrl(targetItemUser.getProfilePhoto());
+                }
 
                 //Chats
                 databaseReference.child(MessageActivity.this.getString(R.string.dbname_chats)).child(newChat.getSender())
@@ -604,6 +622,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                     databaseReference.child(getString(R.string.dbname_chats))
                             .child(firebaseUser.getUid()).child(String.valueOf(currentSelfMessageChannel.getId()))
                             .addValueEventListener(chatListener);
+
+                    monitorTradeOffer();
                 }
             }
 
@@ -649,7 +669,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             intent.putExtra(TraderExistingOffers.ITEM_SELECTED, gson.toJson(traderItem));
             intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
 
-            startActivity(intent);
+            startActivityForResult(intent, RC_TRADE_OFFER);
         } else if(firebaseUser.getUid().equals(currentTradeOffer.getRequesterId())){
             Intent intent = new Intent(MessageActivity.this, TraderExistingOffers.class);
             intent.putExtra(CURRENT_TRADER, gson.toJson(traderItemUser));
@@ -720,6 +740,14 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         if(requestCode == RC_UPLOAD_OFFER && resultCode == RESULT_OK){
             currentTradeOffer = new Gson().fromJson(data.getStringExtra(CURRENT_TRADE_OFFER), TradeOffer.class);
             monitorTradeOffer();
+        } else if (requestCode == RC_TRADE_OFFER && resultCode == RESULT_OK){
+            completedTradeOffer = new OfferRecordCard();
+            completedTradeOffer.setTradeOffer(currentTradeOffer);
+            completedTradeOffer.setTraderItem(traderItem);
+            completedTradeOffer.setOwnerItem(targetItem);
+
+            RatingDialog ratingDialog = new RatingDialog();
+            getSupportFragmentManager().beginTransaction().add(ratingDialog, "rating").commit();
         }
     }
 

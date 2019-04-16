@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fivenine.sharebutter.Home.HomeActivity;
 import com.fivenine.sharebutter.Message.MessageActivity;
 import com.fivenine.sharebutter.R;
+import com.fivenine.sharebutter.Utils.OneSignalNotification;
 import com.fivenine.sharebutter.models.Item;
 import com.fivenine.sharebutter.models.MessageChannel;
 import com.fivenine.sharebutter.models.TradeOffer;
@@ -109,13 +111,13 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
 
                 MessageChannel currentSelfMessageChannel = new MessageChannel(currentTradeOffer.getId(),
                         firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
-                        "Offer Sent",
-                        String.valueOf(new Date().getTime())  ,0);
-
-                MessageChannel currentTargetMessageChannel = new MessageChannel(currentTradeOffer.getId(),
-                        firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
                         "New Offer",
                         String.valueOf(new Date().getTime())  ,1);
+
+                MessageChannel currentTargetMessageChannel = new MessageChannel(currentTradeOffer.getId(),
+                        currentTradeOffer.getOwnerId(), firebaseUser.getUid(),
+                        "Offer Sent",
+                        String.valueOf(new Date().getTime())  ,0);
 
                 //Store into self id
                 //Trade Offer
@@ -140,6 +142,7 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
                         .setValue(currentTargetMessageChannel);
             }
 
+            String msg = "";
             if(firebaseUser.getUid().equals(currentTradeOffer.getOwnerId())) {
 
                 currentTradeOffer.setOwnerUsername(userName);
@@ -149,7 +152,13 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
                 selectedItem.setTraded(true);
                 currentTradeOffer.setStatus(TradeOffer.TRADE_SUCCESSFUL);
 
+                msg = "Successfully traded with " + targetItem.getItemOwnerName() + ".";
             } else if(firebaseUser.getUid().equals(currentTradeOffer.getRequesterId())){
+
+                if(currentTradeOffer.getRequesterItemId().equals("No Item"))
+                    msg = selectedItem.getItemOwnerName() + " made a trade offer for your " + targetItem.getName();
+                else
+                    msg = selectedItem.getItemOwnerName() + " changed his offer to " + selectedItem.getName();
 
                 currentTradeOffer.setRequesterUsername(userName);
                 currentTradeOffer.setRequesterEmail(userEmail);
@@ -157,11 +166,11 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
                 currentTradeOffer.setRequesterItemId(String.valueOf(selectedItem.getId()));
             }
 
-            updateConfirm();
+            updateConfirm(msg);
         }
     }
 
-    private void updateConfirm(){
+    private void updateConfirm(final String notificationMsg){
         //Update Item Owner (trade offer)
         databaseReference.child(getString(R.string.dbname_trade_offers)).child(currentTradeOffer.getOwnerId())
                 .child(String.valueOf(currentTradeOffer.getId())).setValue(currentTradeOffer).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -186,6 +195,15 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Toast.makeText(ConfirmationActivity.this, "Updated Item", Toast.LENGTH_SHORT).show();
+
+                                        if(firebaseUser.getUid().equals(targetItem.getItemOwnerId())){
+                                            OneSignalNotification.sendNotification(getString(R.string.one_signal_api_key), getString(R.string.one_signal_app_id),
+                                                    HomeActivity.ONE_SIGNAL_TAG, selectedItem.getItemOwnerId(), notificationMsg);
+                                        } else {
+                                            OneSignalNotification.sendNotification(getString(R.string.one_signal_api_key), getString(R.string.one_signal_app_id),
+                                                    HomeActivity.ONE_SIGNAL_TAG, targetItem.getItemOwnerId(), notificationMsg);
+                                        }
+
                                         Intent intent = new Intent();
                                         intent.putExtra(MessageActivity.CURRENT_TRADE_OFFER, new Gson().toJson(currentTradeOffer));
                                         setResult(RESULT_OK, intent);
@@ -199,6 +217,4 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
             }
         });
     }
-
-
 }

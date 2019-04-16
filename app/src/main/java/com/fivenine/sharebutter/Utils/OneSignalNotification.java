@@ -11,13 +11,13 @@ import java.util.Scanner;
 
 public class OneSignalNotification {
 
-    public static final void sendNotification(final String apiKey, final String appId, final String tag, final String email, final String message) {
+    public static final void sendNotification(final String apiKey, final String appId, final String tag, final String value, final String message) {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 int SDK_INT = android.os.Build.VERSION.SDK_INT;
                 if (SDK_INT > 8) {
-                    String send_email = email;
+                    String send_email = value;
                     String send_message = message;
 
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
