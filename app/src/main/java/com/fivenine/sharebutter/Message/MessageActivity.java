@@ -47,6 +47,7 @@ import static android.view.View.GONE;
 public class MessageActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "MessageActivity";
+    private final int RC_UPLOAD_OFFER = 5;
     public static final String CURRENT_TRADER = "current_trader";
     public static final String CURRENT_TRADE_OFFER = "current_trade_offer";
 
@@ -235,7 +236,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         intent.putExtra(TraderExistingOffers.ITEM_TARGETED, gson.toJson(targetItem));
         intent.putExtra(CURRENT_TRADER, gson.toJson(traderItemUser));
         intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
-        startActivity(intent);
+        startActivityForResult(intent,RC_UPLOAD_OFFER);
     }
 
     private void viewAllTraderOffers(){
@@ -656,7 +657,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             intent.putExtra(TraderExistingOffers.ITEM_SELECTED, gson.toJson(traderItem));
             intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
 
-            startActivity(intent);
+            startActivityForResult(intent, RC_UPLOAD_OFFER);
         }
     }
 
@@ -711,6 +712,15 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == RC_UPLOAD_OFFER && resultCode == RESULT_OK){
+            currentTradeOffer = new Gson().fromJson(data.getStringExtra(CURRENT_TRADE_OFFER), TradeOffer.class);
+            monitorTradeOffer();
+        }
     }
 
     @Override

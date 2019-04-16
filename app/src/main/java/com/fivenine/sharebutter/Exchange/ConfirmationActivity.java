@@ -1,5 +1,6 @@
 package com.fivenine.sharebutter.Exchange;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -185,7 +186,9 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Toast.makeText(ConfirmationActivity.this, "Updated Item", Toast.LENGTH_SHORT).show();
-                                        setResult(RESULT_OK);
+                                        Intent intent = new Intent();
+                                        intent.putExtra(MessageActivity.CURRENT_TRADE_OFFER, new Gson().toJson(currentTradeOffer));
+                                        setResult(RESULT_OK, intent);
                                         finish();
                                     }
                                 });

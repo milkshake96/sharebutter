@@ -127,7 +127,8 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
 
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     Item currentItem = item.getValue(Item.class);
-                    existingTraderItems.add(currentItem);
+                    if(!currentItem.getTraded())
+                        existingTraderItems.add(currentItem);
                 }
 
                 displayExistingItemAdapter = new DisplayExistingItemAdapter
@@ -234,7 +235,10 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
                 intent.putStringArrayListExtra(SELECTED_IMAGES, imgUri);
                 startActivity(intent);
             }
-        } else if (requestCode == CODE_CONFIRM && resultCode == RESULT_OK){
+        } else if (requestCode == CODE_CONFIRM && resultCode == RESULT_OK && data != null){
+            Intent intent = new Intent();
+            intent.putExtra(MessageActivity.CURRENT_TRADE_OFFER, data.getStringExtra(MessageActivity.CURRENT_TRADE_OFFER));
+            setResult(RESULT_OK, intent);
             finish();
         }
     }
