@@ -190,25 +190,15 @@ public class FirebaseMethods {
                 } catch (NullPointerException e) {
                     Log.e(TAG, "getUserAccountSettings: NullPointerException: " + e.getMessage());
                 }
+            }
 
+            // users node
+            if (ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
+                Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
 
-                // users node
-                if (ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
-                    Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
+                user = ds.child(userID).getValue(User.class);
 
-                    user.setUsername(
-                            ds.child(userID)
-                                    .getValue(User.class)
-                                    .getUsername()
-                    );
-                    user.setUser_id(
-                            ds.child(userID)
-                                    .getValue(User.class)
-                                    .getUser_id()
-                    );
-
-                    Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
-                }
+                Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
             }
         }
         return new UserSettings(user, settings);

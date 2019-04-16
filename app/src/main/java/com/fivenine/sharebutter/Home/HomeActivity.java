@@ -107,7 +107,7 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             if (!user.isEmailVerified()){
                 mAuth.signOut();
-                
+
                 Intent intent = new Intent(mContext, LoginActivity.class);
                 startActivity(intent);
                 finish();
