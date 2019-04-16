@@ -45,15 +45,19 @@ public class FirebaseMethods {
     /**
      * Update 'user_account_settings' node for the current user
      *
-     * @param userAccountSettings
+     * @param userSettings
      */
-    public void updateUserAccountSettings(UserAccountSettings userAccountSettings) {
+    public void updateUserAccountSettings(UserSettings userSettings) {
 
         Log.d(TAG, "updateUserAccountSettings: updating user account settings.");
 
         myRef.child(mContext.getString(R.string.dbname_user_account_settings))
                 .child(userID)
-                .setValue(userAccountSettings);
+                .setValue(userSettings.getSettings());
+
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(userID)
+                .setValue(userSettings.getUser());
     }
 
     public boolean checkIfUsernameExists(String username, DataSnapshot datasnapshot) {

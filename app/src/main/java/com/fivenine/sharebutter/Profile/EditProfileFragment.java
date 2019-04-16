@@ -119,11 +119,13 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
             Toast.makeText(getContext(), "Must fill in all data", Toast.LENGTH_SHORT).show();
             return;
         } else {
+            mUserSettings.getUser().setUsername(displayName);
+
             mUserSettings.getSettings().setDisplay_name(displayName);
             mUserSettings.getSettings().setDescription(description);
             mUserSettings.getSettings().setState(state);
 
-            mFirebaseMethods.updateUserAccountSettings(mUserSettings.getSettings());
+            mFirebaseMethods.updateUserAccountSettings(mUserSettings);
             getActivity().onBackPressed();
         }
     }
@@ -203,7 +205,9 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         mUserSettings.getSettings().setProfile_photo(downloadUri.toString());
-                        mFirebaseMethods.updateUserAccountSettings(mUserSettings.getSettings());
+                        mUserSettings.getUser().setProfilePhoto(downloadUri.toString());
+
+                        mFirebaseMethods.updateUserAccountSettings(mUserSettings);
 
                         Picasso.get()
                                 .load(contentURI)
