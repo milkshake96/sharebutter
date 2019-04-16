@@ -117,6 +117,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ivSearchBtn:
                 startActivity(new Intent(getActivity(),SearchActivity.class));
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             default:
                 break;
@@ -126,6 +127,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void categoriesOnClick(){
         Intent intent = new Intent(getActivity(), CategoriesActivity.class);
         startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
     public void searchOnClick(){
         Intent intent = new Intent(getActivity(), SearchActivity.class);

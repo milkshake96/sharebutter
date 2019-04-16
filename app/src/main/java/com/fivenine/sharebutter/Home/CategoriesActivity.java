@@ -35,6 +35,10 @@ public class CategoriesActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View v) {
                 Intent intent = new Intent(CategoriesActivity.this, HomeActivity.class);
                 startActivity(intent);
+
+                finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
             }
         });
 

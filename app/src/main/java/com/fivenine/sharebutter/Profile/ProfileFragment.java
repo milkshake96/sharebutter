@@ -2,6 +2,7 @@ package com.fivenine.sharebutter.Profile;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,20 +16,47 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.fivenine.sharebutter.R;
+import com.fivenine.sharebutter.Utils.DisplayOfferAdapter;
+import com.fivenine.sharebutter.Utils.FirebaseMethods;
 import com.fivenine.sharebutter.Utils.GridImageAdapter;
 import com.fivenine.sharebutter.Utils.UniversalImageLoader;
+import com.fivenine.sharebutter.models.Item;
+import com.fivenine.sharebutter.models.User;
+import com.fivenine.sharebutter.models.UserAccountSettings;
+import com.fivenine.sharebutter.models.UserSettings;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
 
+    //firebase
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+    private FirebaseMethods mFirebaseMethods;
+
     private static final String TAG = "ProfileFragment";
     private static final int ACTIVITY_NUM = 1;
-    private ProgressBar mProgressBar;
-    private ImageView profilePhoto;
+    private CircleImageView profilePhoto;
     private GridView gridView;
     private static final int NUM_GRID_COLUMNS = 3;
+    private TextView mOffers, mDisplayName,mDescription, mLikes, mState;
+    private Context mContext;
+    private ProgressBar mProgressBar;
 
+    private DisplayOfferAdapter displayOfferAdapter;
+    private ArrayList<Item> postedItemList;
 
     @Nullable
     @Override
@@ -37,14 +65,19 @@ public class ProfileFragment extends Fragment {
 
         Log.d(TAG, "onCreate: successfully started");
 
-        profilePhoto = (ImageView) view.findViewById(R.id.ivProfileImage);
+        profilePhoto = (CircleImageView) view.findViewById(R.id.ivProfileImage);
+        mOffers = (TextView) view.findViewById(R.id.tvOfferNum);
+        mDisplayName = (TextView) view.findViewById(R.id.tvProfileUserName);
+        mDescription = (TextView) view.findViewById(R.id.tvDecription);
+        mLikes = (TextView) view.findViewById(R.id.tvLikesNum);
+        mState = (TextView) view.findViewById(R.id.tv_state);
+
         gridView = (GridView) view.findViewById(R.id.gvProfileOfferUploaded);
         mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
         mProgressBar.setVisibility(View.GONE);
 
-//        setupActivityWidgets();
-        setProfileImage();
-        tempGridSetup();
+        mContext = getActivity();
+        mFirebaseMethods = new FirebaseMethods(getActivity());
 
         TextView editProfile = (TextView) view.findViewById(R.id.tvEditProfile);
         editProfile.setOnClickListener(new View.OnClickListener() {
@@ -67,46 +100,113 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        postedItemList = new ArrayList<>();
+        setupFirebaseAuth();
+        getPostedItemListFromDB();
         return view;
     }
-//    @Override
-//    public void onViewCreated(View view, Bundle savedInstanceState) {
-//        // Setup any handles to view objects here
-//        // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
-//
-//
-//    }
 
-    private void tempGridSetup() {
-        ArrayList<String> imgURLs = new ArrayList<>();
-        imgURLs.add("http://i.imgur.com/EwZRpvQ.jpg");
-        imgURLs.add("https://i.redd.it/9bf67ygj710z.jpg");
-        imgURLs.add("https://c1.staticflickr.com/5/4276/34102458063_7be616b993_o.jpg");
-        imgURLs.add("http://i.imgur.com/EwZRpvQ.jpg");
-        imgURLs.add("http://i.imgur.com/JTb2pXP.jpg");
-        imgURLs.add("https://i.redd.it/59kjlxxf720z.jpg");
-        imgURLs.add("https://i.redd.it/pwduhknig00z.jpg");
-        imgURLs.add("https://i.redd.it/clusqsm4oxzy.jpg");
-        imgURLs.add("https://i.redd.it/svqvn7xs420z.jpg");
-        imgURLs.add("http://i.imgur.com/j4AfH6P.jpg");
-        imgURLs.add("https://i.redd.it/89cjkojkl10z.jpg");
-        imgURLs.add("https://i.redd.it/aw7pv8jq4zzy.jpg");
+    private void setProfileWidgets(UserSettings userSettings){
+        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.toString());
+        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getSettings().getUsername());
 
-        setupImageGrid(imgURLs);
+
+        User user = userSettings.getUser();
+        UserAccountSettings settings = userSettings.getSettings();
+
+        UniversalImageLoader.setImage(settings.getProfile_photo(), profilePhoto, null, "");
+
+        mDisplayName.setText(settings.getDisplay_name());
+        mState.setText(settings.getState());
+        mDescription.setText(settings.getDescription());
+        mLikes.setText(String.valueOf(settings.getLikes()));
+        mOffers.setText(String.valueOf(settings.getOffers()));
     }
 
-    private void setupImageGrid(ArrayList<String> imgURLs) {
-        int gridWidth = getResources().getDisplayMetrics().widthPixels;
-        int imageWidth = gridWidth / NUM_GRID_COLUMNS;
-        gridView.setColumnWidth(imageWidth);
 
-        GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, "", imgURLs);
-        gridView.setAdapter(adapter);
+     /*
+    ------------------------------------ Firebase ---------------------------------------------
+     */
+
+    /**
+     * Setup the firebase auth object
+     */
+    private void setupFirebaseAuth(){
+        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
+
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //retrieve user information from the database
+                setProfileWidgets(mFirebaseMethods.getUserSettings(dataSnapshot));
+                //retrieve images for the user in question
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
-    private void setProfileImage() {
-        Log.d(TAG, "setProfileImage: setting profile photo.");
-        String imgURL = "www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
-        UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "https://");
+    private void getPostedItemListFromDB(){
+        myRef.child(getString(R.string.dbname_items)).child(mAuth.getCurrentUser().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        postedItemList.clear();
+                        for(DataSnapshot curItem : dataSnapshot.getChildren()){
+                            Item postedItem = curItem.getValue(Item.class);
+                            postedItemList.add(postedItem);
+                        }
+
+                        displayOfferAdapter = new DisplayOfferAdapter(getContext(), postedItemList);
+                        gridView.setAdapter(displayOfferAdapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }
