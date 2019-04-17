@@ -122,7 +122,7 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
                         String.valueOf(new Date().getTime())  ,1);
 
                 MessageChannel currentTargetMessageChannel = new MessageChannel(currentTradeOffer.getId(),
-                        currentTradeOffer.getOwnerId(), firebaseUser.getUid(),
+                        firebaseUser.getUid(), currentTradeOffer.getOwnerId(),
                         "Offer Sent",
                         String.valueOf(new Date().getTime())  ,0);
 
