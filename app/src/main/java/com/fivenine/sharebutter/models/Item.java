@@ -18,6 +18,7 @@ public class Item {
     private String img1URL;
     private String img2URL;
     private String img3URL;
+    private boolean deleted;
     private boolean traded;
 
     public Item() {
@@ -36,6 +37,7 @@ public class Item {
         this.category = category;
         this.expiredDate = expiredDate;
         this.traded = traded;
+        deleted = false;
     }
 
     public String getItemOwnerName() {
@@ -104,6 +106,14 @@ public class Item {
 
     public void setImg3URL(String img3URL) {
         this.img3URL = img3URL;
+    }
+
+    public boolean getDeleted(){
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted){
+        this.deleted = deleted;
     }
 
     @Override

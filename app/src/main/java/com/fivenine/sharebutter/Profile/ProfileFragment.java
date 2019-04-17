@@ -196,6 +196,11 @@ public class ProfileFragment extends Fragment {
                         postedItemList.clear();
                         for(DataSnapshot curItem : dataSnapshot.getChildren()){
                             Item postedItem = curItem.getValue(Item.class);
+
+                            if(postedItem.getDeleted() || postedItem.getTraded()){
+                                continue;
+                            }
+
                             postedItemList.add(postedItem);
                         }
 
@@ -227,6 +232,11 @@ public class ProfileFragment extends Fragment {
                         postedItemList.clear();
                         for(DataSnapshot curItem : dataSnapshot.getChildren()){
                             Item postedItem = curItem.getValue(Item.class);
+
+                            if(postedItem.getDeleted() || postedItem.getTraded()){
+                                continue;
+                            }
+
                             postedItemList.add(postedItem);
                         }
 

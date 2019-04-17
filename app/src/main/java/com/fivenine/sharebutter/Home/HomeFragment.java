@@ -282,7 +282,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot curItem : dataSnapshot.getChildren()){
                             Item currentItem = curItem.getValue(Item.class);
-                            if(currentItem.getTraded())
+                            if(currentItem.getTraded() || currentItem.getDeleted())
                                 continue;
 
                             offerItems.add(currentItem);

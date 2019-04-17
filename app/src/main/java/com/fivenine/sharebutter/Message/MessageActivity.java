@@ -561,6 +561,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 }
 
                 llOfferExistPage.setVisibility(View.VISIBLE);
+
+                if(traderItem.getDeleted()){
+                    rlOfferPhotoTraded.setVisibility(GONE);
+                    llOfferExistPage.setVisibility(GONE);
+                    llNoOfferPage.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

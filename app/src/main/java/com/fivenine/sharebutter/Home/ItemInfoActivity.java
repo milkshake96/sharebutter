@@ -3,6 +3,7 @@ package com.fivenine.sharebutter.Home;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
@@ -13,12 +14,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fivenine.sharebutter.Message.MessageActivity;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.ViewPagerAdapter;
 import com.fivenine.sharebutter.models.Item;
 import com.fivenine.sharebutter.models.User;
+import com.fivenine.sharebutter.models.UserAccountSettings;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -68,6 +73,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
     Item currentSelectedItem;
     FirebaseUser firebaseUser;
     User itemOwner;
+    UserAccountSettings userAccountSettings;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -175,6 +181,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         else
             rlItemTraded.setVisibility(GONE);
 
+        getCurrentUserAccountSetting();
     }
 
 
@@ -197,14 +204,46 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void onTradeClicked(){
-        Intent intent = new Intent(ItemInfoActivity.this, MessageActivity.class);
-        intent.putExtra(HomeFragment.SELECTED_ITEM, getIntent().getStringExtra(HomeFragment.SELECTED_ITEM));
+        if(itemOwner.getUser_id().equals(firebaseUser.getUid())){
+            deleteItem();
+        } else {
+            Intent intent = new Intent(ItemInfoActivity.this, MessageActivity.class);
+            intent.putExtra(HomeFragment.SELECTED_ITEM, getIntent().getStringExtra(HomeFragment.SELECTED_ITEM));
 
-        Gson gson = new Gson();
-        String itemOwnerString = gson.toJson(itemOwner);
-        intent.putExtra(ITEM_OWNER, itemOwnerString);
+            Gson gson = new Gson();
+            String itemOwnerString = gson.toJson(itemOwner);
+            intent.putExtra(ITEM_OWNER, itemOwnerString);
 
-        startActivity(intent);
+            startActivity(intent);
+        }
+    }
+
+    private void deleteItem(){
+        if(currentSelectedItem.getTraded()){
+            Toast.makeText(this, "Item Traded.", Toast.LENGTH_SHORT).show();
+        } else {
+            currentSelectedItem.setDeleted(true);
+
+            databaseReference.child(getString(R.string.dbname_items)).child(firebaseUser.getUid())
+                    .child(String.valueOf(currentSelectedItem.getId())).setValue(currentSelectedItem).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        userAccountSettings.setOffers(userAccountSettings.getOffers() - 1);
+                        databaseReference.child(getString(R.string.dbname_user_account_settings)).child(firebaseUser.getUid())
+                                .setValue(userAccountSettings).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(ItemInfoActivity.this, "Item Deleted.", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
     }
 
     private ValueEventListener getItemOwnerListener(){
@@ -288,6 +327,21 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
                     rlItemTraded.setVisibility(View.VISIBLE);
                 else
                     rlItemTraded.setVisibility(GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void getCurrentUserAccountSetting(){
+        databaseReference.child(getString(R.string.dbname_user_account_settings))
+                .child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userAccountSettings = dataSnapshot.getValue(UserAccountSettings.class);
             }
 
             @Override
