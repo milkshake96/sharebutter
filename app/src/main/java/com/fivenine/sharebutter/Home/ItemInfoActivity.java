@@ -106,15 +106,15 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         vpSelectedItemImages = findViewById(R.id.vp_selected_upload_offer);
         imageUriList = new ArrayList<>();
 
-        if(!currentSelectedItem.getImg1URL().equals("No Image")) {
+        if (!currentSelectedItem.getImg1URL().equals("No Image")) {
             imageUriList.add(Uri.parse(currentSelectedItem.getImg1URL()));
         }
 
-        if(!currentSelectedItem.getImg2URL().equals("No Image")){
+        if (!currentSelectedItem.getImg2URL().equals("No Image")) {
             imageUriList.add(Uri.parse(currentSelectedItem.getImg2URL()));
         }
 
-        if(!currentSelectedItem.getImg3URL().equals("No Image")){
+        if (!currentSelectedItem.getImg3URL().equals("No Image")) {
             imageUriList.add(Uri.parse(currentSelectedItem.getImg3URL()));
         }
 
@@ -124,9 +124,9 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         vpSelectedItemImages.setAdapter(viewPagerAdapter);
 
         llImagePosition = findViewById(R.id.ll_image_position);
-        for(int i = 0; i < llImagePosition.getChildCount(); i++){
+        for (int i = 0; i < llImagePosition.getChildCount(); i++) {
             ImageView imageView = (ImageView) llImagePosition.getChildAt(i);
-            if(i == 0)
+            if (i == 0)
                 imageView.setImageResource(R.drawable.red_dot);
             else
                 imageView.setImageResource(R.drawable.dot);
@@ -172,11 +172,18 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         ivBack.setOnClickListener(this);
         tvAction.setOnClickListener(this);
 
-        if (!viewOnly && !currentSelectedItem.getTraded()) {
+        if (currentSelectedItem.getItemOwnerId().equals(firebaseUser.getUid())) {
+            bMap = BitmapFactory.decodeResource(getResources(), R.drawable.rubbish_bin);
+            bMapScaled = Bitmap.createScaledBitmap(bMap, 80, 80, true);
+            iv.setImageBitmap(bMapScaled);
             tvAction.setBackground(iv.getDrawable());
+        } else {
+            if (!viewOnly && !currentSelectedItem.getTraded()) {
+                tvAction.setBackground(iv.getDrawable());
+            }
         }
 
-        if(currentSelectedItem.getTraded())
+        if (currentSelectedItem.getTraded())
             rlItemTraded.setVisibility(View.VISIBLE);
         else
             rlItemTraded.setVisibility(GONE);
@@ -187,7 +194,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.tb_iv_support_action:
                 onBackClicked();
                 break;
@@ -199,12 +206,12 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public void onBackClicked(){
+    public void onBackClicked() {
         finish();
     }
 
-    public void onTradeClicked(){
-        if(itemOwner.getUser_id().equals(firebaseUser.getUid())){
+    public void onTradeClicked() {
+        if (itemOwner.getUser_id().equals(firebaseUser.getUid())) {
             deleteItem();
         } else {
             Intent intent = new Intent(ItemInfoActivity.this, MessageActivity.class);
@@ -218,8 +225,8 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void deleteItem(){
-        if(currentSelectedItem.getTraded()){
+    private void deleteItem() {
+        if (currentSelectedItem.getTraded()) {
             Toast.makeText(this, "Item Traded.", Toast.LENGTH_SHORT).show();
         } else {
             currentSelectedItem.setDeleted(true);
@@ -228,13 +235,13 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
                     .child(String.valueOf(currentSelectedItem.getId())).setValue(currentSelectedItem).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         userAccountSettings.setOffers(userAccountSettings.getOffers() - 1);
                         databaseReference.child(getString(R.string.dbname_user_account_settings)).child(firebaseUser.getUid())
                                 .setValue(userAccountSettings).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     Toast.makeText(ItemInfoActivity.this, "Item Deleted.", Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
@@ -246,7 +253,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private ValueEventListener getItemOwnerListener(){
+    private ValueEventListener getItemOwnerListener() {
         return new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -254,7 +261,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
                 //User Name
                 tvUserName.setText(itemOwner.getUsername());
 
-                if(!itemOwner.getProfilePhoto().isEmpty()) {
+                if (!itemOwner.getProfilePhoto().isEmpty()) {
                     Picasso.get()
                             .load(itemOwner.getProfilePhoto())
                             .fit()
@@ -272,7 +279,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         };
     }
 
-    private ViewPager.OnPageChangeListener addOnPageChangeListener(){
+    private ViewPager.OnPageChangeListener addOnPageChangeListener() {
         return new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -290,13 +297,13 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         };
     }
 
-    private void updateCurrentSelectedPage(final int selectedPage){
+    private void updateCurrentSelectedPage(final int selectedPage) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for(int counter = 0; counter < imageUriList.size(); counter++){
-                    final ImageView imageView = (ImageView)llImagePosition.getChildAt(counter);
-                    if(counter == selectedPage){
+                for (int counter = 0; counter < imageUriList.size(); counter++) {
+                    final ImageView imageView = (ImageView) llImagePosition.getChildAt(counter);
+                    if (counter == selectedPage) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -316,14 +323,14 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         }).start();
     }
 
-    private void monitorItemStatus(){
+    private void monitorItemStatus() {
         databaseReference.child(getString(R.string.dbname_items))
                 .child(itemOwner.getUser_id()).child(String.valueOf(currentSelectedItem.getId())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentSelectedItem = dataSnapshot.getValue(Item.class);
 
-                if(currentSelectedItem.getTraded())
+                if (currentSelectedItem.getTraded())
                     rlItemTraded.setVisibility(View.VISIBLE);
                 else
                     rlItemTraded.setVisibility(GONE);
@@ -336,7 +343,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private void getCurrentUserAccountSetting(){
+    private void getCurrentUserAccountSetting() {
         databaseReference.child(getString(R.string.dbname_user_account_settings))
                 .child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

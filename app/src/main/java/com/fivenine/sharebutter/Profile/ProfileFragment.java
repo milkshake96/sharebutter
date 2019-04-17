@@ -211,7 +211,6 @@ public class ProfileFragment extends Fragment {
                         mProgressBar.setVisibility(View.GONE);
                         displayOfferAdapter = new DisplayOfferAdapter(getContext(), postedItemList);
                         gridView.setAdapter(displayOfferAdapter);
-                        mOffers.setText(String.valueOf(postedItemList.size()));
                         monitorPostedItemChangesFromDB();
                     }
 
@@ -249,7 +248,6 @@ public class ProfileFragment extends Fragment {
                         mProgressBar.setVisibility(View.GONE);
                         displayOfferAdapter = new DisplayOfferAdapter(getContext(), postedItemList);
                         gridView.setAdapter(displayOfferAdapter);
-                        mOffers.setText(String.valueOf(postedItemList.size()));
                     }
 
                     @Override
