@@ -130,7 +130,7 @@ public class ProfileFragment extends Fragment {
         mLikes.setText(String.valueOf(settings.getLikes()));
         mOffers.setText(String.valueOf(settings.getOffers()));
 
-        if(!mDescription.getText().toString().isEmpty()){
+        if(!settings.getDescription().isEmpty()){
             mDescription.setText(settings.getDescription());
         } else {
             mDescription.setText("Describe Yourself.");

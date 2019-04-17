@@ -8,21 +8,30 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.fivenine.sharebutter.Authentication.LoginActivity;
 import com.fivenine.sharebutter.Authentication.SignUpActivity;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.RecordActivity.OfferRecordsActivity;
+import com.fivenine.sharebutter.models.Item;
 
 public class CategoriesActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static final String TAG = "CategoriesActivity";
     public static final int RC_OFFER_RECORD = 1;
     public static final int RC_OFFER_HISTORY = 2;
+    public static final int RC_CATEGORIES = 3;
+
+    ImageView ivCategory1;
+    ImageView ivCategory2;
+    ImageView ivCategory3;
 
     ImageView ivOfferRecords;
     ImageView ivHistory;
+
+    ProgressBar categoryProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,16 +55,37 @@ public class CategoriesActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void init(){
+        ivCategory1 = findViewById(R.id.ic_next);
+        ivCategory1.setOnClickListener(this);
+
+        ivCategory2 = findViewById(R.id.ic_next2);
+        ivCategory2.setOnClickListener(this);
+
+        ivCategory3 = findViewById(R.id.ic_next3);
+        ivCategory3.setOnClickListener(this);
+
         ivOfferRecords = findViewById(R.id.ic_next4);
         ivOfferRecords.setOnClickListener(this);
 
         ivHistory = findViewById(R.id.ic_next5);
         ivHistory.setOnClickListener(this);
+
+        categoryProgressBar = findViewById(R.id.categoryProgressBar);
+        categoryProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.ic_next:
+                onCategoryClicked(0);
+                break;
+            case R.id.ic_next2:
+                onCategoryClicked(1);
+                break;
+            case R.id.ic_next3:
+                onCategoryClicked(2);
+                break;
             case R.id.ic_next4:
                 onOfferRecordClicked();
                 break;
@@ -65,6 +95,12 @@ public class CategoriesActivity extends AppCompatActivity implements View.OnClic
             default:
                 break;
         }
+    }
+
+    private void onCategoryClicked(int category){
+        Intent categoryIntent = new Intent(CategoriesActivity.this, FilteredCategoryActivity.class);
+        categoryIntent.putExtra(TAG, Item.CATEGORIES[category]);
+        startActivityForResult(categoryIntent, RC_CATEGORIES);
     }
 
     private void onOfferRecordClicked(){

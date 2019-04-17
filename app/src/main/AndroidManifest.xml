@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_gift"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Home.HomeActivity"></activity>
+        <activity android:name=".Home.FilteredCategoryActivity"></activity>
+        <activity android:name=".Home.HomeActivity" />
         <activity android:name=".RecordActivity.HistoryActivity" />
         <activity android:name=".Rating.RatingActivity" />
 
