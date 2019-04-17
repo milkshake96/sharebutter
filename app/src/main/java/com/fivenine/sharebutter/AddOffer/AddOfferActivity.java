@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -59,6 +60,8 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
     EditText etHashTag;
     EditText etExpiredDate;
 
+    ProgressBar addOfferProgressBar;
+
     ArrayAdapter<String> spinnerAdapter;
     ViewPagerAdapter viewPagerAdapter;
     ArrayList<String> selectedImages;
@@ -92,6 +95,8 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
 
     private void init() {
         vpImagesSelected = findViewById(R.id.vp_selected_upload_offer);
+        addOfferProgressBar = findViewById(R.id.addOfferProgressBar);
+        addOfferProgressBar.setVisibility(View.GONE);
 
         selectedImages = getIntent().getStringArrayListExtra(AddOfferFragment.SELECTED_IMAGES);
         if (selectedImages != null || !selectedImages.isEmpty()) {
@@ -167,6 +172,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void uploadFunction() {
+        addOfferProgressBar.setVisibility(View.VISIBLE);
         String name = etItemName.getText().toString().trim();
         String description = etDescription.getText().toString().trim();
         String hashTag = etHashTag.getText().toString().trim();
@@ -189,6 +195,8 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if (isNotValid) {
+
+            addOfferProgressBar.setVisibility(View.GONE);
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         } else {
             uploadedItem = 0;
@@ -248,6 +256,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
+                                addOfferProgressBar.setVisibility(View.GONE);
                                 Toast.makeText(getApplicationContext(), "Upload Successful..", Toast.LENGTH_SHORT).show();
                                 setResult(RESULT_OK);
                                 finish();

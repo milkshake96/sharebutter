@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
     EditText etUserEmail;
     EditText etPhoneNumber;
     Button btnConfirm;
+    ProgressBar confirmationProgressBar;
 
     //Var
     Item selectedItem;
@@ -63,6 +65,9 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
         tbTvTitle.setText("Confirmation");
         tbTvAction.setText("");
         tbIvSupportAction.setOnClickListener(this);
+
+        confirmationProgressBar = findViewById(R.id.confirmationProgressBar);
+        confirmationProgressBar.setVisibility(View.GONE);
 
         etUserName = findViewById(R.id.et_username);
         etUserEmail = findViewById(R.id.et_useremail);
@@ -95,6 +100,8 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void confirm(){
+        confirmationProgressBar.setVisibility(View.VISIBLE);
+
         String userName = etUserName.getText().toString();
         String userEmail = etUserEmail.getText().toString();
         String phoneNumber = etPhoneNumber.getText().toString();
@@ -204,6 +211,7 @@ public class ConfirmationActivity extends AppCompatActivity implements View.OnCl
                                                     HomeActivity.ONE_SIGNAL_TAG, targetItem.getItemOwnerId(), notificationMsg);
                                         }
 
+                                        confirmationProgressBar.setVisibility(View.GONE);
                                         Intent intent = new Intent();
                                         intent.putExtra(MessageActivity.CURRENT_TRADE_OFFER, new Gson().toJson(currentTradeOffer));
                                         setResult(RESULT_OK, intent);

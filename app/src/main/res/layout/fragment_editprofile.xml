@@ -33,7 +33,7 @@
 
         <!--while change profile image-->
         <ProgressBar
-            android:id="@+id/editprofileProgressBar"
+            android:id="@+id/editProfileProgressBar"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"

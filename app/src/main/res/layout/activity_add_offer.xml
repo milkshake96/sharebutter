@@ -139,7 +139,7 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/addofferProgressBar"
+        android:id="@+id/addOfferProgressBar"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"

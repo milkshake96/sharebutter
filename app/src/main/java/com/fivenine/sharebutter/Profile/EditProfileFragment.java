@@ -15,6 +15,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +68,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     private TextView mChangeProfilePhoto, tvDone;
     private CircleImageView mProfilePhoto;
 
+    private ProgressBar editProfileProgressBar;
+
     //vars
     private UserSettings mUserSettings;
 
@@ -81,6 +84,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     private void init() {
         //back arrow for navigating back to "ProfileActivity"
+        editProfileProgressBar = view.findViewById(R.id.editProfileProgressBar);
+        editProfileProgressBar.setVisibility(View.GONE);
         ImageView backArrow = (ImageView) view.findViewById(R.id.ivBackBtn);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,6 +191,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     }
 
     private void uploadPhoto(final Uri contentURI) {
+        editProfileProgressBar.setVisibility(View.VISIBLE);
+
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("user_profile_photo");
         if (contentURI != null) {
             final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
@@ -215,6 +222,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                                 .centerCrop()
                                 .into(mProfilePhoto);
                         //add progress bar
+                        editProfileProgressBar.setVisibility(View.GONE);
                     }
                 }
             });

@@ -120,9 +120,14 @@ public class ProfileFragment extends Fragment {
 
         mDisplayName.setText(settings.getDisplay_name());
         mState.setText(settings.getState());
-        mDescription.setText(settings.getDescription());
         mLikes.setText(String.valueOf(settings.getLikes()));
         mOffers.setText(String.valueOf(settings.getOffers()));
+
+        if(!mDescription.getText().toString().isEmpty()){
+            mDescription.setText(settings.getDescription());
+        } else {
+            mDescription.setText("Describe Yourself.");
+        }
     }
 
 
@@ -187,6 +192,10 @@ public class ProfileFragment extends Fragment {
                             postedItemList.add(postedItem);
                         }
 
+                        if(postedItemList.size() > 0){
+                            mNoOfferMsg.setVisibility(View.VISIBLE);
+                        }
+
                         mProgressBar.setVisibility(View.GONE);
                         displayOfferAdapter = new DisplayOfferAdapter(getContext(), postedItemList);
                         gridView.setAdapter(displayOfferAdapter);
@@ -212,6 +221,10 @@ public class ProfileFragment extends Fragment {
                         for(DataSnapshot curItem : dataSnapshot.getChildren()){
                             Item postedItem = curItem.getValue(Item.class);
                             postedItemList.add(postedItem);
+                        }
+
+                        if(postedItemList.size() > 0){
+                            mNoOfferMsg.setVisibility(View.VISIBLE);
                         }
 
                         mProgressBar.setVisibility(View.GONE);
