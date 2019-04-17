@@ -59,11 +59,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                     currentMessageChannel.getReceiverId().equals(userList.get(i).getUser_id())){
                 viewHolder.tvUserName.setText(userList.get(i).getUsername());
 
-                Picasso.get()
-                        .load(userList.get(i).getProfilePhoto())
-                        .fit()
-                        .centerCrop()
-                        .into(viewHolder.ivProfilePic);
+                if(!userList.get(i).getProfilePhoto().isEmpty()){
+                    Picasso.get()
+                            .load(userList.get(i).getProfilePhoto())
+                            .fit()
+                            .centerCrop()
+                            .into(viewHolder.ivProfilePic);
+                }
             }
         }
 
