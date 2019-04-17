@@ -567,6 +567,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                     llOfferExistPage.setVisibility(GONE);
                     llNoOfferPage.setVisibility(View.VISIBLE);
                 }
+
+                getItem();
             }
 
             @Override
@@ -671,30 +673,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void btnChangeTradeOnClicked(){
-        Gson gson = new Gson();
-
-        if(traderItem.getTraded()){
-            Toast.makeText(this, "Item already traded.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if(firebaseUser.getUid().equals(currentTradeOffer.getOwnerId())){
-            Intent intent = new Intent(MessageActivity.this, ConfirmationActivity.class);
-            intent.putExtra(CURRENT_TRADER, gson.toJson(traderItemUser));
-            intent.putExtra(TraderExistingOffers.ITEM_TARGETED, gson.toJson(targetItem));
-            intent.putExtra(TraderExistingOffers.ITEM_SELECTED, gson.toJson(traderItem));
-            intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
-
-            startActivityForResult(intent, RC_TRADE_OFFER);
-        } else if(firebaseUser.getUid().equals(currentTradeOffer.getRequesterId())){
-            Intent intent = new Intent(MessageActivity.this, TraderExistingOffers.class);
-            intent.putExtra(CURRENT_TRADER, gson.toJson(traderItemUser));
-            intent.putExtra(TraderExistingOffers.ITEM_TARGETED, gson.toJson(targetItem));
-            intent.putExtra(TraderExistingOffers.ITEM_SELECTED, gson.toJson(traderItem));
-            intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
-
-            startActivityForResult(intent, RC_UPLOAD_OFFER);
-        }
+        getTradeChangeDeleted();
     }
 
     private void getTargetMessageChannel(){
@@ -765,6 +744,105 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             RatingDialog ratingDialog = new RatingDialog();
             getSupportFragmentManager().beginTransaction().add(ratingDialog, "rating").commit();
         }
+    }
+
+    private void getTradeChangeDeleted(){
+        databaseReference.child(getString(R.string.dbname_items))
+                .child(targetItem.getItemOwnerId()).child(String.valueOf(targetItem.getId()))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        targetItem = dataSnapshot.getValue(Item.class);
+
+                        databaseReference.child(getString(R.string.dbname_items))
+                                .child(traderItem.getItemOwnerId()).child(String.valueOf(traderItem.getId()))
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        traderItem = dataSnapshot.getValue(Item.class);
+
+
+                                        Gson gson = new Gson();
+
+                                        if(firebaseUser.getUid().equals(currentTradeOffer.getOwnerId())){
+                                            if(traderItem.getTraded() || traderItem.getDeleted()){
+                                                Toast.makeText(MessageActivity.this, "Sender already traded or deleted the item.", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
+
+                                            Intent intent = new Intent(MessageActivity.this, ConfirmationActivity.class);
+                                            intent.putExtra(CURRENT_TRADER, gson.toJson(traderItemUser));
+                                            intent.putExtra(TraderExistingOffers.ITEM_TARGETED, gson.toJson(targetItem));
+                                            intent.putExtra(TraderExistingOffers.ITEM_SELECTED, gson.toJson(traderItem));
+                                            intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
+
+                                            startActivityForResult(intent, RC_TRADE_OFFER);
+                                        } else if(firebaseUser.getUid().equals(currentTradeOffer.getRequesterId())){
+                                            if(targetItem.getTraded() || targetItem.getDeleted()){
+                                                Toast.makeText(MessageActivity.this, "Owner traded or deleted the item.", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
+
+                                            Intent intent = new Intent(MessageActivity.this, TraderExistingOffers.class);
+                                            intent.putExtra(CURRENT_TRADER, gson.toJson(traderItemUser));
+                                            intent.putExtra(TraderExistingOffers.ITEM_TARGETED, gson.toJson(targetItem));
+                                            intent.putExtra(TraderExistingOffers.ITEM_SELECTED, gson.toJson(traderItem));
+                                            intent.putExtra(CURRENT_TRADE_OFFER, gson.toJson(currentTradeOffer));
+
+                                            startActivityForResult(intent, RC_UPLOAD_OFFER);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    private void getItem(){
+        databaseReference.child(getString(R.string.dbname_items))
+                .child(targetItem.getItemOwnerId()).child(String.valueOf(targetItem.getId()))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        targetItem = dataSnapshot.getValue(Item.class);
+
+                        databaseReference.child(getString(R.string.dbname_items))
+                                .child(traderItem.getItemOwnerId()).child(String.valueOf(traderItem.getId()))
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        traderItem = dataSnapshot.getValue(Item.class);
+
+                                        if(targetItem.getTraded() || targetItem.getDeleted()){
+                                            if(firebaseUser.getUid().equals(targetItem.getItemOwnerId()))
+                                                Toast.makeText(MessageActivity.this, "Item already traded or deleted.", Toast.LENGTH_SHORT).show();
+                                            else
+                                                Toast.makeText(MessageActivity.this, "Owner traded or deleted the item.", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 
     @Override

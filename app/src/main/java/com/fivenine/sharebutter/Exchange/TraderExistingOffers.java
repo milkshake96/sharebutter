@@ -127,7 +127,7 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
 
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     Item currentItem = item.getValue(Item.class);
-                    if(!currentItem.getTraded())
+                    if(!currentItem.getTraded() && !currentItem.getDeleted())
                         existingTraderItems.add(currentItem);
                 }
 
