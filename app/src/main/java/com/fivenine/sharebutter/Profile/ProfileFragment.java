@@ -51,7 +51,7 @@ public class ProfileFragment extends Fragment {
     private CircleImageView profilePhoto;
     private GridView gridView;
     private static final int NUM_GRID_COLUMNS = 3;
-    private TextView mOffers, mDisplayName,mDescription, mLikes, mState;
+    private TextView mOffers, mDisplayName,mDescription, mLikes, mState, mNoOfferMsg;
     private Context mContext;
     private ProgressBar mProgressBar;
 
@@ -73,6 +73,9 @@ public class ProfileFragment extends Fragment {
         mState = (TextView) view.findViewById(R.id.tv_state);
 
         gridView = (GridView) view.findViewById(R.id.gvProfileOfferUploaded);
+
+        mNoOfferMsg = (TextView) view.findViewById(R.id.tv_no_offer_msg);
+        mNoOfferMsg.setVisibility(View.GONE);
         mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
         mProgressBar.setVisibility(View.VISIBLE);
 

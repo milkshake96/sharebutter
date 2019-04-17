@@ -31,6 +31,12 @@
             <include layout="@layout/snippet_center_editprofile" />
         </RelativeLayout>
 
-
+        <!--while change profile image-->
+        <ProgressBar
+            android:id="@+id/editprofileProgressBar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="250dp" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

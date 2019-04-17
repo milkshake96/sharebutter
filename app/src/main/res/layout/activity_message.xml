@@ -252,4 +252,12 @@
 
     </LinearLayout>
 
+    <!--after changed offer load-->
+    <ProgressBar
+        android:id="@+id/messageProgressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"/>
+
 </RelativeLayout>

@@ -39,9 +39,9 @@
     <string name="reset_password_warning_msg">Enter the email address you used to create your account and we will email you a link to reset your password.</string>
     <string name="login_signup_msg2">Join Us Now !</string>
     <string name="profile_about_me">About Me</string>
-    <string name="profile_offer_num">14</string>
+    <string name="profile_offer_num">0</string>
     <string name="profile_offer_text">Offers</string>
-    <string name="profile_likes_num">45</string>
+    <string name="profile_likes_num">0</string>
     <string name="profile_likes_text">Likes</string>
     <string name="profile_followers_num">145</string>
     <string name="profile_followers_text">Followers</string>

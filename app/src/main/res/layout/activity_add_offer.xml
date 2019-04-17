@@ -137,4 +137,11 @@
             </ScrollView>
         </RelativeLayout>
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/addofferProgressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"/>
 </RelativeLayout>

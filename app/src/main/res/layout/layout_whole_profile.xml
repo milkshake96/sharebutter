@@ -45,6 +45,15 @@
             android:layout_marginTop="@dimen/xxxSmallColumn"
             android:background="@color/silver" />
 
+        <TextView
+            android:id="@+id/tv_no_offer_msg"
+            style="@style/TextViewCommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="You have no item to offer yet."
+            android:textColor="@color/DarkGrey" />
+
         <RelativeLayout
             android:id="@+id/rlGridView"
             android:layout_width="match_parent"
@@ -55,11 +64,12 @@
                 android:id="@+id/gvProfileOfferUploaded"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
                 android:gravity="center"
-                android:horizontalSpacing="1dp"
+                android:horizontalSpacing="3dp"
                 android:numColumns="3"
                 android:stretchMode="columnWidth"
-                android:verticalSpacing="1dp"/>
+                android:verticalSpacing="3dp" />
         </RelativeLayout>
 
     </RelativeLayout>

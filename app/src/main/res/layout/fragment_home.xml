@@ -7,8 +7,7 @@
     <RelativeLayout
         android:id="@+id/rlHomeTopBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <include layout="@layout/snippet_top_homebar" />
 
@@ -78,4 +77,10 @@
     <!--android:textColor="@color/colorPrimary"-->
     <!--android:textSize="20sp" />-->
 
+    <ProgressBar
+        android:id="@+id/homeProgressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"/>
 </RelativeLayout>

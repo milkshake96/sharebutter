@@ -123,7 +123,6 @@ public class AddOfferFragment extends Fragment implements View.OnClickListener {
         } else {
             tvAction.setText("");
             tvAction.setEnabled(false);
-            ivAddSign.setVisibility(View.GONE);
         }
     }
 

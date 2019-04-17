@@ -17,11 +17,12 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             app:civ_border_color="@color/silver"
-            app:civ_border_width="1dp" />
+            app:civ_border_width="1dp"
+            android:src="@drawable/deafult_userprofile_img"/>
 
         <TextView
             android:id="@+id/tvProfileUserName"
-            style="@style/SmallTextView"
+            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ivProfileImage"
@@ -71,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/xxxSmallColumn"
-        android:layout_marginTop="@dimen/xxxSmallColumn"
+        android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/xSmallColumn"
         android:orientation="vertical">
 
@@ -84,7 +85,7 @@
 
             <TextView
                 android:id="@+id/tvOfferNum"
-                style="@style/SmallTextView"
+                style="@style/TextViewCommon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -117,7 +118,7 @@
 
             <TextView
                 android:id="@+id/tvLikesNum"
-                style="@style/SmallTextView"
+                style="@style/TextViewCommon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

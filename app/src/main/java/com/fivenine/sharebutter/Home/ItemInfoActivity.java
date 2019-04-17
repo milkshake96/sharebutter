@@ -214,11 +214,14 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
                 itemOwner = dataSnapshot.getValue(User.class);
                 //User Name
                 tvUserName.setText(itemOwner.getUsername());
-                Picasso.get()
-                        .load(itemOwner.getProfilePhoto())
-                        .fit()
-                        .centerCrop()
-                        .into(ivProfileImage);
+
+                if(!itemOwner.getProfilePhoto().isEmpty()) {
+                    Picasso.get()
+                            .load(itemOwner.getProfilePhoto())
+                            .fit()
+                            .centerCrop()
+                            .into(ivProfileImage);
+                }
 
                 monitorItemStatus();
             }

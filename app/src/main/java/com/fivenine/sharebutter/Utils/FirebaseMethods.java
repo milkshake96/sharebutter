@@ -198,7 +198,11 @@ public class FirebaseMethods {
 
                 user = ds.child(userID).getValue(User.class);
 
-                Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
+                if(user != null)
+                    Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
+                else
+                    Log.d(TAG, "getUserAccountSettings: retrieved users information: null");
+
             }
         }
         return new UserSettings(user, settings);
