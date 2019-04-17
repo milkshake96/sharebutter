@@ -126,16 +126,16 @@
             android:text="@string/profile_description"
             android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/tvEditProfile"
-            style="@style/SmallTextView.Theme"
-            android:layout_width="160dp"
-            android:layout_height="@dimen/xSmallColumn"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/xSmallColumn"
-            android:background="@drawable/rec_btn_red_border_white_background"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="@string/profile_edit_profile_text" />
+        <!--<Button-->
+            <!--android:id="@+id/tvEditProfile"-->
+            <!--style="@style/SmallTextView.Theme"-->
+            <!--android:layout_width="160dp"-->
+            <!--android:layout_height="@dimen/xSmallColumn"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginTop="@dimen/xSmallColumn"-->
+            <!--android:background="@drawable/rec_btn_red_border_white_background"-->
+            <!--android:gravity="center_horizontal|center_vertical"-->
+            <!--android:text="@string/profile_edit_profile_text" />-->
 
     </LinearLayout>
 
