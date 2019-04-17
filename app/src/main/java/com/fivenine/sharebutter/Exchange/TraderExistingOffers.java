@@ -175,7 +175,7 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
                     tvAction.setText("");
                     tvAction.setEnabled(false);
                 } else {
-                    for (int i = 0; i < parent.getChildCount(); i++) {
+                    for (int i = 1; i < parent.getChildCount(); i++) {
                         ImageView imageView = (ImageView) parent.getChildAt(i);
                         imageView.setBackgroundColor(getResources().getColor(R.color.transparent));
                         imageView.setPadding(0, 0, 0, 0);
