@@ -258,7 +258,7 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
 
-                                DatabaseReference userSettingRef = FirebaseDatabase.getInstance().getReference();
+                                final DatabaseReference userSettingRef = FirebaseDatabase.getInstance().getReference();
                                 userSettingRef.child(getString(R.string.dbname_user_account_settings))
                                         .child(firebaseAuth.getCurrentUser().getUid())
                                         .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -267,10 +267,16 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                                                 UserAccountSettings currentSetting = dataSnapshot.getValue(UserAccountSettings.class);
                                                 currentSetting.setOffers(currentSetting.getOffers() + 1);
 
-                                                addOfferProgressBar.setVisibility(View.GONE);
-                                                Toast.makeText(getApplicationContext(), "Upload Successful..", Toast.LENGTH_SHORT).show();
-                                                setResult(RESULT_OK);
-                                                finish();
+                                                userSettingRef.child(getString(R.string.dbname_user_account_settings))
+                                                        .child(firebaseAuth.getCurrentUser().getUid()).setValue(currentSetting).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        addOfferProgressBar.setVisibility(View.GONE);
+                                                        Toast.makeText(getApplicationContext(), "Upload Successful..", Toast.LENGTH_SHORT).show();
+                                                        setResult(RESULT_OK);
+                                                        finish();
+                                                    }
+                                                });
                                             }
 
                                             @Override
