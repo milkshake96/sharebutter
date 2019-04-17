@@ -23,7 +23,7 @@ public class RatingActivity extends AppCompatActivity implements View.OnClickLis
     //ToolBar
     ImageView tbIvSupportAction;
     TextView tbTvTitle;
-    TextView tbTvAction;
+    ImageView tbIvAction;
 
     //CardView
     ImageView ivSenderOffer;
@@ -34,7 +34,6 @@ public class RatingActivity extends AppCompatActivity implements View.OnClickLis
     //Others
     ImageView ivLike;
     ImageView ivDislike;
-    ImageView ivClose;
 
     //Firebase + Vars
     FirebaseUser firebaseUser;
@@ -54,7 +53,8 @@ public class RatingActivity extends AppCompatActivity implements View.OnClickLis
     private void init(){
         tbIvSupportAction = findViewById(R.id.tb_iv_support_action);
         tbTvTitle = findViewById(R.id.tb_tv_title);
-        tbTvAction = findViewById(R.id.tb_tv_action);
+        tbIvAction = findViewById(R.id.tb_iv_action);
+        tbIvAction.setOnClickListener(this);
 
         ivSenderOffer = findViewById(R.id.iv_sender_offer_img);
         ivReceiverOffer = findViewById(R.id.iv_receiver_offer_img);
@@ -66,10 +66,6 @@ public class RatingActivity extends AppCompatActivity implements View.OnClickLis
 
         ivLike = findViewById(R.id.iv_like);
         ivLike.setOnClickListener(this);
-
-        ivClose = findViewById(R.id.iv_close);
-        ivClose.setOnClickListener(this);
-
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         getCurrentUserAccountSettings();
@@ -84,7 +80,7 @@ public class RatingActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.iv_like:
                 likeClicked();
                 break;
-            case R.id.iv_close:
+            case R.id.tb_iv_action:
                 closeClicked();
                 break;
             default:

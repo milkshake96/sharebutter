@@ -68,7 +68,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         }
 
         //Add Profile Picture Here
-        if(currentChat.getSenderImgUrl()!= null){
+        if(!currentChat.getSenderImgUrl().isEmpty()){
             Picasso.get()
                     .load(currentChat.getSenderImgUrl())
                     .centerCrop()

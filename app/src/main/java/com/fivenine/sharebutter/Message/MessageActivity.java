@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +84,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     RelativeLayout rlChatBox;
     EditText etChatInput;
     ImageView ivSendChat;
+
+    ProgressBar messageProgressBar;
 
     //Toolbar
     ImageView ivSupportAction;
@@ -172,6 +175,9 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         tvTitle.setText("");
         tvAction = findViewById(R.id.tb_tv_action);
         tvAction.setText("");
+
+        messageProgressBar = findViewById(R.id.messageProgressBar);
+        messageProgressBar.setVisibility(GONE);
     }
 
     private void initializeData(){

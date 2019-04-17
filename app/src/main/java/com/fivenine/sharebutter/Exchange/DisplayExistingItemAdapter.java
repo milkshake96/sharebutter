@@ -57,7 +57,8 @@ public class DisplayExistingItemAdapter extends BaseAdapter {
         String url = itemArrayList.get(position).getImg1URL();
 
         if(firebaseUser.getUid().equals(trader.getUser_id()) && position == 0){
-            squareImageView.setImageDrawable(mContext.getResources().getDrawable(Integer.parseInt(url)));
+            squareImageView.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_add));
+            squareImageView.setBackgroundColor(mContext.getResources().getColor(R.color.medium_grey));
 
             return squareImageView;
         }

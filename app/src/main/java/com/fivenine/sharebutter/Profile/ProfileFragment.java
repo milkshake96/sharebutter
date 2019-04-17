@@ -1,6 +1,7 @@
 package com.fivenine.sharebutter.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,11 +11,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.fivenine.sharebutter.Home.HomeActivity;
+import com.fivenine.sharebutter.Home.HomeFragment;
+import com.fivenine.sharebutter.Home.ItemInfoActivity;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.DisplayOfferAdapter;
 import com.fivenine.sharebutter.Utils.FirebaseMethods;
@@ -31,6 +36,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +110,7 @@ public class ProfileFragment extends Fragment {
         });
 
         postedItemList = new ArrayList<>();
+        gridView.setOnItemClickListener(onOfferClickListener());
         setupFirebaseAuth();
         return view;
     }
@@ -223,8 +230,10 @@ public class ProfileFragment extends Fragment {
                             postedItemList.add(postedItem);
                         }
 
-                        if(postedItemList.size() > 0){
+                        if(postedItemList.size() <= 0){
                             mNoOfferMsg.setVisibility(View.VISIBLE);
+                        } else {
+                            mNoOfferMsg.setVisibility(View.GONE);
                         }
 
                         mProgressBar.setVisibility(View.GONE);
@@ -253,5 +262,21 @@ public class ProfileFragment extends Fragment {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    private AdapterView.OnItemClickListener onOfferClickListener(){
+        return new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Gson gson = new Gson();
+                String selectedItem = gson.toJson(postedItemList.get(position));
+
+                Intent intent = new Intent(getContext(), ItemInfoActivity.class);
+                intent.putExtra(HomeFragment.SELECTED_ITEM, selectedItem);
+
+                startActivity(intent);
+            }
+        };
     }
 }
