@@ -1,5 +1,6 @@
 package com.fivenine.sharebutter.Utils;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,13 +13,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.fivenine.sharebutter.Home.ItemInfoActivity;
+import com.fivenine.sharebutter.Home.SearchActivity;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.models.Item;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import javax.security.auth.callback.Callback;
+
+import static com.fivenine.sharebutter.Home.HomeFragment.SELECTED_ITEM;
 
 public class SearchListingAdapter extends RecyclerView.Adapter<SearchListingAdapter.SearchListingViewHolder> {
     private static final String TAG = "SearchListingAdapter";
@@ -34,7 +40,6 @@ public class SearchListingAdapter extends RecyclerView.Adapter<SearchListingAdap
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         onItemClickListener = listener;
-
     }
 
     public SearchListingAdapter(ArrayList<Item> itemList) {
@@ -59,6 +64,13 @@ public class SearchListingAdapter extends RecyclerView.Adapter<SearchListingAdap
                 @Override
                 public void onClick(View v) {
 
+                    Gson gson = new Gson();
+                    String selectedItem = gson.toJson(mItemList.get(getAdapterPosition()));
+
+                    Intent intent = new Intent(getView().getContext(), ItemInfoActivity.class);
+                    intent.putExtra(SELECTED_ITEM, selectedItem);
+
+                    getView().getContext().startActivity(intent);
                 }
             });
         }

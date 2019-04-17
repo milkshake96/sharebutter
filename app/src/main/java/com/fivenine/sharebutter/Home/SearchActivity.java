@@ -117,6 +117,10 @@ public class SearchActivity extends AppCompatActivity {
                     for (DataSnapshot s : snapshot.getChildren()) {
                         Item item = s.getValue(Item.class);
                         Log.d(TAG, "onDataChange: Item : " + item.toString());
+
+                        if(item.getTraded() || item.getDeleted())
+                            continue;
+
                         mItemList.add(item);
                     }
                 }
@@ -143,13 +147,7 @@ public class SearchActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new SearchListingAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Gson gson = new Gson();
-                String selectedItem = gson.toJson(itemList.get(position));
 
-                Intent intent = new Intent(SearchActivity.this, ItemInfoActivity.class);
-                intent.putExtra(SELECTED_ITEM, selectedItem);
-
-                startActivity(intent);
             }
         });
     }
