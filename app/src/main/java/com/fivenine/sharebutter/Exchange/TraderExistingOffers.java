@@ -167,18 +167,29 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                for (int i = 0; i < parent.getChildCount(); i++) {
-                    ImageView imageView = (ImageView) parent.getChildAt(i);
-                    imageView.setBackgroundColor(getResources().getColor(R.color.transparent));
-                    imageView.setPadding(0, 0, 0, 0);
+                if(position == 0){
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    startActivityForResult(Intent.createChooser(intent, "Selection various images"), CODE_MULTIPLE_IMG_GALLERY);
+                    tvAction.setText("");
+                    tvAction.setEnabled(false);
+                } else {
+                    for (int i = 0; i < parent.getChildCount(); i++) {
+                        ImageView imageView = (ImageView) parent.getChildAt(i);
+                        imageView.setBackgroundColor(getResources().getColor(R.color.transparent));
+                        imageView.setPadding(0, 0, 0, 0);
+                    }
+
+                    ImageView imageView = (ImageView) parent.getChildAt(position);
+                    imageView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    imageView.setPadding(5, 5, 5, 5);
+
+                    currentSelectedItem = (Item) parent.getItemAtPosition(position);
+                    tvAction.setText("NEXT");
+                    tvAction.setEnabled(true);
                 }
 
-                ImageView imageView = (ImageView) parent.getChildAt(position);
-                imageView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                imageView.setPadding(5, 5, 5, 5);
-
-                currentSelectedItem = (Item) parent.getItemAtPosition(position);
-                tvAction.setText("NEXT");
             }
         };
     }
@@ -200,10 +211,6 @@ public class TraderExistingOffers extends AppCompatActivity implements View.OnCl
     private void onAction() {
         if (tvAction.getText().toString().equals("NEXT")) {
             if (currentSelectedItem.getId() == null) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                startActivityForResult(Intent.createChooser(intent, "Selection various images"), CODE_MULTIPLE_IMG_GALLERY);
             } else {
                 Intent intent = new Intent(TraderExistingOffers.this, ConfirmationActivity.class);
                 Gson gson = new Gson();
