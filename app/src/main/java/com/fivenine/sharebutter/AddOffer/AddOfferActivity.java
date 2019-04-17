@@ -25,6 +25,7 @@ import com.fivenine.sharebutter.Utils.DatePickerFragment;
 import com.fivenine.sharebutter.Utils.ViewPagerAdapter;
 import com.fivenine.sharebutter.models.Item;
 import com.fivenine.sharebutter.models.User;
+import com.fivenine.sharebutter.models.UserAccountSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -256,10 +257,27 @@ public class AddOfferActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                addOfferProgressBar.setVisibility(View.GONE);
-                                Toast.makeText(getApplicationContext(), "Upload Successful..", Toast.LENGTH_SHORT).show();
-                                setResult(RESULT_OK);
-                                finish();
+
+                                DatabaseReference userSettingRef = FirebaseDatabase.getInstance().getReference();
+                                userSettingRef.child(getString(R.string.dbname_user_account_settings))
+                                        .child(firebaseAuth.getCurrentUser().getUid())
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                UserAccountSettings currentSetting = dataSnapshot.getValue(UserAccountSettings.class);
+                                                currentSetting.setOffers(currentSetting.getOffers() + 1);
+
+                                                addOfferProgressBar.setVisibility(View.GONE);
+                                                Toast.makeText(getApplicationContext(), "Upload Successful..", Toast.LENGTH_SHORT).show();
+                                                setResult(RESULT_OK);
+                                                finish();
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                             }
                         }
                     });
