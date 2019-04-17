@@ -28,8 +28,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+
+import static com.fivenine.sharebutter.Home.HomeFragment.SELECTED_ITEM;
 
 public class SearchActivity extends AppCompatActivity {
     private static final String TAG = "SearchActivity";
@@ -131,7 +134,7 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    private void initAdapter(ArrayList<Item> itemList) {
+    private void initAdapter(final ArrayList<Item> itemList) {
         mAdapter = new SearchListingAdapter(itemList);
         mRecycleView.setHasFixedSize(true);
         mRecycleView.setAdapter(mAdapter);
@@ -140,7 +143,13 @@ public class SearchActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new SearchListingAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                Gson gson = new Gson();
+                String selectedItem = gson.toJson(itemList.get(position));
 
+                Intent intent = new Intent(SearchActivity.this, ItemInfoActivity.class);
+                intent.putExtra(SELECTED_ITEM, selectedItem);
+
+                startActivity(intent);
             }
         });
     }
