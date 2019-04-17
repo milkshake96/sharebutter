@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -33,6 +34,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static android.view.View.GONE;
+
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "HomeFragment";
@@ -50,6 +53,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     GridView gvOffers;
     DisplayOfferAdapter displayOfferAdapter;
     AdapterView.OnItemClickListener onOfferClicked;
+
+    ProgressBar homeProgressBar;
 
     ArrayList<String> sliderDisplayImgURLs;
 
@@ -95,6 +100,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         vfDisplay = view.findViewById(R.id.vf_home_display);
         sliderSetup();
+
+        homeProgressBar = view.findViewById(R.id.homeProgressBar);
+        homeProgressBar.setVisibility(GONE);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child(getContext().getString(R.string.dbname_items));
@@ -193,6 +201,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 offerItems = new ArrayList<>();
+                homeProgressBar.setVisibility(View.VISIBLE);
 
                 // Get Post object and use the values to update the UI
                 for (DataSnapshot existingUsers : dataSnapshot.getChildren()) {
@@ -206,6 +215,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     }
                 }
 
+                homeProgressBar.setVisibility(View.GONE);
                 displayOfferAdapter = new DisplayOfferAdapter(getContext(), offerItems);
                 gvOffers.setAdapter(displayOfferAdapter);
             }
