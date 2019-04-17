@@ -527,14 +527,17 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 traderItem = dataSnapshot.getValue(Item.class);
+                
                 //Update UI
                 llNoOfferPage.setVisibility(GONE);
                 //Update item image
-                Picasso.get()
-                        .load(traderItem.getImg1URL())
-                        .centerCrop()
-                        .fit()
-                        .into(ivOfferPhoto);
+                if(!traderItem.getImg1URL().isEmpty()) {
+                    Picasso.get()
+                            .load(traderItem.getImg1URL())
+                            .centerCrop()
+                            .fit()
+                            .into(ivOfferPhoto);
+                }
 
                 tvItemName.setText(traderItem.getName());
                 tvItemDescription.setText(traderItem.getDescription());
