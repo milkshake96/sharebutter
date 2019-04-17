@@ -208,7 +208,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         targetItemListener = getTargetItemListener();
         targetItemUserListener = getTargetItemUserListener();
         databaseReference.child(getString(R.string.dbname_trade_offers))
-                .child(firebaseUser.getUid()).addListenerForSingleValueEvent(existingTradeOfferListener);
+                .child(firebaseUser.getUid()).addValueEventListener(existingTradeOfferListener);
 
         //MessageChannel Channel
         existingMessageChannelList = new ArrayList<>();
@@ -481,7 +481,10 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 }
 
                 databaseReference.child(getString(R.string.dbname_message_channels))
-                        .child(firebaseUser.getUid()).addListenerForSingleValueEvent(messageChannelListener);
+                        .child(firebaseUser.getUid()).removeEventListener(messageChannelListener);
+
+                databaseReference.child(getString(R.string.dbname_message_channels))
+                        .child(firebaseUser.getUid()).addValueEventListener(messageChannelListener);
             }
 
             @Override
@@ -629,6 +632,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                             .child(firebaseUser.getUid()).child(String.valueOf(currentSelfMessageChannel.getId()))
                             .addValueEventListener(chatListener);
 
+                    getTargetMessageChannel();
                     monitorTradeOffer();
                 }
             }
