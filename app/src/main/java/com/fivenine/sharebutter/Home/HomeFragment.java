@@ -3,8 +3,10 @@ package com.fivenine.sharebutter.Home;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.DisplayOfferAdapter;
 import com.fivenine.sharebutter.Utils.LogOutDialog;
 import com.fivenine.sharebutter.models.Item;
+import com.fivenine.sharebutter.models.UserAccountSettings;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +36,7 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.view.View.GONE;
 
@@ -53,6 +57,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     GridView gvOffers;
     DisplayOfferAdapter displayOfferAdapter;
     AdapterView.OnItemClickListener onOfferClicked;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     ProgressBar homeProgressBar;
 
@@ -69,7 +74,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private ValueEventListener itemListener;
+
+    private UserAccountSettings userAccountSettings;
+    private List<UserAccountSettings> userAccountSettingsList;
+    private List<String> userAccountSettingIDList;
 
 
     @Nullable
@@ -84,11 +92,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             init();
         }
 
-
         return view;
     }
 
     private void init() {
+        swipeRefreshLayout = view.findViewById(R.id.srl_refresh);
+
         logoutBtn = view.findViewById(R.id.ivLoginbtn);
         logoutBtn.setOnClickListener(this);
 
@@ -105,13 +114,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         homeProgressBar.setVisibility(GONE);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child(getContext().getString(R.string.dbname_items));
-        itemListener = itemListener();
-        databaseReference.addValueEventListener(itemListener);
+        databaseReference = firebaseDatabase.getReference();
 
         gvOffers = view.findViewById(R.id.gv_display_upload_offer);
-        onOfferClicked = onOfferClickListener();
-        gvOffers.setOnItemClickListener(onOfferClicked);
+
+        userAccountSettingsList = new ArrayList<>();
+        userAccountSettingIDList = new ArrayList<>();
+        getFilteredItem();
     }
 
     @Override
@@ -181,59 +190,127 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private AdapterView.OnItemClickListener onOfferClickListener() {
-        return new AdapterView.OnItemClickListener() {
+        if(onOfferClicked == null){
+            onOfferClicked = new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Gson gson = new Gson();
-                String selectedItem = gson.toJson(offerItems.get(position));
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Gson gson = new Gson();
+                    String selectedItem = gson.toJson(offerItems.get(position));
 
-                Intent intent = new Intent(getContext(), ItemInfoActivity.class);
-                intent.putExtra(SELECTED_ITEM, selectedItem);
+                    Intent intent = new Intent(getContext(), ItemInfoActivity.class);
+                    intent.putExtra(SELECTED_ITEM, selectedItem);
 
-                startActivity(intent);
-            }
-        };
+                    startActivity(intent);
+                }
+            };
+        }
+
+        return onOfferClicked;
     }
 
-    private ValueEventListener itemListener() {
-        return new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                offerItems = new ArrayList<>();
-                homeProgressBar.setVisibility(View.VISIBLE);
+    private void getFilteredItem(){
+        offerItems = new ArrayList<>();
+        homeProgressBar.setVisibility(View.VISIBLE);
 
-                // Get Post object and use the values to update the UI
-                for (DataSnapshot existingUsers : dataSnapshot.getChildren()) {
-                    if (existingUsers.getKey().equals(firebaseUser.getUid())) {
-                        continue;
+        databaseReference.child(getString(R.string.dbname_user_account_settings)).child(firebaseUser.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userAccountSettings = dataSnapshot.getValue(UserAccountSettings.class);
+                        getListOfOtherUsers();
                     }
 
-                    for (DataSnapshot uploadedItem : existingUsers.getChildren()) {
-                        Item item = uploadedItem.getValue(Item.class);
-                        offerItems.add(item);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+    }
+
+    private void getListOfOtherUsers(){
+        databaseReference.child(getString(R.string.dbname_user_account_settings))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        userAccountSettingsList.clear();
+
+                        for(DataSnapshot user : dataSnapshot.getChildren()){
+                            if(user.getKey().equals(firebaseUser.getUid())){
+                                continue;
+                            }
+                            UserAccountSettings currentUser = user.getValue(UserAccountSettings.class);
+                            userAccountSettingIDList.add(user.getKey());
+                            userAccountSettingsList.add(currentUser);
+                        }
+
+                        compareState();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    private void compareState(){
+        for(int i = 0; i < userAccountSettingsList.size(); i++){
+            if(userAccountSettings.getState().isEmpty()){
+                getItemFromDB(userAccountSettingIDList.get(i));
+            } else {
+                if(userAccountSettingsList.get(i).getState().isEmpty()){
+                    getItemFromDB(userAccountSettingIDList.get(i));
+                } else {
+                    if(userAccountSettingsList.get(i).getState().equals(userAccountSettings.getState())){
+                        getItemFromDB(userAccountSettingIDList.get(i));
                     }
                 }
-
-                homeProgressBar.setVisibility(View.GONE);
-                displayOfferAdapter = new DisplayOfferAdapter(getContext(), offerItems);
-                gvOffers.setAdapter(displayOfferAdapter);
             }
+        }
+    }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        };
+    private void getItemFromDB(String curAccountId){
+        homeProgressBar.setVisibility(View.VISIBLE);
+        swipeRefreshLayout.setRefreshing(true);
+        DatabaseReference itemDBRef = FirebaseDatabase.getInstance().getReference();
+
+        itemDBRef.child(getString(R.string.dbname_items)).child(curAccountId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot curItem : dataSnapshot.getChildren()){
+                            Item currentItem = curItem.getValue(Item.class);
+                            if(currentItem.getTraded())
+                                continue;
+
+                            offerItems.add(currentItem);
+                        }
+
+                        homeProgressBar.setVisibility(View.GONE);
+                        displayOfferAdapter = new DisplayOfferAdapter(getContext(), offerItems);
+                        gvOffers.setAdapter(displayOfferAdapter);
+                        gvOffers.setOnItemClickListener(onOfferClickListener());
+                        swipeRefreshLayout.setRefreshing(false);
+
+                        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                            @Override
+                            public void onRefresh() {
+                                getFilteredItem();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
-        if (itemListener != null)
-            databaseReference.removeEventListener(itemListener);
     }
 }
