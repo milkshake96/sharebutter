@@ -71,11 +71,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_home, container,false);
+        view = inflater.inflate(R.layout.fragment_home, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(firebaseUser != null){
+        if (firebaseUser != null) {
             init();
         }
 
@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    private void init(){
+    private void init() {
         logoutBtn = view.findViewById(R.id.ivLoginbtn);
         logoutBtn.setOnClickListener(this);
 
@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child(getContext().getString(R.string.dbname_items));
         itemListener = itemListener();
-        databaseReference.addListenerForSingleValueEvent(itemListener);
+        databaseReference.addValueEventListener(itemListener);
 
         gvOffers = view.findViewById(R.id.gv_display_upload_offer);
         onOfferClicked = onOfferClickListener();
@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ivCategoriesBtn:
                 categoriesOnClick();
                 break;
@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 logoutOnClick();
                 break;
             case R.id.ivSearchBtn:
-                startActivity(new Intent(getActivity(),SearchActivity.class));
+                startActivity(new Intent(getActivity(), SearchActivity.class));
                 getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             default:
@@ -124,17 +124,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void categoriesOnClick(){
+    public void categoriesOnClick() {
         Intent intent = new Intent(getActivity(), CategoriesActivity.class);
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
-    public void searchOnClick(){
+
+    public void searchOnClick() {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
         startActivity(intent);
     }
 
-    public void logoutOnClick(){
+    public void logoutOnClick() {
         LogOutDialog logOutDialog = new LogOutDialog();
         getChildFragmentManager().beginTransaction().add(logOutDialog, "logOut").commit();
     }
@@ -149,12 +150,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         sliderDisplayImgURLs.add("https://gomealprep.de/wp-content/uploads/2017/08/meal-prep-mit-fitprep-3fach-mit-essen-und-deckel-1000x500.png");
         sliderDisplayImgURLs.add("https://www.theprocessrecoverycenter.com/wp-content/uploads/2018/11/Christmas1-1000x500.jpg");
 
-        for(String image : sliderDisplayImgURLs){
+        for (String image : sliderDisplayImgURLs) {
             flipperImages(image);
         }
     }
 
-    private void flipperImages(String image){
+    private void flipperImages(String image) {
         ImageView imageView = new ImageView(getContext());
         Picasso.get()
                 .load(image)
@@ -171,15 +172,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         vfDisplay.setOutAnimation(getContext(), android.R.anim.slide_out_right);
     }
 
-    private AdapterView.OnItemClickListener onOfferClickListener(){
-        return new AdapterView.OnItemClickListener(){
+    private AdapterView.OnItemClickListener onOfferClickListener() {
+        return new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Gson gson = new Gson();
                 String selectedItem = gson.toJson(offerItems.get(position));
 
-                Intent intent = new Intent(getContext(),ItemInfoActivity.class);
+                Intent intent = new Intent(getContext(), ItemInfoActivity.class);
                 intent.putExtra(SELECTED_ITEM, selectedItem);
 
                 startActivity(intent);
@@ -187,19 +188,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         };
     }
 
-    private ValueEventListener itemListener(){
+    private ValueEventListener itemListener() {
         return new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 offerItems = new ArrayList<>();
 
                 // Get Post object and use the values to update the UI
-                for(DataSnapshot existingUsers : dataSnapshot.getChildren()){
-                    if(existingUsers.getKey().equals(firebaseUser.getUid())){
+                for (DataSnapshot existingUsers : dataSnapshot.getChildren()) {
+                    if (existingUsers.getKey().equals(firebaseUser.getUid())) {
                         continue;
                     }
 
-                    for(DataSnapshot uploadedItem : existingUsers.getChildren()){
+                    for (DataSnapshot uploadedItem : existingUsers.getChildren()) {
                         Item item = uploadedItem.getValue(Item.class);
                         offerItems.add(item);
                     }
@@ -216,5 +217,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 // ...
             }
         };
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (itemListener != null)
+            databaseReference.removeEventListener(itemListener);
     }
 }
