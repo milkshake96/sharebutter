@@ -69,10 +69,14 @@ public class OfferRecordsActivity extends AppCompatActivity implements View.OnCl
 
         tvOfferSent = findViewById(R.id.tv_offer_sent);
         tvOfferSent.setTag(SELECTION_TAG_ON);
+        tvOfferSent.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        tvOfferSent.setTextColor(getResources().getColor(R.color.white));
         tvOfferSent.setOnClickListener(this);
 
         tvOfferReceived = findViewById(R.id.tv_offer_received);
         tvOfferReceived.setTag(SELECTION_TAG_OFF);
+        tvOfferReceived.setBackgroundColor(getResources().getColor(R.color.white));
+        tvOfferReceived.setTextColor(getResources().getColor(R.color.DarkGrey));
         tvOfferReceived.setOnClickListener(this);
 
         rvTradeList = findViewById(R.id.rv_trade_list);
@@ -244,7 +248,14 @@ public class OfferRecordsActivity extends AppCompatActivity implements View.OnCl
             return;
         } else {
             tvOfferSent.setTag(SELECTION_TAG_ON);
+            tvOfferSent.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            tvOfferSent.setTextColor(getResources().getColor(R.color.white));
+
+
             tvOfferReceived.setTag(SELECTION_TAG_OFF);
+            tvOfferReceived.setBackgroundColor(getResources().getColor(R.color.white));
+            tvOfferReceived.setTextColor(getResources().getColor(R.color.DarkGrey));
+
             rvTradeList.setAdapter(offerRecordSentAdapter);
         }
     }
@@ -254,7 +265,13 @@ public class OfferRecordsActivity extends AppCompatActivity implements View.OnCl
             return;
         } else {
             tvOfferReceived.setTag(SELECTION_TAG_ON);
+            tvOfferReceived.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            tvOfferReceived.setTextColor(getResources().getColor(R.color.white));
+
+
             tvOfferSent.setTag(SELECTION_TAG_OFF);
+            tvOfferSent.setBackgroundColor(getResources().getColor(R.color.white));
+            tvOfferSent.setTextColor(getResources().getColor(R.color.DarkGrey));
             rvTradeList.setAdapter(offerRecordReceivedAdapter);
         }
     }
