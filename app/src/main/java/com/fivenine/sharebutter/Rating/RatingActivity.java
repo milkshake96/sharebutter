@@ -118,12 +118,12 @@ public class RatingActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void likeClicked(){
-        long likes = userOwnAccountSettings.getLikes() + 1;
+        long likes = userTargetAccountSettings.getLikes() + 1;
         updateLikes(likes);
     }
 
     private void dislikeClicked(){
-        long likes = userOwnAccountSettings.getLikes() - 1;
+        long likes = userTargetAccountSettings.getLikes() - 1;
         updateLikes(likes);
     }
 
