@@ -159,43 +159,44 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback{
 
     private void createMarker() {
         mMap.clear();
-        mCompanies = FirebaseDatabase.getInstance().getReference().child("companies")
-                .child("kampar");
+        mCompanies = FirebaseDatabase.getInstance().getReference().child("companies");
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(view.getContext()));
 
         mCompanies.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot s : dataSnapshot.getChildren()) {
-                    NursingAndRecycleCompanies item = s.getValue(NursingAndRecycleCompanies.class);
-                    LatLng location = new LatLng(item.getLatitude(),
-                            item.getLongitude());
+                    for(DataSnapshot careCenter : s.getChildren()){
+                        NursingAndRecycleCompanies item = careCenter.getValue(NursingAndRecycleCompanies.class);
+                        LatLng location = new LatLng(item.getLatitude(),
+                                item.getLongitude());
 
-                    Log.d(TAG, "onDataChange: Item : [" + item.toString() + "]");
+                        Log.d(TAG, "onDataChange: Item : [" + item.toString() + "]");
 
-                    if (location != null) {
+                        if (location != null) {
 
-                        if (item != null) {
-                            try {
-                                String snippet =
-                                        "Address: " + item.getAddress() + "\n" +
-                                                "Phone Number: " + item.getPhone() + "\n" +
-                                                "Label: " + item.getType() + "\n";
+                            if (item != null) {
+                                try {
+                                    String snippet =
+                                            "Address: " + item.getAddress() + "\n" +
+                                                    "Phone Number: " + item.getPhone() + "\n" +
+                                                    "Label: " + item.getType() + "\n";
 
-                                MarkerOptions options = new MarkerOptions()
-                                        .position(location)
-                                        .title(item.getName())
-                                        .snippet(snippet);
-                                mMap.addMarker(options);
-                                Log.d(TAG, "addMarker: Function called !");
+                                    MarkerOptions options = new MarkerOptions()
+                                            .position(location)
+                                            .title(item.getName())
+                                            .snippet(snippet);
+                                    mMap.addMarker(options);
+                                    Log.d(TAG, "addMarker: Function called !");
 
 
-                            } catch (NullPointerException e) {
-                                Log.e(TAG, "onDataChange: NullPointerException: " + e.getMessage());
+                                } catch (NullPointerException e) {
+                                    Log.e(TAG, "onDataChange: NullPointerException: " + e.getMessage());
+                                }
+                            } else {
+                                mMap.addMarker(new MarkerOptions().position(location)
+                                        .title(item.getName()));
                             }
-                        } else {
-                            mMap.addMarker(new MarkerOptions().position(location)
-                                    .title(item.getName()));
                         }
                     }
                 }
