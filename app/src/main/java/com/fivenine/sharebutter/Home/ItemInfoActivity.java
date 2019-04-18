@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fivenine.sharebutter.Message.MessageActivity;
+import com.fivenine.sharebutter.Profile.OtherProfileActivity;
 import com.fivenine.sharebutter.R;
 import com.fivenine.sharebutter.Utils.ViewPagerAdapter;
 import com.fivenine.sharebutter.models.Item;
@@ -188,6 +189,7 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
         else
             rlItemTraded.setVisibility(GONE);
 
+        ivProfileImage.setOnClickListener(this);
         getCurrentUserAccountSetting();
     }
 
@@ -200,6 +202,9 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.tb_tv_action:
                 onTradeClicked();
+                break;
+            case R.id.ivProfileImage:
+                onUserProfileImageClicked();
                 break;
             default:
                 break;
@@ -356,6 +361,12 @@ public class ItemInfoActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
+    }
+
+    private void onUserProfileImageClicked(){
+        Intent intent = new Intent(ItemInfoActivity.this, OtherProfileActivity.class);
+        intent.putExtra(ITEM_OWNER ,new Gson().toJson(itemOwner));
+        startActivity(intent);
     }
 
     @Override

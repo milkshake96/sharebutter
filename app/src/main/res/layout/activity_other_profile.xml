@@ -26,6 +26,15 @@
             android:layout_marginTop="250dp"/>
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tv_no_offer_msg"
+        style="@style/TextViewCommon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="You have no item to offer yet."
+        android:textColor="@color/DarkGrey" />
+
     <FrameLayout
         android:id="@+id/editProfileFragment"
         android:layout_width="match_parent"
