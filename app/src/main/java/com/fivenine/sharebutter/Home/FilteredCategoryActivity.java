@@ -161,7 +161,7 @@ public class FilteredCategoryActivity extends AppCompatActivity implements View.
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot curItem : dataSnapshot.getChildren()){
                             Item currentItem = curItem.getValue(Item.class);
-                            if(currentItem.getTraded() || !currentItem.getCategory().equals(filterConditions))
+                            if(currentItem.getTraded() || currentItem.getDeleted() || !currentItem.getCategory().equals(filterConditions))
                                 continue;
 
                             filteredItem.add(currentItem);
