@@ -825,11 +825,11 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         traderItem = dataSnapshot.getValue(Item.class);
 
-                                        if(targetItem.getTraded() || targetItem.getDeleted()){
+                                        if(targetItem.getDeleted()){
                                             if(firebaseUser.getUid().equals(targetItem.getItemOwnerId()))
-                                                Toast.makeText(MessageActivity.this, "Item already traded or deleted.", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(MessageActivity.this, "Item already deleted.", Toast.LENGTH_SHORT).show();
                                             else
-                                                Toast.makeText(MessageActivity.this, "Owner traded or deleted the item.", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(MessageActivity.this, "Owner or deleted the item.", Toast.LENGTH_SHORT).show();
                                             finish();
                                         }
                                     }
