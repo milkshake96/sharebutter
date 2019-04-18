@@ -116,26 +116,28 @@ public class OfferRecordAdapter extends RecyclerView.Adapter<OfferRecordAdapter.
         viewHolder.ivSenderOffer.setVisibility(View.VISIBLE);
 
 
-        if (currentOfferRecord.getOwnerItem().getTraded()) {
-            viewHolder.ivReceiverTraded.setVisibility(View.VISIBLE);
-        }
+        if(!isHistoryPage) {
+            if (currentOfferRecord.getOwnerItem().getTraded()) {
+                viewHolder.ivReceiverTraded.setVisibility(View.VISIBLE);
+            }
 
-        if (currentOfferRecord.getOwnerItem().getDeleted()) {
-            viewHolder.ivReceiverRemoved.setVisibility(View.VISIBLE);
-            viewHolder.ivReceiverOffer.setVisibility(View.INVISIBLE);
-        } else {
-            viewHolder.ivReceiverOffer.setVisibility(View.VISIBLE);
-        }
+            if (currentOfferRecord.getOwnerItem().getDeleted()) {
+                viewHolder.ivReceiverRemoved.setVisibility(View.VISIBLE);
+                viewHolder.ivReceiverOffer.setVisibility(View.INVISIBLE);
+            } else {
+                viewHolder.ivReceiverOffer.setVisibility(View.VISIBLE);
+            }
 
-        if (currentOfferRecord.getTraderItem().getTraded()) {
-            viewHolder.ivSenderTraded.setVisibility(View.VISIBLE);
-        }
+            if (currentOfferRecord.getTraderItem().getTraded()) {
+                viewHolder.ivSenderTraded.setVisibility(View.VISIBLE);
+            }
 
-        if (currentOfferRecord.getTraderItem().getDeleted()) {
-            viewHolder.ivSenderRemoved.setVisibility(View.VISIBLE);
-            viewHolder.ivSenderOffer.setVisibility(View.INVISIBLE);
-        } else {
-            viewHolder.ivSenderOffer.setVisibility(View.VISIBLE);
+            if (currentOfferRecord.getTraderItem().getDeleted()) {
+                viewHolder.ivSenderRemoved.setVisibility(View.VISIBLE);
+                viewHolder.ivSenderOffer.setVisibility(View.INVISIBLE);
+            } else {
+                viewHolder.ivSenderOffer.setVisibility(View.VISIBLE);
+            }
         }
     }
 

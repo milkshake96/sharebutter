@@ -38,6 +38,11 @@ public class RatingActivity extends AppCompatActivity implements View.OnClickLis
     ImageView ivReceiverOffer;
     TextView tvReceiverOffer;
 
+    ImageView ivSenderTraded;
+    ImageView ivSenderDeleted;
+    ImageView ivReceiverTraded;
+    ImageView ivReceiverDeleted;
+
     //Others
     ImageView ivLike;
     ImageView ivDislike;
@@ -73,6 +78,18 @@ public class RatingActivity extends AppCompatActivity implements View.OnClickLis
         ivReceiverOffer = findViewById(R.id.iv_receiver_offer_img);
         tvSenderOffer = findViewById(R.id.tv_sender_name);
         tvReceiverOffer = findViewById(R.id.tv_receiver_name);
+
+        ivSenderTraded = findViewById(R.id.iv_sender_traded);
+        ivSenderTraded.setVisibility(View.INVISIBLE);
+
+        ivSenderDeleted = findViewById(R.id.iv_sender_remove);
+        ivSenderDeleted.setVisibility(View.INVISIBLE);
+
+        ivReceiverTraded = findViewById(R.id.iv_receiver_traded);
+        ivReceiverTraded.setVisibility(View.INVISIBLE);
+
+        ivReceiverDeleted = findViewById(R.id.iv_receiver_remove);
+        ivReceiverDeleted.setVisibility(View.INVISIBLE);
 
         Picasso.get()
                 .load(currentTradeOffer.getTraderItem().getImg1URL())
