@@ -36,6 +36,49 @@
                 android:background="@drawable/card_corner_gray"
                 android:padding="5dp"
                 android:src="@drawable/kitkat" />
+
+            <ImageView
+                android:id="@+id/iv_sender_traded"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/LargeColumn"
+                android:layout_marginRight="@dimen/xxxSmallColumn"
+                android:padding="5dp"
+                android:src="@drawable/grey_gift"/>
+
+            <ImageView
+                android:id="@+id/iv_receiver_traded"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_sender_offer_img"
+                android:layout_marginLeft="@dimen/xLargeColumn"
+                android:layout_marginRight="@dimen/xxxSmallColumn"
+                android:padding="5dp"
+                android:src="@drawable/grey_gift"/>
+
+            <ImageView
+                android:id="@+id/iv_sender_remove"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/LargeColumn"
+                android:layout_marginRight="@dimen/xxxSmallColumn"
+                android:padding="5dp"
+                android:src="@drawable/rubbish_bin"/>
+
+            <ImageView
+                android:id="@+id/iv_receiver_remove"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_sender_offer_img"
+                android:layout_marginLeft="@dimen/xLargeColumn"
+                android:layout_marginRight="@dimen/xxxSmallColumn"
+                android:padding="5dp"
+                android:src="@drawable/rubbish_bin"/>
+
         </RelativeLayout>
 
         <LinearLayout

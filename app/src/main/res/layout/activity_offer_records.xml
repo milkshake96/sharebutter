@@ -34,11 +34,12 @@
         <TextView
             android:id="@+id/tv_offer_sent"
             style="@style/TextViewCommon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="center"
+            android:foreground="@drawable/rec_btn_red_border"
             android:text="@string/offer_sent" />
 
         <!--vertical border-->
@@ -53,12 +54,13 @@
         <TextView
             android:id="@+id/tv_offer_received"
             style="@style/TextViewCommon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_toRightOf="@+id/tv_offer_sent"
-            android:layout_weight="0.7"
+            android:layout_weight="1"
             android:gravity="center"
+            android:foreground="@drawable/rec_btn_red_border"
             android:text="@string/offer_received" />
     </LinearLayout>
 

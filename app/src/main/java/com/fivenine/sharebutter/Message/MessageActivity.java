@@ -829,7 +829,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                                             if(firebaseUser.getUid().equals(targetItem.getItemOwnerId()))
                                                 Toast.makeText(MessageActivity.this, "Item already deleted.", Toast.LENGTH_SHORT).show();
                                             else
-                                                Toast.makeText(MessageActivity.this, "Owner or deleted the item.", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(MessageActivity.this, "Owner deleted the item.", Toast.LENGTH_SHORT).show();
                                             finish();
                                         }
                                     }
