@@ -1,0 +1,76 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
+        <!-- ***********************Top Toolbar********************** -->
+        <RelativeLayout
+            android:id="@+id/rlProfileTopBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/LargeColumn">
+
+            <include layout="@layout/layout_custom_toolbar" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rlProfileTopBar"
+            android:background="@color/medium_grey" />
+
+        <!-- ***********************Middle********************** -->
+        <RelativeLayout
+            android:id="@+id/rlOtherProfileDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider2"
+            android:gravity="center_horizontal">
+
+            <include layout="@layout/snippet_other_profile" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rlOtherProfileDetails"
+            android:layout_marginTop="@dimen/xxxSmallColumn"
+            android:background="@color/silver" />
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_no_offer_msg"-->
+            <!--style="@style/TextViewCommon"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="You have no item to offer yet."-->
+            <!--android:textColor="@color/DarkGrey" />-->
+
+        <RelativeLayout
+            android:id="@+id/rlGridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1">
+
+            <GridView
+                android:id="@+id/gvProfileOfferUploaded"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:horizontalSpacing="3dp"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="3dp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</merge>
